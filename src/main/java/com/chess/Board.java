@@ -1,14 +1,34 @@
 package com.chess;
 
+import com.utils.ModelUtils;
+
+import static com.utils.ModelUtils.getCoordinatesFromIndices;
+
 public class Board {
 
     private Cell[][] cells;
 
     public Board(){
-        cells = initializeBoard();
+        initializeBoard();
     }
 
-    public Cell[][] initializeBoard(){
-        return null;
+    public String toStringSquare(){
+        String toReturn = "";
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                toReturn += cells[j][i].getCoordinates();
+            }
+            toReturn += "\n";
+        }
+        return toReturn;
+    }
+
+    public void initializeBoard(){
+        cells = new Cell[8][8];
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                cells[j][i] = new Cell(getCoordinatesFromIndices(i,j));
+            }
+        }
     }
 }

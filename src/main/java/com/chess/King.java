@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class King extends Piece {
 
     @Override
-    public ArrayList<String> getAccessibleCells(Board board) {
+    public ArrayList<String> setAccessibleCells(Board board) {
         return null;
     }
 }

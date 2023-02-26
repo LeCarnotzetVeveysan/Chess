@@ -9,4 +9,8 @@ public class Cell {
         coordinates = inCoord;
         currentPiece = null;
     }
+
+    public String getCoordinates(){
+        return coordinates;
+    }
 }

@@ -10,5 +10,13 @@ public abstract class Piece {
     private ArrayList<String> cellHistory;
     private boolean hasMoved;
 
-    public abstract ArrayList<String> getAccessibleCells(Board board);
+    public abstract ArrayList<String> setAccessibleCells(Board board);
+
+    public ArrayList<String> getAccessibleCells(){
+        return accessibleCells;
+    }
+
+    public String getCurrentCell(){
+        return cellHistory.get(cellHistory.size() - 1);
+    }
 }
