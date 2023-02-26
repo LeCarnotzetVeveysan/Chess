@@ -1,6 +1,5 @@
 module com {
-    requires javafx.controls;
-    requires javafx.fxml;
+
     requires javafx.graphics;
 
     opens com.application to javafx.fxml;
