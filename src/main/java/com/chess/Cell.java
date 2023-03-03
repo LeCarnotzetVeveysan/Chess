@@ -13,4 +13,8 @@ public class Cell {
     public String getCoordinates(){
         return coordinates;
     }
+
+    public void setCurrentPiece(Piece piece) {
+        currentPiece = piece;
+    }
 }

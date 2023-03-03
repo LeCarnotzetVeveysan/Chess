@@ -30,5 +30,8 @@ public class Board {
                 cells[j][i] = new Cell(getCoordinatesFromIndices(i,j));
             }
         }
+        for (int i = 0; i < 8; i++){
+            cells[1][i].setCurrentPiece(new Pawn('b', getCoordinatesFromIndices(i,1)));
+        }
     }
 }
