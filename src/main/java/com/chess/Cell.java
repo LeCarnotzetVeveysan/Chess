@@ -17,4 +17,8 @@ public class Cell {
     public void setCurrentPiece(Piece piece) {
         currentPiece = piece;
     }
+
+    public Piece getCurrentPiece(){
+        return currentPiece;
+    }
 }

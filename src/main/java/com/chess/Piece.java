@@ -5,11 +5,15 @@ import java.util.Arrays;
 
 public abstract class Piece {
 
-    private String type;
-    private char color;
-    private String imgResource;
+    private final String type;
+    private final char color;
+    private final String imageFileName;
     private ArrayList<String> accessibleCells;
     private ArrayList<String> cellHistory;
+
+    public String getImageFileName(){
+        return imageFileName;
+    }
 
     public abstract ArrayList<String> setAccessibleCells(Board board);
 
@@ -26,7 +30,7 @@ public abstract class Piece {
     public Piece(String inType, char inColor, String inStartCell){
         type = inType;
         color = inColor;
-        imgResource = type + "_" + color;
+        imageFileName = type + "_" + color;
         accessibleCells = null;
         cellHistory = new ArrayList<>(Arrays.asList(inStartCell));
     }

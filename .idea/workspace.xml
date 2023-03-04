@@ -4,17 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="Added testBoard file + started working on it">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/chess/Pawn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/fxmls/testBoard.fxml" afterDir="false" />
+    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="Cleanup">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/application/AppData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/application/AppLaunch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/application/AppLaunch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/King.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Piece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/chess/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/fxmls/hello-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/chess/testBoard.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controllers/TestBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controllers/TestBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tests/test1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tests/test1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/LoadScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/utils/LoadScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/ModelUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/utils/ModelUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/fxmls/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/fxmls/testBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/testBoard.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +29,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
+        <option value="AnnotationType" />
         <option value="Class" />
       </list>
     </option>
@@ -50,29 +55,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.JavaFX",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="" />
       <recent name="com.chess" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ghisl\OneDrive\Informatique perso\Echecs\demo\src\main\resources\fxmls" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="ChessGame" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.application.AppLaunch" />
+      <module name="Chess" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -84,7 +105,7 @@
       <updated>1677411381981</updated>
       <workItem from="1677411383204" duration="5862000" />
       <workItem from="1677865147276" duration="2274000" />
-      <workItem from="1677878807702" duration="1594000" />
+      <workItem from="1677878807702" duration="11963000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1677412746648</created>
@@ -121,7 +142,21 @@
       <option name="project" value="LOCAL" />
       <updated>1677865739796</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added piece images + More work on pieces">
+      <created>1677881748767</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1677881748767</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Cleanup">
+      <created>1677881799539</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1677881799539</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,7 +179,10 @@
     <MESSAGE value="Added more classes + cleanup" />
     <MESSAGE value="Tests for board visualization" />
     <MESSAGE value="Added testBoard file + started working on it" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added testBoard file + started working on it" />
+    <MESSAGE value="Added piece images" />
+    <MESSAGE value="Added piece images + More work on pieces" />
+    <MESSAGE value="Cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleanup" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
