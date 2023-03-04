@@ -1,6 +1,8 @@
 package com.controllers;
 
 import com.chess.Board;
+import com.chess.Cell;
+import com.chess.Piece;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 
@@ -33,8 +35,15 @@ public class TestBoardController {
 
     public void initialize() throws FileNotFoundException {
         initIVs();
-        mainBoard = new Board();
+        String testPos = "rnbqkbnrppppppppxxrxxrxxxPxxxxxxxxxxxxxxxxNNNNxxPPPPPPPPRNBQKBNR";
+        mainBoard = new Board(testPos);
+        //mainBoard = new Board();
         refreshImages();
+        Cell testCell = mainBoard.getSpecificCell("a7");
+
+        Piece testPiece = testCell.getPiece();
+        System.out.println(testPiece.toString());
+        System.out.println(testPiece.getAccessibleCells(mainBoard));
     }
 
     

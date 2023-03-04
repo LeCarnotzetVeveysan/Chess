@@ -4,18 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="Added Imageview support for all cells on testBoard&#10;Worked on Pieces">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/chess/Bishop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/chess/Knight.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/chess/Queen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/chess/Rook.java" afterDir="false" />
+    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="Added Pieces &amp; Piece Initialization &amp; Proper image viewing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Bishop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Cell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/King.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Knight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Queen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Rook.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controllers/TestBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controllers/TestBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/ModelUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/utils/ModelUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxmls/testBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/testBoard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tests/test1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tests/test1.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,9 +26,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="AnnotationType" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -54,6 +55,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JavaMethodFindUsagesOptions.isOverridingMethods": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -102,7 +104,7 @@
       <updated>1677411381981</updated>
       <workItem from="1677411383204" duration="5862000" />
       <workItem from="1677865147276" duration="2274000" />
-      <workItem from="1677878807702" duration="13611000" />
+      <workItem from="1677878807702" duration="19262000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1677412746648</created>
@@ -160,7 +162,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677892241540</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added Pieces &amp; Piece Initialization &amp; Proper image viewing">
+      <created>1677894160078</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1677894160078</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,7 +196,8 @@
     <MESSAGE value="Added piece images + More work on pieces" />
     <MESSAGE value="Cleanup" />
     <MESSAGE value="Added Imageview support for all cells on testBoard&#10;Worked on Pieces" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Imageview support for all cells on testBoard&#10;Worked on Pieces" />
+    <MESSAGE value="Added Pieces &amp; Piece Initialization &amp; Proper image viewing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Pieces &amp; Piece Initialization &amp; Proper image viewing" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

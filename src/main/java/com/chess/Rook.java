@@ -1,7 +1,5 @@
 package com.chess;
 
-import java.util.ArrayList;
-
 public class Rook extends Piece {
 
     public Rook(char inColor, String inCurrentCell) {
@@ -9,7 +7,7 @@ public class Rook extends Piece {
     }
 
     @Override
-    public ArrayList<String> setAccessibleCells(Board board) {
-        return null;
+    public void calculateAccessibleCells(Board board) {
+
     }
 }

@@ -11,14 +11,31 @@ public abstract class Piece {
     private ArrayList<String> accessibleCells;
     private ArrayList<String> cellHistory;
 
+    public char getColor(){
+        return color;
+    }
+
     public String getImageFileName(){
         return imageFileName;
     }
 
-    public abstract ArrayList<String> setAccessibleCells(Board board);
+    public abstract void calculateAccessibleCells(Board board);
 
-    public ArrayList<String> getAccessibleCells(){
+    public void setAccessibleCells(ArrayList<String> inCellList){
+        accessibleCells = inCellList;
+    }
+
+    public ArrayList<String> getAccessibleCells(Board board){
+        calculateAccessibleCells(board);
         return accessibleCells;
+    }
+
+    public boolean getMoved(){
+        return cellHistory.size() != 1;
+    }
+
+    public ArrayList<String> getCellHistory(){
+        return cellHistory;
     }
 
     public String getCurrentCell(){
@@ -31,7 +48,11 @@ public abstract class Piece {
         type = inType;
         color = inColor;
         imageFileName = type + "_" + color;
-        accessibleCells = null;
+        accessibleCells = new ArrayList<>();
         cellHistory = new ArrayList<>(Arrays.asList(inStartCell));
+    }
+
+    public String toString(){
+        return "I'm a" + (color == 'w' ? " white " : " black ") + type + " in cell " + getCurrentCell() + ".";
     }
 }

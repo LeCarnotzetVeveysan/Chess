@@ -9,6 +9,30 @@ public class Board {
 
     public Board(){
         initializeBoard();
+        initializePieces();
+    }
+
+    public Board(String gameState){
+        initializeBoard();
+
+        for(int i = 0; i < 64; i++){
+            Piece piece = null;
+            switch (gameState.charAt(i)){
+                case 'K' -> piece = new King('w', getCoordinatesFromIndices(i/8, i%8));
+                case 'k' -> piece = new King('b', getCoordinatesFromIndices(i/8, i%8));
+                case 'Q' -> piece = new Queen('w', getCoordinatesFromIndices(i/8, i%8));
+                case 'q' -> piece = new Queen('b', getCoordinatesFromIndices(i/8, i%8));
+                case 'B' -> piece = new Bishop('w', getCoordinatesFromIndices(i/8, i%8));
+                case 'b' -> piece = new Bishop('b', getCoordinatesFromIndices(i/8, i%8));
+                case 'N' -> piece = new Knight('w', getCoordinatesFromIndices(i/8, i%8));
+                case 'n' -> piece = new Knight('b', getCoordinatesFromIndices(i/8, i%8));
+                case 'R' -> piece = new Rook('w', getCoordinatesFromIndices(i/8, i%8));
+                case 'r' -> piece = new Rook('b', getCoordinatesFromIndices(i/8, i%8));
+                case 'P' -> piece = new Pawn('w', getCoordinatesFromIndices(i/8, i%8));
+                case 'p' -> piece = new Pawn('b', getCoordinatesFromIndices(i/8, i%8));
+            }
+            cells[i/8][i%8].setPiece(piece);
+        }
     }
 
     public String toStringSquare(){
@@ -29,8 +53,6 @@ public class Board {
                 cells[i][j] = new Cell(getCoordinatesFromIndices(i,j));
             }
         }
-
-        initializePieces();
     }
 
     private void initializePieces() {
@@ -62,12 +84,10 @@ public class Board {
         }
     }
 
-    public Cell[][] getCells(){
-        return cells;
-    }
-
     public Cell getSpecificCell(String inCoordinates){
         int[] coordinates = getIndicesFromCoordinates(inCoordinates);
         return cells[coordinates[1]][coordinates[0]];
     }
+
+
 }

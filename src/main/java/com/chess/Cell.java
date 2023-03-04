@@ -14,6 +14,10 @@ public class Cell {
         return coordinates;
     }
 
+    public boolean getOccupied(){
+        return piece != null;
+    }
+
     public void setPiece(Piece inPiece) {
         piece = inPiece;
     }

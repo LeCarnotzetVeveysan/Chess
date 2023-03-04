@@ -9,9 +9,9 @@ import java.util.Arrays;
 
 public class test1 {
     public static void main(String[] args) throws IOException {
-        System.out.println(Arrays.toString(ModelUtils.getIndicesFromCoordinates("a7")));
-        System.out.println(ModelUtils.getCoordinatesFromIndices(0,1));
-        System.out.println(Arrays.toString(ModelUtils.getIndicesFromCoordinates("h3")));
-        System.out.println(ModelUtils.getCoordinatesFromIndices(7,5));
+        System.out.println(Arrays.toString(ModelUtils.getIndicesFromCoordinates("b5")));
+        System.out.println(ModelUtils.getCoordinatesFromIndices(1,3));
+        System.out.println(Arrays.toString(ModelUtils.getIndicesFromCoordinates("e2")));
+        System.out.println(ModelUtils.getCoordinatesFromIndices(4,6));
     }
 }
