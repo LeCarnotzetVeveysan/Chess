@@ -2,12 +2,11 @@ package com.chess;
 
 import java.util.ArrayList;
 
-public class King extends Piece {
+public class Queen extends Piece {
 
-    public King(char inColor, String inCurrentCell) {
-        super("king", inColor, inCurrentCell);
+    public Queen(char inColor, String inCurrentCell) {
+        super("queen", inColor, inCurrentCell);
     }
-
     @Override
     public ArrayList<String> setAccessibleCells(Board board) {
         return null;

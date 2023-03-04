@@ -2,10 +2,9 @@ package com.chess;
 
 import java.util.ArrayList;
 
-public class King extends Piece {
-
-    public King(char inColor, String inCurrentCell) {
-        super("king", inColor, inCurrentCell);
+public class Knight extends Piece {
+    public Knight(char inColor, String inCurrentCell) {
+        super("knight", inColor, inCurrentCell);
     }
 
     @Override

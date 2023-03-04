@@ -45,8 +45,8 @@ public class TestBoardController {
     private void refreshBoardImages() throws FileNotFoundException {
         for (int i = 0; i <= 7; i++){
             for (int j = 0; j <= 7; j++){
-                if(!(mainBoard.getSpecificCell(getCoordinatesFromIndices(i,j)).getCurrentPiece() == null)){
-                    setImage(cellIVs[i][j], mainBoard.getSpecificCell("b7").getCurrentPiece().getImageFileName());
+                if(!(mainBoard.getSpecificCell(getCoordinatesFromIndices(i,j)).getPiece() == null)){
+                    setImage(cellIVs[i][j], mainBoard.getSpecificCell(getCoordinatesFromIndices(i,j)).getPiece().getImageFileName());
                 }
             }
         }

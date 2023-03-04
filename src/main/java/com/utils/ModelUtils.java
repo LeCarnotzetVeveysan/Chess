@@ -25,7 +25,6 @@ public class ModelUtils {
         String path = "src/main/resources/images/" + fileName + ".png";
         Image image = new Image(new FileInputStream(path));
         iv.setImage(image);
-        System.out.println("Done !");
     }
 }
 

@@ -3,22 +3,22 @@ package com.chess;
 public class Cell {
 
     private String coordinates;
-    private Piece currentPiece;
+    private Piece piece;
 
     public Cell(String inCoord){
         coordinates = inCoord;
-        currentPiece = null;
+        piece = null;
     }
 
     public String getCoordinates(){
         return coordinates;
     }
 
-    public void setCurrentPiece(Piece piece) {
-        currentPiece = piece;
+    public void setPiece(Piece inPiece) {
+        piece = inPiece;
     }
 
-    public Piece getCurrentPiece(){
-        return currentPiece;
+    public Piece getPiece(){
+        return piece;
     }
 }
