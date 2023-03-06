@@ -4,7 +4,9 @@ import com.chess.Board;
 import com.chess.Cell;
 import com.chess.Piece;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -82,4 +84,9 @@ public class TestBoardController {
         }
     }
 
+    @FXML
+    public void onCellCkicked(MouseEvent mouseEvent) {
+        String cellCoord = ((Node) mouseEvent.getSource()).getId().substring(1,3);
+        System.out.println(cellCoord);
+    }
 }

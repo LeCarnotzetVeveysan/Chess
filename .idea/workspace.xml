@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="Added movements for Queens (Simple copy-paste from Rooks &amp; Bishops)">
+    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="Added movements for Knights">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Knight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controllers/TestBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controllers/TestBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxmls/testBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/testBoard.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +120,7 @@
       <workItem from="1677941781582" duration="45000" />
       <workItem from="1678088752089" duration="1053000" />
       <workItem from="1678094454071" duration="5367000" />
-      <workItem from="1678106552748" duration="4076000" />
+      <workItem from="1678106552748" duration="5830000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1677412746648</created>
@@ -234,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678109246466</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Added movements for Knights">
+      <created>1678110955113</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1678110955113</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,7 +277,8 @@
     <MESSAGE value="Added movement for Rooks (can be optimized)" />
     <MESSAGE value="Added movements for Bishops" />
     <MESSAGE value="Added movements for Queens (Simple copy-paste from Rooks &amp; Bishops)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added movements for Queens (Simple copy-paste from Rooks &amp; Bishops)" />
+    <MESSAGE value="Added movements for Knights" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added movements for Knights" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
