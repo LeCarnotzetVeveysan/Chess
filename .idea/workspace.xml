@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="More work">
+    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="General fixes&#10;Pawn movement calculation done (except en passant)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/King.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Pawn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controllers/TestBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controllers/TestBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/ModelUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/utils/ModelUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controllers/b.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +107,7 @@
       <workItem from="1677904910940" duration="2961000" />
       <workItem from="1677941781582" duration="45000" />
       <workItem from="1678088752089" duration="1053000" />
-      <workItem from="1678094454071" duration="1088000" />
+      <workItem from="1678094454071" duration="4066000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1677412746648</created>
@@ -186,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678088791035</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="General fixes&#10;Pawn movement calculation done (except en passant)">
+      <created>1678095935031</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1678095935031</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,7 +224,8 @@
     <MESSAGE value="More changes" />
     <MESSAGE value="More changes&#10;+ Started work on pawn movement" />
     <MESSAGE value="More work" />
-    <option name="LAST_COMMIT_MESSAGE" value="More work" />
+    <MESSAGE value="General fixes&#10;Pawn movement calculation done (except en passant)" />
+    <option name="LAST_COMMIT_MESSAGE" value="General fixes&#10;Pawn movement calculation done (except en passant)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

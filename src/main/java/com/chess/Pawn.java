@@ -44,6 +44,8 @@ public class Pawn extends Piece {
             }
         }
 
+        //Do en-passant movement
+
         super.setAccessibleCells(accessibleCells);
 
     }

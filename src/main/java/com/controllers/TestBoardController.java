@@ -35,13 +35,13 @@ public class TestBoardController {
 
     public void initialize() throws FileNotFoundException {
         initIVs();
-        String testPos = "rnbqkbnrppppppppxxrxxrxxxPxxxxxxxxxxxxxxxxNNNNxxPPPPPPPPRNBQKBNR";
+        String testPos = "rnbqkbnrppppppppxxrxxrxxxPKxxxxxxxxxxxxxxxNNNNxxPPPPPPPPRNBQKBNR";
         mainBoard = new Board(testPos);
         //mainBoard = new Board();
 
         refreshImages();
 
-        Cell testCell = mainBoard.getSpecificCell("d7");
+        Cell testCell = mainBoard.getSpecificCell("c5");
         Piece testPiece = testCell.getPiece();
         System.out.println(testPiece.toString());
         System.out.println(testPiece.getAccessibleCells(mainBoard));
