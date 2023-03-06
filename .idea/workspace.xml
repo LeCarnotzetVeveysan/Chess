@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="General fixes&#10;Pawn movement calculation done (except en passant)">
+    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="Added movement for Kings (except castling)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Rook.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controllers/TestBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controllers/TestBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/controllers/b.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +105,8 @@
       <workItem from="1677904910940" duration="2961000" />
       <workItem from="1677941781582" duration="45000" />
       <workItem from="1678088752089" duration="1053000" />
-      <workItem from="1678094454071" duration="4066000" />
+      <workItem from="1678094454071" duration="5367000" />
+      <workItem from="1678106552748" duration="758000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1677412746648</created>
@@ -193,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678095935031</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added movement for Kings (except castling)">
+      <created>1678099455233</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1678099455233</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,7 +231,8 @@
     <MESSAGE value="More changes&#10;+ Started work on pawn movement" />
     <MESSAGE value="More work" />
     <MESSAGE value="General fixes&#10;Pawn movement calculation done (except en passant)" />
-    <option name="LAST_COMMIT_MESSAGE" value="General fixes&#10;Pawn movement calculation done (except en passant)" />
+    <MESSAGE value="Added movement for Kings (except castling)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added movement for Kings (except castling)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
