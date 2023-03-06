@@ -35,19 +35,16 @@ public class TestBoardController {
 
     public void initialize() throws FileNotFoundException {
         initIVs();
-        //String testPos = "rnbqkbnrppppppppxxrxxrxxxPxxxxxxxxxxxxxxxxNNNNxxPPPPPPPPRNBQKBNR";
-        //mainBoard = new Board(testPos);
-        mainBoard = new Board();
+        String testPos = "rnbqkbnrppppppppxxrxxrxxxPxxxxxxxxxxxxxxxxNNNNxxPPPPPPPPRNBQKBNR";
+        mainBoard = new Board(testPos);
+        //mainBoard = new Board();
 
         refreshImages();
 
-        //Cell testCell = mainBoard.getSpecificCell("a7");
-        //System.out.println(testCell.getCoordinates());
-        //Piece testPiece = testCell.getPiece();
-        //System.out.println(testPiece.toString());
-        //System.out.println(testPiece.getAccessibleCells(mainBoard));
-
-
+        Cell testCell = mainBoard.getSpecificCell("d7");
+        Piece testPiece = testCell.getPiece();
+        System.out.println(testPiece.toString());
+        System.out.println(testPiece.getAccessibleCells(mainBoard));
     }
 
     
@@ -58,7 +55,7 @@ public class TestBoardController {
     private void refreshBoardImages() throws FileNotFoundException {
         for (int i = 0; i <= 7; i++){
             for (int j = 0; j <= 7; j++){
-                if(!(mainBoard.getSpecificCell(getCoordinatesFromIndices(i,j)).getOccupied())){
+                if(mainBoard.getSpecificCell(getCoordinatesFromIndices(i,j)).getOccupied()){
                     setImage(cellIVs[i][j], mainBoard.getSpecificCell(getCoordinatesFromIndices(i,j)).getPiece().getImageFileName());
                 }
             }

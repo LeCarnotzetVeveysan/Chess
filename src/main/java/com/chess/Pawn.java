@@ -14,31 +14,33 @@ public class Pawn extends Piece {
     public void calculateAccessibleCells(Board board) {
         ArrayList<String> accessibleCells = new ArrayList<>();
         int[] currentPos = getIndicesFromCoordinates(super.getCurrentCell());
-        int upDown = super.getColor() == 'w' ? 1 : -1;
+        int upDown = super.getColor() == 'b' ? 1 : -1;
 
-        String oneCellUp = getCoordinatesFromIndices(currentPos[0] + (upDown), currentPos[1]);
-        if(!board.getSpecificCell(oneCellUp).getOccupied()) {
-            accessibleCells.add(oneCellUp);
+        String oneCellMove = getCoordinatesFromIndices(currentPos[0] + upDown, currentPos[1]);
+        if(!board.getSpecificCell(oneCellMove).getOccupied()) {
+            accessibleCells.add(oneCellMove);
         }
 
         if(!super.getMoved()){
-            String twoCellsUp = getCoordinatesFromIndices(currentPos[0] + (upDown * 2), currentPos[1]);
-            if(!board.getSpecificCell(twoCellsUp).getOccupied() && !board.getSpecificCell(twoCellsUp).getOccupied()){
-                accessibleCells.add(twoCellsUp);
+            String twoCellMove = getCoordinatesFromIndices(currentPos[0] + (upDown * 2), currentPos[1]);
+            if(!board.getSpecificCell(oneCellMove).getOccupied() && !board.getSpecificCell(twoCellMove).getOccupied()){
+                accessibleCells.add(twoCellMove);
             }
         }
 
         if(currentPos[1] != 0){
-            String cellUpLeft = getCoordinatesFromIndices(currentPos[0] + upDown, currentPos[1] - 1);
-            if(board.getSpecificCell(cellUpLeft).getOccupied()) {
-                accessibleCells.add(cellUpLeft);
+            String takeLeftMove = getCoordinatesFromIndices(currentPos[0] + upDown, currentPos[1] - 1);
+            Cell takeLeftCell = board.getSpecificCell(takeLeftMove);
+            if(takeLeftCell.getOccupied() && takeLeftCell.getPiece().getColor() != super.getColor()) {
+                accessibleCells.add(takeLeftMove);
             }
         }
 
         if(currentPos[1] != 7){
-            String cellUpRight = getCoordinatesFromIndices(currentPos[0] + upDown, currentPos[1] + 1);
-            if(board.getSpecificCell(cellUpRight).getOccupied()) {
-                accessibleCells.add(cellUpRight);
+            String takeRightMove = getCoordinatesFromIndices(currentPos[0] + upDown, currentPos[1] + 1);
+            Cell takeRightCell = board.getSpecificCell(takeRightMove);
+            if(takeRightCell.getOccupied() && takeRightCell.getPiece().getColor() != super.getColor()) {
+                accessibleCells.add(takeRightMove);
             }
         }
 

@@ -13,7 +13,6 @@ public class ModelUtils {
         int[] intCoord = new int[2];
         intCoord[0] = 8 - Integer.parseInt(String.valueOf(stringCoord[1]));
         intCoord[1] = stringCoord[0] - 97;
-        System.out.println(inCoordinates + " : " + intCoord[0] + " " + intCoord[1]);
         return intCoord;
     }
 
