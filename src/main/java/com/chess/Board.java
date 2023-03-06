@@ -1,5 +1,7 @@
 package com.chess;
 
+import java.util.Arrays;
+
 import static com.utils.ModelUtils.getCoordinatesFromIndices;
 import static com.utils.ModelUtils.getIndicesFromCoordinates;
 
@@ -73,10 +75,10 @@ public class Board {
         cells[0][1].setPiece(new Knight('b', "b8"));
         cells[0][6].setPiece(new Knight('b', "g8"));
         //Rooks
-        cells[7][0].setPiece(new Rook('w', "b1"));
-        cells[7][7].setPiece(new Rook('w', "g1"));
-        cells[0][0].setPiece(new Rook('b', "b8"));
-        cells[0][7].setPiece(new Rook('b', "g8"));
+        cells[7][0].setPiece(new Rook('w', "a1"));
+        cells[7][7].setPiece(new Rook('w', "h1"));
+        cells[0][0].setPiece(new Rook('b', "a8"));
+        cells[0][7].setPiece(new Rook('b', "h8"));
         //Pawns
         for (int i = 0; i < 8; i++){
             cells[6][i].setPiece(new Pawn('w', getCoordinatesFromIndices(6,i)));
@@ -86,7 +88,7 @@ public class Board {
 
     public Cell getSpecificCell(String inCoordinates){
         int[] coordinates = getIndicesFromCoordinates(inCoordinates);
-        return cells[coordinates[1]][coordinates[0]];
+        return cells[coordinates[0]][coordinates[1]];
     }
 
 

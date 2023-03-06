@@ -15,7 +15,7 @@ public class Cell {
     }
 
     public boolean getOccupied(){
-        return piece != null;
+        return !(piece == null);
     }
 
     public void setPiece(Piece inPiece) {
