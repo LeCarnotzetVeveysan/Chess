@@ -43,10 +43,6 @@ public class TestBoardController {
 
         refreshImages();
 
-        Cell testCell = mainBoard.getSpecificCell("d6");
-        Piece testPiece = testCell.getPiece();
-        System.out.println(testPiece.toString());
-        System.out.println(testPiece.getAccessibleCells(mainBoard));
     }
 
     
@@ -87,6 +83,9 @@ public class TestBoardController {
     @FXML
     public void onCellCkicked(MouseEvent mouseEvent) {
         String cellCoord = ((Node) mouseEvent.getSource()).getId().substring(1,3);
-        System.out.println(cellCoord);
+        Cell testCell = mainBoard.getSpecificCell(cellCoord);
+        Piece testPiece = testCell.getPiece();
+        System.out.println(testPiece.toString());
+        System.out.println(testPiece.getAccessibleCells(mainBoard));
     }
 }

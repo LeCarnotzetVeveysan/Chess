@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="Added movements for Knights">
+    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="Added retrieval of cell coordinates on click">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controllers/TestBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controllers/TestBoardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxmls/testBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/testBoard.fxml" afterDir="false" />
@@ -120,7 +120,7 @@
       <workItem from="1677941781582" duration="45000" />
       <workItem from="1678088752089" duration="1053000" />
       <workItem from="1678094454071" duration="5367000" />
-      <workItem from="1678106552748" duration="5830000" />
+      <workItem from="1678106552748" duration="6777000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1677412746648</created>
@@ -241,7 +241,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678110955113</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Added retrieval of cell coordinates on click">
+      <created>1678112481678</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1678112481678</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,7 +285,8 @@
     <MESSAGE value="Added movements for Bishops" />
     <MESSAGE value="Added movements for Queens (Simple copy-paste from Rooks &amp; Bishops)" />
     <MESSAGE value="Added movements for Knights" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added movements for Knights" />
+    <MESSAGE value="Added retrieval of cell coordinates on click" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added retrieval of cell coordinates on click" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
