@@ -164,127 +164,127 @@
                  <ImageView fx:id="pa4IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(123,123,123);" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                 <ImageView fx:id="cb4IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cb4IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pb4IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                 <ImageView fx:id="cc4IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cc4IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pc4IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(123,123,123);" GridPane.columnIndex="3" GridPane.rowIndex="4">
-                 <ImageView fx:id="cd4IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cd4IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pd4IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="4" GridPane.rowIndex="4">
-                 <ImageView fx:id="ce4IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="ce4IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pe4IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(123,123,123);" GridPane.columnIndex="5" GridPane.rowIndex="4">
-                 <ImageView fx:id="cf4IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cf4IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pf4IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="6" GridPane.rowIndex="4">
-                 <ImageView fx:id="cg4IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cg4IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pg4IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(123,123,123);" GridPane.columnIndex="7" GridPane.rowIndex="4">
-                 <ImageView fx:id="ch4IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="ch4IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="ph4IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(123,123,123);" GridPane.columnIndex="0" GridPane.rowIndex="5">
-                 <ImageView fx:id="ca3IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="ca3IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pa3IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                 <ImageView fx:id="cb3IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cb3IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pb3IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(123,123,123);" GridPane.columnIndex="2" GridPane.rowIndex="5">
-                 <ImageView fx:id="cc3IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cc3IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pc3IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="3" GridPane.rowIndex="5">
-                 <ImageView fx:id="cd3IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cd3IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pd3IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(123,123,123);" GridPane.columnIndex="4" GridPane.rowIndex="5">
-                 <ImageView fx:id="ce3IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="ce3IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pe3IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="5" GridPane.rowIndex="5">
-                 <ImageView fx:id="cf3IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cf3IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pf3IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(123,123,123);" GridPane.columnIndex="6" GridPane.rowIndex="5">
-                 <ImageView fx:id="cg3IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cg3IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pg3IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="7" GridPane.rowIndex="5">
-                 <ImageView fx:id="ch3IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="ch3IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="ph3IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="0" GridPane.rowIndex="6">
-                 <ImageView fx:id="ca2IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="ca2IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pa2IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(123,123,123);" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                 <ImageView fx:id="cb2IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cb2IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pb2IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="2" GridPane.rowIndex="6">
-                 <ImageView fx:id="cc2IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cc2IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pc2IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(123,123,123);" GridPane.columnIndex="3" GridPane.rowIndex="6">
-                 <ImageView fx:id="cd2IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cd2IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pd2IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="4" GridPane.rowIndex="6">
-                 <ImageView fx:id="ce2IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="ce2IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pe2IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(123,123,123);" GridPane.columnIndex="5" GridPane.rowIndex="6">
-                 <ImageView fx:id="cf2IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cf2IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pf2IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="6" GridPane.rowIndex="6">
-                 <ImageView fx:id="cg2IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cg2IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pg2IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(123,123,123);" GridPane.columnIndex="7" GridPane.rowIndex="6">
-                 <ImageView fx:id="ch2IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="ch2IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="ph2IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(123,123,123);" GridPane.columnIndex="0" GridPane.rowIndex="7">
-                 <ImageView fx:id="ca1IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="ca1IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pa1IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                 <ImageView fx:id="cb1IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cb1IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pb1IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(123,123,123);" GridPane.columnIndex="2" GridPane.rowIndex="7">
-                 <ImageView fx:id="cc1IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cc1IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pc1IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="3" GridPane.rowIndex="7">
-                 <ImageView fx:id="cd1IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cd1IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pd1IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(123,123,123);" GridPane.columnIndex="4" GridPane.rowIndex="7">
-                 <ImageView fx:id="ce1IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="ce1IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pe1IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="5" GridPane.rowIndex="7">
-                 <ImageView fx:id="cf1IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cf1IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pf1IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(123,123,123);" GridPane.columnIndex="6" GridPane.rowIndex="7">
-                 <ImageView fx:id="cg1IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="cg1IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="pg1IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
              <StackPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="7" GridPane.rowIndex="7">
-                 <ImageView fx:id="ch1IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
+                 <ImageView fx:id="ch1IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                  <ImageView fx:id="ph1IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#onCellCkicked" pickOnBounds="true" preserveRatio="true" />
              </StackPane>
          </children>
