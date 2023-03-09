@@ -61,7 +61,6 @@ public class TestBoardController {
 
     }
 
-    
     public void refreshImages() throws FileNotFoundException {
         cleanImages();
         refreshBoardImages();
@@ -142,7 +141,11 @@ public class TestBoardController {
             Piece clickedPiece = clickedCell.getPiece();
             for(String coord : clickedPiece.getAccessibleCells(mainBoard)){
                 int[] coords = getIndicesFromCoordinates(coord);
-                setImage(cellIVs[coords[0]][coords[1]], "/cellBlurs/mid_blue");
+                if(mainBoard.getSpecificCell(coord).getOccupied()){
+                    setImage(cellIVs[coords[0]][coords[1]], "/cellBlurs/mid_red");
+                } else {
+                    setImage(cellIVs[coords[0]][coords[1]], "/cellBlurs/mid_blue");
+                }
             }
 
         }
