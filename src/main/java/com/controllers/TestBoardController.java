@@ -135,19 +135,28 @@ public class TestBoardController {
         String cellCoord = ((Node) mouseEvent.getSource()).getId().substring(1,3);
         Cell clickedCell = mainBoard.getSpecificCell(cellCoord);
 
-        if(clickedCell.getOccupied()) {
-            cleanCellImages();
+        if(clickedCell.getValidMove()){
+            mainBoard.movePiece(mainBoard.getActivePiece().getCurrentCell(), cellCoord);
+            refreshImages();
+        } else {
 
-            Piece clickedPiece = clickedCell.getPiece();
-            for(String coord : clickedPiece.getAccessibleCells(mainBoard)){
-                int[] coords = getIndicesFromCoordinates(coord);
-                if(mainBoard.getSpecificCell(coord).getOccupied()){
-                    setImage(cellIVs[coords[0]][coords[1]], "/cellBlurs/mid_red");
-                } else {
-                    setImage(cellIVs[coords[0]][coords[1]], "/cellBlurs/mid_blue");
+            if (clickedCell.getOccupied()) {
+
+                cleanCellImages();
+                Piece clickedPiece = clickedCell.getPiece();
+
+                for (String coord : clickedPiece.getAccessibleCells(mainBoard)) {
+                    int[] coords = getIndicesFromCoordinates(coord);
+                    Cell cell = mainBoard.getSpecificCell(coord);
+                    cell.setValidMove(true);
+                    if (cell.getOccupied()) {
+                        setImage(cellIVs[coords[0]][coords[1]], "/cellBlurs/mid_red");
+                    } else {
+                        setImage(cellIVs[coords[0]][coords[1]], "/cellBlurs/mid_blue");
+                    }
                 }
-            }
 
+            }
         }
     }
 }

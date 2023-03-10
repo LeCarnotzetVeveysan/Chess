@@ -1,5 +1,6 @@
 package com.chess;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static com.utils.ModelUtils.getCoordinatesFromIndices;
@@ -8,6 +9,9 @@ import static com.utils.ModelUtils.getIndicesFromCoordinates;
 public class Board {
 
     private Cell[][] cells;
+    private ArrayList<Piece> capturedPieces;
+    private Piece activePiece;
+    private char currentPlayer;
 
     public Board(){
         initializeBoard();
@@ -55,6 +59,8 @@ public class Board {
                 cells[i][j] = new Cell(getCoordinatesFromIndices(i,j));
             }
         }
+        capturedPieces = new ArrayList<>();
+        currentPlayer = 'w';
     }
 
     private void initializePieces() {
@@ -89,6 +95,24 @@ public class Board {
     public Cell getSpecificCell(String inCoordinates){
         int[] coordinates = getIndicesFromCoordinates(inCoordinates);
         return cells[coordinates[0]][coordinates[1]];
+    }
+
+    public Piece getActivePiece(){
+        return activePiece;
+    }
+
+    public void setActivePiece(Piece inPiece){
+        activePiece = inPiece;
+    }
+    public void movePiece(String inStartCell, String inEndCell){
+        Cell startCell = getSpecificCell(inStartCell);
+        Cell endCell = getSpecificCell(inEndCell);
+        if(endCell.getOccupied()){
+            capturedPieces.add(endCell.getPiece());
+            endCell.setPiece(null);
+        }
+        endCell.setPiece(startCell.getPiece());
+        startCell.setPiece(null);
     }
 
 

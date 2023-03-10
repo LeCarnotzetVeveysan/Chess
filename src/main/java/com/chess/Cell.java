@@ -4,10 +4,12 @@ public class Cell {
 
     private String coordinates;
     private Piece piece;
+    private Boolean validMove;
 
     public Cell(String inCoord){
         coordinates = inCoord;
         piece = null;
+        validMove = false;
     }
 
     public String getCoordinates(){
@@ -24,5 +26,13 @@ public class Cell {
 
     public Piece getPiece(){
         return piece;
+    }
+
+    public Boolean getValidMove() {
+        return validMove;
+    }
+
+    public void setValidMove(boolean inState){
+        validMove = inState;
     }
 }
