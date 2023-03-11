@@ -21,12 +21,11 @@ public abstract class Piece {
 
     public abstract void calculateAccessibleCells(Board board);
 
-    public void setAccessibleCells(ArrayList<String> inCellList){
-        accessibleCells = inCellList;
+    public void setAccessibleCells(ArrayList<String> inList){
+        accessibleCells = inList;
     }
 
-    public ArrayList<String> getAccessibleCells(Board board){
-        calculateAccessibleCells(board);
+    public ArrayList<String> getAccessibleCells(){
         return accessibleCells;
     }
 

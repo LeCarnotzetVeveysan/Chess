@@ -9,6 +9,7 @@ import static com.utils.ModelUtils.getIndicesFromCoordinates;
 public class Board {
 
     private Cell[][] cells;
+    private Piece whiteKing, blackKing;
     private ArrayList<Piece> capturedPieces;
     private Piece activePiece;
     private char currentPlayer;
@@ -39,6 +40,9 @@ public class Board {
             }
             cells[i/8][i%8].setPiece(piece);
         }
+
+        calculateValidMoves();
+
     }
 
     public String toStringSquare(){
@@ -65,8 +69,12 @@ public class Board {
 
     private void initializePieces() {
         //Kings
-        cells[7][4].setPiece(new King('w', "e1"));
-        cells[0][4].setPiece(new King('b', "e8"));
+        Piece firstKing = new King('w', "e1");
+        Piece secondKing = new King('b', "e8");
+        cells[7][4].setPiece(firstKing);
+        whiteKing = firstKing;
+        cells[0][4].setPiece(secondKing);
+        blackKing = secondKing;
         //Queens
         cells[7][3].setPiece(new Queen('w', "d1"));
         cells[0][3].setPiece(new Queen('b', "d8"));
@@ -90,6 +98,18 @@ public class Board {
             cells[6][i].setPiece(new Pawn('w', getCoordinatesFromIndices(6,i)));
             cells[1][i].setPiece(new Pawn('b', getCoordinatesFromIndices(1,i)));
         }
+
+        calculateValidMoves();
+    }
+
+    private void calculateValidMoves() {
+        for(int i = 0; i <= 7; i++){
+            for(int j = 0; j <= 7; j++){
+                if(cells[i][j].getOccupied()) {
+                    cells[i][j].getPiece().calculateAccessibleCells(this);
+                }
+            }
+        }
     }
 
     public Cell getSpecificCell(String inCoordinates){
@@ -112,7 +132,39 @@ public class Board {
             endCell.setPiece(null);
         }
         endCell.setPiece(startCell.getPiece());
+        endCell.getPiece().setCurrentCell(inEndCell);
         startCell.setPiece(null);
+
+        calculateValidMoves();
+        resetValidMoves();
+        nextPlayer();
+    }
+
+    public char getCurrentPlayer(){
+        return currentPlayer;
+    }
+
+    public void nextPlayer(){
+        if(currentPlayer == 'w'){
+            currentPlayer = 'b';
+        } else {
+            currentPlayer = 'w';
+        }
+    }
+
+    public void resetValidMoves(){
+        for(int i = 0; i <= 7; i++){
+            for(int j = 0; j <= 7; j++){
+                cells[i][j].setValidMove(false);
+            }
+        }
+    }
+
+    public void setValidMoves(){
+        for (String coord : activePiece.getAccessibleCells()){
+            int[] intCoord = getIndicesFromCoordinates(coord);
+            cells[intCoord[0]][intCoord[1]].setValidMove(true);
+        }
     }
 
 
