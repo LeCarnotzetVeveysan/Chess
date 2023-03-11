@@ -27,7 +27,7 @@ public abstract class Piece {
         return imageFileName;
     }
 
-    public abstract void calculateAccessibleCells(Board board);
+    public abstract void calculateAccessibleCells(boolean removeInvalidMoves, Board board);
 
     public void setAccessibleCells(ArrayList<String> inList){
         accessibleCells = inList;

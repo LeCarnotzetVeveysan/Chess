@@ -2,8 +2,7 @@ package com.chess;
 
 import java.util.ArrayList;
 
-import static com.utils.ModelUtils.getCoordinatesFromIndices;
-import static com.utils.ModelUtils.getIndicesFromCoordinates;
+import static com.utils.ModelUtils.*;
 
 public class Pawn extends Piece {
     public Pawn(char inColor, String inCurrentCell) {
@@ -11,7 +10,7 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public void calculateAccessibleCells(Board board) {
+    public void calculateAccessibleCells(boolean removeInvalidMoves, Board board) {
         ArrayList<String> accessibleCells = new ArrayList<>();
         int[] currentPos = getIndicesFromCoordinates(super.getCurrentCell());
         int upDown = super.getColor() == 'b' ? 1 : -1;
@@ -46,7 +45,12 @@ public class Pawn extends Piece {
 
         //Do en-passant movement
 
-        super.setAccessibleCells(accessibleCells);
+        if(removeInvalidMoves){
+            ArrayList<String> cleanedAccessibleCells = removeIllegalCells(board, accessibleCells, super.getCurrentCell());
+            super.setAccessibleCells(cleanedAccessibleCells);
+        } else {
+            super.setAccessibleCells(accessibleCells);
+        }
 
     }
 }

@@ -2,8 +2,7 @@ package com.chess;
 
 import java.util.ArrayList;
 
-import static com.utils.ModelUtils.getCoordinatesFromIndices;
-import static com.utils.ModelUtils.getIndicesFromCoordinates;
+import static com.utils.ModelUtils.*;
 
 public class Bishop extends Piece {
     public Bishop(char inColor, String inCurrentCell) {
@@ -11,7 +10,7 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public void calculateAccessibleCells(Board board) {
+    public void calculateAccessibleCells(boolean removeInvalidMoves, Board board) {
 
         ArrayList<String> accessibleCells = new ArrayList<>();
         int[] currentPos = getIndicesFromCoordinates(super.getCurrentCell());
@@ -70,7 +69,12 @@ public class Bishop extends Piece {
             }
         }
 
-        super.setAccessibleCells(accessibleCells);
+        if(removeInvalidMoves){
+            ArrayList<String> cleanedAccessibleCells = removeIllegalCells(board, accessibleCells, super.getCurrentCell());
+            super.setAccessibleCells(cleanedAccessibleCells);
+        } else {
+            super.setAccessibleCells(accessibleCells);
+        }
 
     }
 }

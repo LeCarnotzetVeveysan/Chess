@@ -1,7 +1,6 @@
 package com.chess;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static com.utils.ModelUtils.getCoordinatesFromIndices;
 import static com.utils.ModelUtils.getIndicesFromCoordinates;
@@ -17,9 +16,11 @@ public class Board {
     public Board(){
         initializeBoard();
         initializePieces();
+        calculateValidMoves();
     }
 
     public Board(String gameState){
+
         initializeBoard();
 
         for(int i = 0; i < 64; i++){
@@ -40,9 +41,9 @@ public class Board {
             }
             cells[i/8][i%8].setPiece(piece);
         }
-
-        calculateValidMoves();
-
+        whiteKing = cells[7][4].getPiece();
+        blackKing = cells[0][4].getPiece();
+        calculateLineOfSight();
     }
 
     public String toStringSquare(){
@@ -120,7 +121,17 @@ public class Board {
         for(int i = 0; i <= 7; i++){
             for(int j = 0; j <= 7; j++){
                 if(cells[i][j].getOccupied()) {
-                    cells[i][j].getPiece().calculateAccessibleCells(this);
+                    cells[i][j].getPiece().calculateAccessibleCells(true, this);
+                }
+            }
+        }
+    }
+
+    public void calculateLineOfSight() {
+        for(int i = 0; i <= 7; i++){
+            for(int j = 0; j <= 7; j++){
+                if(cells[i][j].getOccupied()) {
+                    cells[i][j].getPiece().calculateAccessibleCells(false, this);
                 }
             }
         }
@@ -139,7 +150,7 @@ public class Board {
         activePiece = inPiece;
         setValidMoves();
     }
-    public void movePiece(String inStartCell, String inEndCell){
+    public void movePiece(boolean realMove, String inStartCell, String inEndCell){
         Cell startCell = getSpecificCell(inStartCell);
         Cell endCell = getSpecificCell(inEndCell);
         if(endCell.getOccupied()){
@@ -154,9 +165,13 @@ public class Board {
             System.out.println("Check !");
         }
 
-        calculateValidMoves();
-        resetValidMoves();
-        nextPlayer();
+        if(realMove) {
+            calculateValidMoves();
+            resetValidMoves();
+            nextPlayer();
+        } else {
+            calculateLineOfSight();
+        }
     }
 
     public char getCurrentPlayer(){

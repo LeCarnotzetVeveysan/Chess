@@ -135,7 +135,8 @@ public class TestBoardController {
         Cell clickedCell = mainBoard.getSpecificCell(cellCoord);
 
         if(clickedCell.getValidMove()){
-            mainBoard.movePiece(mainBoard.getActivePiece().getCurrentCell(), cellCoord);
+            mainBoard.movePiece(true, mainBoard.getActivePiece().getCurrentCell(), cellCoord);
+            System.out.println(Arrays.toString(getIndicesFromCoordinates(cellCoord)));
             refreshImages();
         } else {
 
@@ -143,7 +144,6 @@ public class TestBoardController {
 
                 cleanCellImages();
                 mainBoard.setActivePiece(clickedCell.getPiece());
-                System.out.println(clickedCell.getPiece().getCellHistory());
 
                 for (String coord : mainBoard.getActivePiece().getAccessibleCells()) {
                     int[] coords = getIndicesFromCoordinates(coord);

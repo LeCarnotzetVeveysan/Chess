@@ -11,7 +11,7 @@ public class King extends Piece {
     }
 
     @Override
-    public void calculateAccessibleCells(Board board) {
+    public void calculateAccessibleCells(boolean removeInvalidMoves, Board board) {
 
         ArrayList<String> accessibleCells = new ArrayList<>();
         int[] currentPos = getIndicesFromCoordinates(super.getCurrentCell());
@@ -87,8 +87,13 @@ public class King extends Piece {
 
         //Missing castling
 
-        ArrayList<String> cleanedAccessibleCells = removeIllegalCells(board, accessibleCells, this);
-        super.setAccessibleCells(cleanedAccessibleCells);
+        if(removeInvalidMoves){
+            ArrayList<String> cleanedAccessibleCells = removeIllegalCells(board, accessibleCells, super.getCurrentCell());
+            super.setAccessibleCells(cleanedAccessibleCells);
+        } else {
+            super.setAccessibleCells(accessibleCells);
+        }
+
 
     }
 

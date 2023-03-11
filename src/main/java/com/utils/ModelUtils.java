@@ -30,13 +30,13 @@ public class ModelUtils {
         iv.setImage(image);
     }
 
-    public static ArrayList<String> removeIllegalCells(Board mainBoard, ArrayList<String> startList, Piece inPiece) {
+    public static ArrayList<String> removeIllegalCells(Board mainBoard, ArrayList<String> startList, String inCurrentCell) {
         ArrayList<String> validMoves = new ArrayList<>();
+        char color = mainBoard.getSpecificCell(inCurrentCell).getPiece().getColor();
         for(String testMove : startList){
             Board tempBoard = new Board(mainBoard.getBoardPosition());
-            tempBoard.movePiece(inPiece.getCurrentCell(), testMove);
-            tempBoard.calculateValidMoves();
-            if(!tempBoard.getIsCheck(inPiece.getColor())){
+            tempBoard.movePiece(false, inCurrentCell, testMove);
+            if(!tempBoard.getIsCheck(color)){
                 validMoves.add(testMove);
             }
         }
