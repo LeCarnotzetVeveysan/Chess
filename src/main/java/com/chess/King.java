@@ -2,8 +2,7 @@ package com.chess;
 
 import java.util.ArrayList;
 
-import static com.utils.ModelUtils.getCoordinatesFromIndices;
-import static com.utils.ModelUtils.getIndicesFromCoordinates;
+import static com.utils.ModelUtils.*;
 
 public class King extends Piece {
 
@@ -88,7 +87,9 @@ public class King extends Piece {
 
         //Missing castling
 
-        super.setAccessibleCells(accessibleCells);
+        ArrayList<String> cleanedAccessibleCells = removeIllegalCells(board, accessibleCells, this);
+        super.setAccessibleCells(cleanedAccessibleCells);
 
     }
+
 }

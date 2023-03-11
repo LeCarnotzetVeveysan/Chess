@@ -1,10 +1,13 @@
 package com.utils;
 
+import com.chess.Board;
+import com.chess.Piece;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class ModelUtils {
 
@@ -25,6 +28,19 @@ public class ModelUtils {
         String path = "src/main/resources/images/" + fileName + ".png";
         Image image = new Image(new FileInputStream(path));
         iv.setImage(image);
+    }
+
+    public static ArrayList<String> removeIllegalCells(Board mainBoard, ArrayList<String> startList, Piece inPiece) {
+        ArrayList<String> validMoves = new ArrayList<>();
+        for(String testMove : startList){
+            Board tempBoard = new Board(mainBoard.getBoardPosition());
+            tempBoard.movePiece(inPiece.getCurrentCell(), testMove);
+            tempBoard.calculateValidMoves();
+            if(!tempBoard.getIsCheck(inPiece.getColor())){
+                validMoves.add(testMove);
+            }
+        }
+        return validMoves;
     }
 }
 

@@ -116,7 +116,7 @@ public class Board {
         calculateValidMoves();
     }
 
-    private void calculateValidMoves() {
+    public void calculateValidMoves() {
         for(int i = 0; i <= 7; i++){
             for(int j = 0; j <= 7; j++){
                 if(cells[i][j].getOccupied()) {

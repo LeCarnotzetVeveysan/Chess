@@ -9,7 +9,7 @@ public abstract class Piece {
     private final char color;
     private final String imageFileName;
     private ArrayList<String> accessibleCells;
-    private ArrayList<String> cellHistory;
+    private final ArrayList<String> cellHistory;
 
     public char getTypeChar(){
         if(color == 'w'){
@@ -17,7 +17,6 @@ public abstract class Piece {
         } else {
             return type.charAt(0);
         }
-
     }
 
     public char getColor(){

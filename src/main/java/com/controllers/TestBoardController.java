@@ -143,6 +143,7 @@ public class TestBoardController {
 
                 cleanCellImages();
                 mainBoard.setActivePiece(clickedCell.getPiece());
+                System.out.println(clickedCell.getPiece().getCellHistory());
 
                 for (String coord : mainBoard.getActivePiece().getAccessibleCells()) {
                     int[] coords = getIndicesFromCoordinates(coord);
