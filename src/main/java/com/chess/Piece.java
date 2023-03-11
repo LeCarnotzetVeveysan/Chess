@@ -11,6 +11,15 @@ public abstract class Piece {
     private ArrayList<String> accessibleCells;
     private ArrayList<String> cellHistory;
 
+    public char getTypeChar(){
+        if(color == 'w'){
+            return Character.toUpperCase(type.charAt(0));
+        } else {
+            return type.charAt(0);
+        }
+
+    }
+
     public char getColor(){
         return color;
     }

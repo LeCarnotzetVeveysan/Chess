@@ -55,11 +55,9 @@ public class TestBoardController {
         initIVs();
         //String testPos = "rnbqkbnRpppppNpxxxrNxrxxxNNxxxxxNxxxxxxxxxNNNNxxPPPPPPPxRNBQKBNR";
         //mainBoard = new Board(testPos);
-
         mainBoard = new Board();
 
         refreshImages();
-
     }
 
     public void refreshImages() throws FileNotFoundException {
@@ -145,12 +143,11 @@ public class TestBoardController {
 
                 cleanCellImages();
                 mainBoard.setActivePiece(clickedCell.getPiece());
-                System.out.println(mainBoard.getActivePiece().toString());
 
                 for (String coord : mainBoard.getActivePiece().getAccessibleCells()) {
                     int[] coords = getIndicesFromCoordinates(coord);
                     Cell cell = mainBoard.getSpecificCell(coord);
-                    cell.setValidMove(true);
+
                     if (cell.getOccupied()) {
                         setImage(cellIVs[coords[0]][coords[1]], "/cellBlurs/mid_red");
                     } else {

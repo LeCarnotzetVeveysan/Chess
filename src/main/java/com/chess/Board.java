@@ -56,6 +56,20 @@ public class Board {
         return toReturn;
     }
 
+    public String getBoardPosition(){
+        String position = "";
+        for(int i = 0; i <= 7; i++){
+            for(int j = 0; j <= 7; j++){
+                if(cells[i][j].getOccupied()) {
+                    position += cells[i][j].getPiece().getTypeChar();
+                } else {
+                    position += 'x';
+                }
+            }
+        }
+        return position;
+    }
+
     public void initializeBoard(){
         cells = new Cell[8][8];
         for(int i = 0; i <= 7; i++){
@@ -123,6 +137,7 @@ public class Board {
 
     public void setActivePiece(Piece inPiece){
         activePiece = inPiece;
+        setValidMoves();
     }
     public void movePiece(String inStartCell, String inEndCell){
         Cell startCell = getSpecificCell(inStartCell);
@@ -134,6 +149,10 @@ public class Board {
         endCell.setPiece(startCell.getPiece());
         endCell.getPiece().setCurrentCell(inEndCell);
         startCell.setPiece(null);
+
+        if(getIsCheck(currentPlayer)){
+            System.out.println("Check !");
+        }
 
         calculateValidMoves();
         resetValidMoves();
@@ -165,6 +184,41 @@ public class Board {
             int[] intCoord = getIndicesFromCoordinates(coord);
             cells[intCoord[0]][intCoord[1]].setValidMove(true);
         }
+    }
+
+    public Piece getKing(char inColor){
+        if(inColor == 'w'){
+            return whiteKing;
+        } else {
+            return blackKing;
+        }
+    }
+
+    public boolean getIsCheck(char inColor){
+
+        if(inColor == 'w'){
+            return isKingInLineOfSight(whiteKing);
+        } else {
+            return isKingInLineOfSight(blackKing);
+        }
+
+    }
+
+    private boolean isKingInLineOfSight(Piece inKing) {
+        for (int i = 0; i <= 7; i++) {
+            for (int j = 0; j <= 7; j++) {
+                Cell currentCell = getSpecificCell(getCoordinatesFromIndices(i, j));
+                if(currentCell.getOccupied()) {
+                    Piece currentPiece = currentCell.getPiece();
+                    if (currentPiece.getColor() != inKing.getColor()) {
+                        if (currentPiece.getAccessibleCells().contains(inKing.getCurrentCell())) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 
 
