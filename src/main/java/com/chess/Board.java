@@ -49,7 +49,7 @@ public class Board {
                 case 'P' -> {
                     piece = new Pawn('w', getCoordinatesFromIndices(i / 8, i % 8));
                     if(i/8 != 6){
-                      piece.setCurrentCell(getCoordinatesFromIndices(i/8, i % 8));
+                        piece.setCurrentCell(getCoordinatesFromIndices(i/8, i % 8));
                     }
                 }
                 case 'p' -> {
