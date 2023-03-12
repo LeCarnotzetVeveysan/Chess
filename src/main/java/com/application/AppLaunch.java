@@ -13,7 +13,7 @@ public class AppLaunch extends Application {
         Stage mainStage = new Stage();
         Stage seconStage = new Stage();
         LoadScene ls = new LoadScene(mainStage, seconStage);
-        ls.changeScene("testBoard");
+        ls.changeScene("game-board");
     }
 
     public static void main(String[] args) {

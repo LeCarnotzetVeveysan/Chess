@@ -2,7 +2,6 @@ package com.controllers;
 
 import com.chess.Board;
 import com.chess.Cell;
-import com.chess.Piece;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
@@ -14,7 +13,7 @@ import java.util.Arrays;
 
 import static com.utils.ModelUtils.*;
 
-public class TestBoardController {
+public class GameBoardController {
 
     @FXML
     private ImageView ca8IV, cb8IV, cc8IV, cd8IV, ce8IV, cf8IV, cg8IV, ch8IV;
@@ -62,7 +61,8 @@ public class TestBoardController {
 
     public void refreshImages() throws FileNotFoundException {
         cleanImages();
-        refreshBoardImages();
+        updatePieceImages();
+        updateCellImages();
     }
 
     public void cleanImages(){
@@ -86,12 +86,39 @@ public class TestBoardController {
         }
     }
 
-    private void refreshBoardImages() throws FileNotFoundException {
+    private void updatePieceImages() throws FileNotFoundException {
         for (int i = 0; i <= 7; i++){
             for (int j = 0; j <= 7; j++){
                 Cell cell = mainBoard.getSpecificCell(getCoordinatesFromIndices(i,j));
                 if(cell.getOccupied()){
                     setImage(pieceIVs[i][j], "sprites/" + cell.getPiece().getImageFileName());
+                }
+            }
+        }
+    }
+
+    private void updateCellImages() throws FileNotFoundException {
+        updateCheckCells();
+    }
+
+    private void updateCheckCells() throws FileNotFoundException {
+        if(mainBoard.getIsCheck('w')){
+            for (int i = 0; i <= 7; i++){
+                for (int j = 0; j <= 7; j++){
+                    Cell cell = mainBoard.getSpecificCell(getCoordinatesFromIndices(i,j));
+                    if(cell.getOccupied() && cell.getPiece().getAccessibleCells().contains(mainBoard.getKing('w').getCurrentCell())){
+                        setImage(cellIVs[i][j], "/cellBlurs/mid_pink");
+                    }
+                }
+            }
+        }
+        if(mainBoard.getIsCheck('b')){
+            for (int i = 0; i <= 7; i++){
+                for (int j = 0; j <= 7; j++){
+                    Cell cell = mainBoard.getSpecificCell(getCoordinatesFromIndices(i,j));
+                    if(cell.getOccupied() && cell.getPiece().getAccessibleCells().contains(mainBoard.getKing('b').getCurrentCell())){
+                        setImage(cellIVs[i][j], "/cellBlurs/mid_pink");
+                    }
                 }
             }
         }

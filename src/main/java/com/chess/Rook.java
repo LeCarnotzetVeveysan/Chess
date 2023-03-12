@@ -55,7 +55,7 @@ public class Rook extends Piece {
         }
 
         for (int i = currentPos[1] + 1; i <= 7; i++){
-            String nCellRightMove = getCoordinatesFromIndices(currentPos[0],i );
+            String nCellRightMove = getCoordinatesFromIndices(currentPos[0], i);
             Cell nCellRight = board.getSpecificCell(nCellRightMove);
             if (!nCellRight.getOccupied()) {
                 accessibleCells.add(nCellRightMove);

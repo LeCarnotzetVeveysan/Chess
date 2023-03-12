@@ -26,8 +26,18 @@ public class Board {
         for(int i = 0; i < 64; i++){
             Piece piece = null;
             switch (gameState.charAt(i)){
-                case 'K' -> piece = new King('w', getCoordinatesFromIndices(i/8, i%8));
-                case 'k' -> piece = new King('b', getCoordinatesFromIndices(i/8, i%8));
+                case 'K' -> {
+                    piece = new King('w', getCoordinatesFromIndices(i/8, i%8));
+                    if(i/8 != 7 && i%8 != 4){
+                        piece.setCurrentCell(getCoordinatesFromIndices(i/8, i % 8));
+                    }
+                }
+                case 'k' -> {
+                    piece = new King('b', getCoordinatesFromIndices(i/8, i%8));
+                    if(i/8 != 0 && i%8 != 4){
+                        piece.setCurrentCell(getCoordinatesFromIndices(i/8, i % 8));
+                    }
+                }
                 case 'Q' -> piece = new Queen('w', getCoordinatesFromIndices(i/8, i%8));
                 case 'q' -> piece = new Queen('b', getCoordinatesFromIndices(i/8, i%8));
                 case 'B' -> piece = new Bishop('w', getCoordinatesFromIndices(i/8, i%8));
@@ -36,8 +46,18 @@ public class Board {
                 case 'n' -> piece = new Knight('b', getCoordinatesFromIndices(i/8, i%8));
                 case 'R' -> piece = new Rook('w', getCoordinatesFromIndices(i/8, i%8));
                 case 'r' -> piece = new Rook('b', getCoordinatesFromIndices(i/8, i%8));
-                case 'P' -> piece = new Pawn('w', getCoordinatesFromIndices(i/8, i%8));
-                case 'p' -> piece = new Pawn('b', getCoordinatesFromIndices(i/8, i%8));
+                case 'P' -> {
+                    piece = new Pawn('w', getCoordinatesFromIndices(i / 8, i % 8));
+                    if(i/8 != 6){
+                      piece.setCurrentCell(getCoordinatesFromIndices(i/8, i % 8));
+                    }
+                }
+                case 'p' -> {
+                    piece = new Pawn('b', getCoordinatesFromIndices(i/8, i%8));
+                    if(i/8 != 1){
+                        piece.setCurrentCell(getCoordinatesFromIndices(i/8, i % 8));
+                    }
+                }
             }
             cells[i/8][i%8].setPiece(piece);
         }
@@ -160,10 +180,6 @@ public class Board {
         endCell.setPiece(startCell.getPiece());
         endCell.getPiece().setCurrentCell(inEndCell);
         startCell.setPiece(null);
-
-        if(getIsCheck(currentPlayer)){
-            System.out.println("Check !");
-        }
 
         if(realMove) {
             calculateValidMoves();
