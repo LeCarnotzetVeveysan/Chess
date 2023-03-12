@@ -2,6 +2,7 @@ package com.chess;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 public abstract class Piece {
 
@@ -13,9 +14,17 @@ public abstract class Piece {
 
     public char getTypeChar(){
         if(color == 'w'){
-            return Character.toUpperCase(type.charAt(0));
+            if(type.equals("knight")){
+                return 'N';
+            } else {
+                return Character.toUpperCase(type.charAt(0));
+            }
         } else {
-            return type.charAt(0);
+            if(type.equals("knight")){
+                return 'n';
+            } else {
+                return type.charAt(0);
+            }
         }
     }
 

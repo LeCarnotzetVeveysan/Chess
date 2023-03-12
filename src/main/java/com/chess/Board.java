@@ -12,6 +12,7 @@ public class Board {
     private ArrayList<Piece> capturedPieces;
     private Piece activePiece;
     private char currentPlayer;
+    private boolean promotionRequired = false;
 
     public Board(){
         initializeBoard();
@@ -58,11 +59,15 @@ public class Board {
                         piece.setCurrentCell(getCoordinatesFromIndices(i/8, i % 8));
                     }
                 }
+
             }
             cells[i/8][i%8].setPiece(piece);
         }
-        whiteKing = cells[7][4].getPiece();
-        blackKing = cells[0][4].getPiece();
+
+        int whiteKingIndex = gameState.indexOf('K');
+        whiteKing = cells[whiteKingIndex/8][whiteKingIndex%8].getPiece();
+        int blackKingIndex = gameState.indexOf('k');
+        blackKing = cells[blackKingIndex/8][blackKingIndex%8].getPiece();
         calculateLineOfSight();
     }
 
@@ -182,12 +187,17 @@ public class Board {
         startCell.setPiece(null);
 
         if(realMove) {
-            calculateValidMoves();
-            resetValidMoves();
+            calculatePromotionRequired();
+            updateMoves();
             nextPlayer();
         } else {
             calculateLineOfSight();
         }
+    }
+
+    public void updateMoves(){
+        calculateValidMoves();
+        resetValidMoves();
     }
 
     public char getCurrentPlayer(){
@@ -252,5 +262,43 @@ public class Board {
         return false;
     }
 
+    public void promotePawn(String inCell, char inTypeColor){
+        Cell currentCell = getSpecificCell(inCell);
+        switch (inTypeColor) {
+            case 'Q' -> currentCell.setPiece(new Queen('w', inCell));
+            case 'q' -> currentCell.setPiece(new Queen('b', inCell));
+            case 'B' -> currentCell.setPiece(new Bishop('w', inCell));
+            case 'b' -> currentCell.setPiece(new Bishop('b', inCell));
+            case 'N' -> currentCell.setPiece(new Knight('w', inCell));
+            case 'n' -> currentCell.setPiece(new Knight('b', inCell));
+            case 'R' -> currentCell.setPiece(new Rook('w', inCell));
+            case 'r' -> currentCell.setPiece(new Rook('r', inCell));
+        }
+        updateMoves();
+    }
 
+    public void calculatePromotionRequired(){
+        for(int i = 0; i <= 7; i++){
+            Cell currentCell = getSpecificCell(getCoordinatesFromIndices(0,i));
+            if(currentCell.getOccupied()){
+                if(currentCell.getPiece().getTypeChar() == 'P'){
+                    setPromotionRequired(true);
+                }
+            }
+            currentCell = getSpecificCell(getCoordinatesFromIndices(7,i));
+            if (currentCell.getOccupied()) {
+                if (currentCell.getPiece().getTypeChar() == 'p') {
+                    setPromotionRequired(true);
+                }
+            }
+        }
+    }
+
+    public boolean getPromotionRequired() {
+        return promotionRequired;
+    }
+
+    public void setPromotionRequired(boolean inState){
+        promotionRequired = inState;
+    }
 }

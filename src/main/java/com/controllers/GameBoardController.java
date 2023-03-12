@@ -2,10 +2,12 @@ package com.controllers;
 
 import com.chess.Board;
 import com.chess.Cell;
+import com.chess.Piece;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -15,6 +17,8 @@ import static com.utils.ModelUtils.*;
 
 public class GameBoardController {
 
+    @FXML
+    public VBox promotionVB;
     @FXML
     private ImageView ca8IV, cb8IV, cc8IV, cd8IV, ce8IV, cf8IV, cg8IV, ch8IV;
     @FXML
@@ -51,7 +55,11 @@ public class GameBoardController {
     private Board mainBoard;
 
     public void initialize() throws FileNotFoundException {
+
         initIVs();
+        promotionVB.setDisable(true);
+        promotionVB.setVisible(false);
+
         //String testPos = "rnbqkbnRpppppNpxxxrNxrxxxNNxxxxxNxxxxxxxxxNNNNxxPPPPPPPxRNBQKBNR";
         //mainBoard = new Board(testPos);
         mainBoard = new Board();
@@ -156,6 +164,14 @@ public class GameBoardController {
         }
     }
 
+    public void setCellClickableState(boolean inState){
+        for (int i = 0; i <= 7; i++){
+            for (int j = 0; j <= 7; j++){
+                pieceIVs[i][j].setDisable(!inState);
+            }
+        }
+    }
+
     @FXML
     public void onCellCkicked(MouseEvent mouseEvent) throws FileNotFoundException {
         String cellCoord = ((Node) mouseEvent.getSource()).getId().substring(1,3);
@@ -163,10 +179,13 @@ public class GameBoardController {
 
         if(clickedCell.getValidMove()){
             mainBoard.movePiece(true, mainBoard.getActivePiece().getCurrentCell(), cellCoord);
-            System.out.println(Arrays.toString(getIndicesFromCoordinates(cellCoord)));
+            if(mainBoard.getPromotionRequired()){
+                promotionVB.setDisable(false);
+                promotionVB.setVisible(true);
+                setCellClickableState(false);
+            }
             refreshImages();
         } else {
-
             if (clickedCell.getOccupied() && clickedCell.getPiece().getColor() == mainBoard.getCurrentPlayer()) {
 
                 cleanCellImages();
@@ -185,5 +204,61 @@ public class GameBoardController {
 
             }
         }
+    }
+
+    @FXML
+    public void onQueenPromotionClick() throws FileNotFoundException {
+        Piece activePiece = mainBoard.getActivePiece();
+        if(activePiece.getColor() == 'w'){
+            mainBoard.promotePawn(activePiece.getCurrentCell(), 'Q');
+        } else {
+            mainBoard.promotePawn(activePiece.getCurrentCell(), 'q');
+        }
+        promotionVB.setDisable(true);
+        promotionVB.setVisible(false);
+        setCellClickableState(true);
+        refreshImages();
+    }
+
+    @FXML
+    public void onBishopPromotionClick() throws FileNotFoundException {
+        Piece activePiece = mainBoard.getActivePiece();
+        if(activePiece.getColor() == 'w'){
+            mainBoard.promotePawn(activePiece.getCurrentCell(), 'B');
+        } else {
+            mainBoard.promotePawn(activePiece.getCurrentCell(), 'b');
+        }
+        promotionVB.setDisable(true);
+        promotionVB.setVisible(false);
+        setCellClickableState(true);
+        refreshImages();
+    }
+
+    @FXML
+    public void onKnightPromotionClick() throws FileNotFoundException {
+        Piece activePiece = mainBoard.getActivePiece();
+        if(activePiece.getColor() == 'w'){
+            mainBoard.promotePawn(activePiece.getCurrentCell(), 'N');
+        } else {
+            mainBoard.promotePawn(activePiece.getCurrentCell(), 'n');
+        }
+        promotionVB.setDisable(true);
+        promotionVB.setVisible(false);
+        setCellClickableState(true);
+        refreshImages();
+    }
+
+    @FXML
+    public void onRookPromotionClick() throws FileNotFoundException {
+        Piece activePiece = mainBoard.getActivePiece();
+        if(activePiece.getColor() == 'w'){
+            mainBoard.promotePawn(activePiece.getCurrentCell(), 'R');
+        } else {
+            mainBoard.promotePawn(activePiece.getCurrentCell(), 'r');
+        }
+        promotionVB.setDisable(true);
+        promotionVB.setVisible(false);
+        setCellClickableState(true);
+        refreshImages();
     }
 }

@@ -2,6 +2,7 @@ module com {
 
     requires javafx.graphics;
     requires javafx.fxml;
+    requires javafx.controls;
 
     opens com.application to javafx.fxml;
     exports com.application;
@@ -13,4 +14,5 @@ module com {
     exports com.utils;
     opens com.tests to javafx.fxml;
     exports com.tests;
+
 }
