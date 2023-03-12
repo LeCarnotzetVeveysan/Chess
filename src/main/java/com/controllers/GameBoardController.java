@@ -189,6 +189,7 @@ public class GameBoardController {
             if (clickedCell.getOccupied() && clickedCell.getPiece().getColor() == mainBoard.getCurrentPlayer()) {
 
                 cleanCellImages();
+                updateCheckCells();
                 mainBoard.setActivePiece(clickedCell.getPiece());
 
                 for (String coord : mainBoard.getActivePiece().getAccessibleCells()) {

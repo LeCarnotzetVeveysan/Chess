@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="Added mid-pink blur for Check visualization">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/controllers/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Piece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/controllers/GameBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controllers/GameBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxmls/game-board.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/game-board.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="Fixed error where promotion occured after each move" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -136,7 +128,7 @@
       <workItem from="1678616942293" duration="2817000" />
       <workItem from="1678619777043" duration="1294000" />
       <workItem from="1678636668861" duration="5080000" />
-      <workItem from="1678646630811" duration="308000" />
+      <workItem from="1678646630811" duration="632000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1677412746648</created>
@@ -341,7 +333,21 @@
       <option name="project" value="LOCAL" />
       <updated>1678620197903</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Added Capacity to promote pawn">
+      <created>1678647126708</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1678647126708</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Fixed error where promotion occured after each move">
+      <created>1678647260887</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1678647260887</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -359,8 +365,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added piece images + More work on pieces" />
-    <MESSAGE value="Cleanup" />
     <MESSAGE value="Added Imageview support for all cells on testBoard&#10;Worked on Pieces" />
     <MESSAGE value="Added Pieces &amp; Piece Initialization &amp; Proper image viewing" />
     <MESSAGE value="More changes" />
@@ -384,7 +388,9 @@
     <MESSAGE value="When loading a Board with a specific position, duplicate currentCell in King and Pawn cellHistory if not in original position" />
     <MESSAGE value="Fixed error for Pawn LineOfSight in rows 0 and 7" />
     <MESSAGE value="Added mid-pink blur for Check visualization" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added mid-pink blur for Check visualization" />
+    <MESSAGE value="Added Capacity to promote pawn" />
+    <MESSAGE value="Fixed error where promotion occured after each move" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed error where promotion occured after each move" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
