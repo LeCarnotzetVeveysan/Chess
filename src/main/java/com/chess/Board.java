@@ -262,7 +262,8 @@ public class Board {
         return false;
     }
 
-    public void promotePawn(String inCell, char inTypeColor){
+    public void promotePawn(String inCell, char inTypeColor) {
+        setPromotionRequired(false);
         Cell currentCell = getSpecificCell(inCell);
         switch (inTypeColor) {
             case 'Q' -> currentCell.setPiece(new Queen('w', inCell));
