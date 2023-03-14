@@ -32,7 +32,7 @@ public class LoadScene {
     public static void changeScene(String fxmlToShow) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(LoadScene.class.getResource("/fxmls/" + fxmlToShow + ".fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         mainStage.setTitle("LChessV");
         mainStage.setScene(scene);
         mainStage.show();

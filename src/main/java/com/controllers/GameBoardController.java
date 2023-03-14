@@ -20,38 +20,28 @@ public class GameBoardController {
     @FXML
     public VBox promotionVB;
     @FXML
-    private ImageView ca8IV, cb8IV, cc8IV, cd8IV, ce8IV, cf8IV, cg8IV, ch8IV;
-    @FXML
-    private ImageView ca7IV, cb7IV, cc7IV, cd7IV, ce7IV, cf7IV, cg7IV, ch7IV;
-    @FXML
-    private ImageView ca6IV, cb6IV, cc6IV, cd6IV, ce6IV, cf6IV, cg6IV, ch6IV;
-    @FXML
-    private ImageView ca5IV, cb5IV, cc5IV, cd5IV, ce5IV, cf5IV, cg5IV, ch5IV;
-    @FXML
-    private ImageView ca4IV, cb4IV, cc4IV, cd4IV, ce4IV, cf4IV, cg4IV, ch4IV;
-    @FXML
-    private ImageView ca3IV, cb3IV, cc3IV, cd3IV, ce3IV, cf3IV, cg3IV, ch3IV;
-    @FXML
-    private ImageView ca2IV, cb2IV, cc2IV, cd2IV, ce2IV, cf2IV, cg2IV, ch2IV;
-    @FXML
-    private ImageView ca1IV, cb1IV, cc1IV, cd1IV, ce1IV, cf1IV, cg1IV, ch1IV;
-    @FXML
-    private ImageView pa8IV, pb8IV, pc8IV, pd8IV, pe8IV, pf8IV, pg8IV, ph8IV;
-    @FXML
-    private ImageView pa7IV, pb7IV, pc7IV, pd7IV, pe7IV, pf7IV, pg7IV, ph7IV;
-    @FXML
-    private ImageView pa6IV, pb6IV, pc6IV, pd6IV, pe6IV, pf6IV, pg6IV, ph6IV;
-    @FXML
-    private ImageView pa5IV, pb5IV, pc5IV, pd5IV, pe5IV, pf5IV, pg5IV, ph5IV;
-    @FXML
-    private ImageView pa4IV, pb4IV, pc4IV, pd4IV, pe4IV, pf4IV, pg4IV, ph4IV;
-    @FXML
-    private ImageView pa3IV, pb3IV, pc3IV, pd3IV, pe3IV, pf3IV, pg3IV, ph3IV;
-    @FXML
-    private ImageView pa2IV, pb2IV, pc2IV, pd2IV, pe2IV, pf2IV, pg2IV, ph2IV;
-    @FXML
-    private ImageView pa1IV, pb1IV, pc1IV, pd1IV, pe1IV, pf1IV, pg1IV, ph1IV;
+    private ImageView ca8IV, cb8IV, cc8IV, cd8IV, ce8IV, cf8IV, cg8IV, ch8IV,
+            ca7IV, cb7IV, cc7IV, cd7IV, ce7IV, cf7IV, cg7IV, ch7IV,
+            ca6IV, cb6IV, cc6IV, cd6IV, ce6IV, cf6IV, cg6IV, ch6IV,
+            ca5IV, cb5IV, cc5IV, cd5IV, ce5IV, cf5IV, cg5IV, ch5IV,
+            ca4IV, cb4IV, cc4IV, cd4IV, ce4IV, cf4IV, cg4IV, ch4IV,
+            ca3IV, cb3IV, cc3IV, cd3IV, ce3IV, cf3IV, cg3IV, ch3IV,
+            ca2IV, cb2IV, cc2IV, cd2IV, ce2IV, cf2IV, cg2IV, ch2IV,
+            ca1IV, cb1IV, cc1IV, cd1IV, ce1IV, cf1IV, cg1IV, ch1IV,
+            pa8IV, pb8IV, pc8IV, pd8IV, pe8IV, pf8IV, pg8IV, ph8IV,
+            pa7IV, pb7IV, pc7IV, pd7IV, pe7IV, pf7IV, pg7IV, ph7IV,
+            pa6IV, pb6IV, pc6IV, pd6IV, pe6IV, pf6IV, pg6IV, ph6IV,
+            pa5IV, pb5IV, pc5IV, pd5IV, pe5IV, pf5IV, pg5IV, ph5IV,
+            pa4IV, pb4IV, pc4IV, pd4IV, pe4IV, pf4IV, pg4IV, ph4IV,
+            pa3IV, pb3IV, pc3IV, pd3IV, pe3IV, pf3IV, pg3IV, ph3IV,
+            pa2IV, pb2IV, pc2IV, pd2IV, pe2IV, pf2IV, pg2IV, ph2IV,
+            pa1IV, pb1IV, pc1IV, pd1IV, pe1IV, pf1IV, pg1IV, ph1IV,
+            wCP1IV, wCP2IV, wCP3IV, wCP4IV, wCP5IV, wCP6IV, wCP7IV, wCP8IV,
+            wCP9IV, wCP10IV, wCP11IV, wCP12IV, wCP13IV, wCP14IV, wCP15IV, wCP16IV,        
+            bCP1IV, bCP2IV, bCP3IV, bCP4IV, bCP5IV, bCP6IV, bCP7IV, bCP8IV,
+            bCP9IV, bCP10IV, bCP11IV, bCP12IV, bCP13IV, bCP14IV, bCP15IV, bCP16IV;
     private ImageView[][] cellIVs, pieceIVs;
+    private ArrayList<ImageView> wCaptPieceIVs, bCaptPieceIVs;
     private Board mainBoard;
 
     public void initialize() throws FileNotFoundException {
@@ -71,11 +61,37 @@ public class GameBoardController {
         cleanImages();
         updatePieceImages();
         updateCellImages();
+        updateCapturedPieceImages();
+    }
+
+    private void updateCapturedPieceImages() throws FileNotFoundException {
+        ArrayList<Piece> whiteCapt = mainBoard.getWhiteCapturedPieces();
+        if(whiteCapt.size() >= 1) {
+            for (int i = 0; i < wCaptPieceIVs.size() - 1; i++) {
+                setImage(wCaptPieceIVs.get(i), "sprites/" + whiteCapt.get(i).getImageFileName());
+            }
+        }
+        ArrayList<Piece> blackCapt = mainBoard.getBlackCapturedPieces();
+        if(blackCapt.size() >= 1) {
+            for (int i = 0; i < bCaptPieceIVs.size() - 1; i++) {
+                setImage(bCaptPieceIVs.get(i), "sprites/" + blackCapt.get(i).getImageFileName());
+            }
+        }
     }
 
     public void cleanImages(){
         cleanCellImages();
         cleanPieceImages();
+        cleanCapturedPieceImages();
+    }
+
+    private void cleanCapturedPieceImages() {
+        for (ImageView iv : wCaptPieceIVs){
+            iv.setImage(null);
+        }
+        for (ImageView iv : bCaptPieceIVs){
+            iv.setImage(null);
+        }
     }
 
     private void cleanCellImages() {
@@ -162,6 +178,11 @@ public class GameBoardController {
                 pieceIVs[i][j] = rPIVs.get(i).get(j);
             }
         }
+
+        wCaptPieceIVs = new ArrayList<>(Arrays.asList(wCP1IV, wCP2IV, wCP3IV, wCP4IV, wCP5IV, wCP6IV, wCP7IV, wCP8IV));
+        wCaptPieceIVs.addAll(Arrays.asList(wCP9IV, wCP10IV, wCP11IV, wCP12IV, wCP13IV, wCP14IV, wCP15IV, wCP16IV));
+        bCaptPieceIVs = new ArrayList<>(Arrays.asList(bCP1IV, bCP2IV, bCP3IV, bCP4IV, bCP5IV, bCP6IV, bCP7IV, bCP8IV));
+        bCaptPieceIVs.addAll(Arrays.asList(bCP9IV, bCP10IV, bCP11IV, bCP12IV, bCP13IV, bCP14IV, bCP15IV, bCP16IV));
     }
 
     public void setCellClickableState(boolean inState){

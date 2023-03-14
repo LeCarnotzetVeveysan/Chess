@@ -2,14 +2,16 @@ package com.chess;
 
 import java.util.ArrayList;
 
+import static com.chess.GameState.*;
 import static com.utils.ModelUtils.getCoordinatesFromIndices;
 import static com.utils.ModelUtils.getIndicesFromCoordinates;
 
 public class Board {
 
+    private GameState gameState = ONGOING;
     private Cell[][] cells;
     private Piece whiteKing, blackKing;
-    private ArrayList<Piece> capturedPieces;
+    private ArrayList<Piece> whiteCapturedPieces, blackCapturedPieces;
     private Piece activePiece;
     private char currentPlayer;
     private boolean promotionRequired = false;
@@ -103,7 +105,8 @@ public class Board {
                 cells[i][j] = new Cell(getCoordinatesFromIndices(i,j));
             }
         }
-        capturedPieces = new ArrayList<>();
+        whiteCapturedPieces = new ArrayList<>();
+        blackCapturedPieces = new ArrayList<>();
         currentPlayer = 'w';
     }
 
@@ -179,7 +182,11 @@ public class Board {
         Cell startCell = getSpecificCell(inStartCell);
         Cell endCell = getSpecificCell(inEndCell);
         if(endCell.getOccupied()){
-            capturedPieces.add(endCell.getPiece());
+            if(endCell.getPiece().getColor() == 'w'){
+                whiteCapturedPieces.add(endCell.getPiece());
+            } else {
+                blackCapturedPieces.add(endCell.getPiece());
+            }
             endCell.setPiece(null);
         }
         endCell.setPiece(startCell.getPiece());
@@ -301,5 +308,28 @@ public class Board {
 
     public void setPromotionRequired(boolean inState){
         promotionRequired = inState;
+    }
+    
+    public void calculateGameState(){
+        calculateCheckmate();
+        calculateStalemate();
+        calculateDraw();
+    }
+
+    private void calculateDraw() {
+    }
+
+    private void calculateStalemate() {
+    }
+
+    private void calculateCheckmate() {
+    }
+
+    public ArrayList<Piece> getBlackCapturedPieces() {
+        return blackCapturedPieces;
+    }
+
+    public ArrayList<Piece> getWhiteCapturedPieces() {
+        return whiteCapturedPieces;
     }
 }
