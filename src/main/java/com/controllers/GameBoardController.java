@@ -67,13 +67,13 @@ public class GameBoardController {
     private void updateCapturedPieceImages() throws FileNotFoundException {
         ArrayList<Piece> whiteCapt = mainBoard.getWhiteCapturedPieces();
         if(whiteCapt.size() >= 1) {
-            for (int i = 0; i < wCaptPieceIVs.size() - 1; i++) {
+            for (int i = 0; i < whiteCapt.size(); i++) {
                 setImage(wCaptPieceIVs.get(i), "sprites/" + whiteCapt.get(i).getImageFileName());
             }
         }
         ArrayList<Piece> blackCapt = mainBoard.getBlackCapturedPieces();
         if(blackCapt.size() >= 1) {
-            for (int i = 0; i < bCaptPieceIVs.size() - 1; i++) {
+            for (int i = 0; i < blackCapt.size(); i++) {
                 setImage(bCaptPieceIVs.get(i), "sprites/" + blackCapt.get(i).getImageFileName());
             }
         }
