@@ -51,8 +51,9 @@ public class GameBoardController {
         promotionVB.setVisible(false);
 
         //String testPos = "rnbqkbnRpppppNpxxxrNxrxxxNNxxxxxNxxxxxxxxxNNNNxxPPPPPPPxRNBQKBNR";
-        //mainBoard = new Board(testPos);
-        mainBoard = new Board();
+        String testPos = "kxxxxxxxxxxxxxxxxxxxxRxxxxxxxxRxxxxxxxxxxxxxxxxxxxxxxxxxKxxxxxxx";
+        mainBoard = new Board(testPos);
+        //mainBoard = new Board();
 
         refreshImages();
     }

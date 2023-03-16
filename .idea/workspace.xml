@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="Added support for captured pieces visualization">
+    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="Fixed minor error">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controllers/GameBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controllers/GameBoardController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,6 +138,9 @@
       <workItem from="1678704309124" duration="894000" />
       <workItem from="1678722145257" duration="162000" />
       <workItem from="1678783600523" duration="2644000" />
+      <workItem from="1678786671124" duration="513000" />
+      <workItem from="1678797304226" duration="420000" />
+      <workItem from="1678947353569" duration="457000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1677412746648</created>
@@ -369,7 +373,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678786131365</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Fixed minor error">
+      <created>1678787017278</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1678787017278</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -387,7 +398,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="More changes" />
     <MESSAGE value="More changes&#10;+ Started work on pawn movement" />
     <MESSAGE value="More work" />
     <MESSAGE value="General fixes&#10;Pawn movement calculation done (except en passant)" />
@@ -412,7 +422,8 @@
     <MESSAGE value="Fixed error where promotion occured after each move" />
     <MESSAGE value="Keep checking enemy piece highlight when showing available moves" />
     <MESSAGE value="Added support for captured pieces visualization" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added support for captured pieces visualization" />
+    <MESSAGE value="Fixed minor error" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed minor error" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

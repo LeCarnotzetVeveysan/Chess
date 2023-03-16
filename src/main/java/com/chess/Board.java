@@ -197,6 +197,7 @@ public class Board {
             calculatePromotionRequired();
             updateMoves();
             nextPlayer();
+            calculateGameState();
         } else {
             calculateLineOfSight();
         }
@@ -314,15 +315,50 @@ public class Board {
         calculateCheckmate();
         calculateStalemate();
         calculateDraw();
+        System.out.println(gameState);
+    }
+
+    private int numberOfAvailableMoves(){
+        int count = 0;
+        for (int i = 0; i <= 7; i++) {
+            for (int j = 0; j <= 7; j++) {
+                Cell currentCell = getSpecificCell(getCoordinatesFromIndices(i, j));
+                if(currentCell.getOccupied()) {
+                    if(currentCell.getPiece().getColor() == currentPlayer){
+                        count += currentCell.getPiece().getAccessibleCells().size();
+                    }
+                }
+            }
+        }
+        return count;
     }
 
     private void calculateDraw() {
     }
 
     private void calculateStalemate() {
+        if(currentPlayer == 'w'){
+            if(numberOfAvailableMoves() == 0 && !getIsCheck('w')){
+                gameState = STALEMATE_WHITE;
+            }
+        } else {
+            if(numberOfAvailableMoves() == 0 && !getIsCheck('b')){
+                gameState = STALEMATE_BLACK;
+            }
+        }
+
     }
 
     private void calculateCheckmate() {
+        if(currentPlayer == 'w'){
+            if(numberOfAvailableMoves() == 0 && getIsCheck('w')){
+                gameState = CHECKMATE_WHITE;
+            }
+        } else {
+            if(numberOfAvailableMoves() == 0 && getIsCheck('b')){
+                gameState = CHECKMATE_BLACK;
+            }
+        }
     }
 
     public ArrayList<Piece> getBlackCapturedPieces() {
