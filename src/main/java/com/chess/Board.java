@@ -15,6 +15,7 @@ public class Board {
     private Piece activePiece;
     private char currentPlayer;
     private boolean promotionRequired = false;
+    private ArrayList<String> moves;
 
     public Board(){
         initializeBoard();
@@ -66,6 +67,7 @@ public class Board {
             cells[i/8][i%8].setPiece(piece);
         }
 
+        moves = new ArrayList<>();
         int whiteKingIndex = gameState.indexOf('K');
         whiteKing = cells[whiteKingIndex/8][whiteKingIndex%8].getPiece();
         int blackKingIndex = gameState.indexOf('k');
@@ -89,7 +91,7 @@ public class Board {
         for(int i = 0; i <= 7; i++){
             for(int j = 0; j <= 7; j++){
                 if(cells[i][j].getOccupied()) {
-                    position += cells[i][j].getPiece().getTypeChar();
+                    position += cells[i][j].getPiece().getType(true);
                 } else {
                     position += 'x';
                 }
@@ -179,6 +181,7 @@ public class Board {
         setValidMoves();
     }
     public void movePiece(boolean realMove, String inStartCell, String inEndCell){
+        char moveType = '-';
         Cell startCell = getSpecificCell(inStartCell);
         Cell endCell = getSpecificCell(inEndCell);
         if(endCell.getOccupied()){
@@ -188,12 +191,14 @@ public class Board {
                 blackCapturedPieces.add(endCell.getPiece());
             }
             endCell.setPiece(null);
+            moveType = 'x';
         }
         endCell.setPiece(startCell.getPiece());
         endCell.getPiece().setCurrentCell(inEndCell);
         startCell.setPiece(null);
 
         if(realMove) {
+            registerMove(endCell.getPiece(), moveType);
             calculatePromotionRequired();
             updateMoves();
             nextPlayer();
@@ -201,6 +206,11 @@ public class Board {
         } else {
             calculateLineOfSight();
         }
+    }
+
+    private void registerMove(Piece inPiece, char inMoveType) {
+        moves.add(inPiece.getType(false) + inPiece.getPreviousCell() + inMoveType + inPiece.getCurrentCell());
+        System.out.println(moves);
     }
 
     public void updateMoves(){
@@ -290,13 +300,13 @@ public class Board {
         for(int i = 0; i <= 7; i++){
             Cell currentCell = getSpecificCell(getCoordinatesFromIndices(0,i));
             if(currentCell.getOccupied()){
-                if(currentCell.getPiece().getTypeChar() == 'P'){
+                if(currentCell.getPiece().getType(true) == 'P'){
                     setPromotionRequired(true);
                 }
             }
             currentCell = getSpecificCell(getCoordinatesFromIndices(7,i));
             if (currentCell.getOccupied()) {
-                if (currentCell.getPiece().getTypeChar() == 'p') {
+                if (currentCell.getPiece().getType(true) == 'p') {
                     setPromotionRequired(true);
                 }
             }
@@ -334,6 +344,7 @@ public class Board {
     }
 
     private void calculateDraw() {
+
     }
 
     private void calculateStalemate() {

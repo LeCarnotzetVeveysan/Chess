@@ -2,7 +2,6 @@ package com.chess;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Objects;
 
 public abstract class Piece {
 
@@ -12,19 +11,23 @@ public abstract class Piece {
     private ArrayList<String> accessibleCells;
     private final ArrayList<String> cellHistory;
 
-    public char getTypeChar(){
-        if(color == 'w'){
-            if(type.equals("knight")){
-                return 'N';
+    public char getType(boolean colorSpecific){
+        if(colorSpecific) {
+            if (color == 'w') {
+                if (type.equals("knight")) {
+                    return 'N';
+                } else {
+                    return Character.toUpperCase(type.charAt(0));
+                }
             } else {
-                return Character.toUpperCase(type.charAt(0));
+                if (type.equals("knight")) {
+                    return 'n';
+                } else {
+                    return type.charAt(0);
+                }
             }
         } else {
-            if(type.equals("knight")){
-                return 'n';
-            } else {
-                return type.charAt(0);
-            }
+            return Character.toUpperCase(type.charAt(0));
         }
     }
 
@@ -56,6 +59,10 @@ public abstract class Piece {
 
     public String getCurrentCell(){
         return cellHistory.get(cellHistory.size() - 1);
+    }
+
+    public String getPreviousCell(){
+        return cellHistory.get(cellHistory.size() - 2);
     }
 
     public void setCurrentCell(String inCell){ cellHistory.add(inCell); }
