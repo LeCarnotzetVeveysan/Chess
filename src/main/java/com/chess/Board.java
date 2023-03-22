@@ -198,9 +198,9 @@ public class Board {
         startCell.setPiece(null);
 
         if(realMove) {
-            registerMove(endCell.getPiece(), moveType);
             calculatePromotionRequired();
             updateMoves();
+            registerMove(endCell.getPiece(), moveType);
             nextPlayer();
             calculateGameState();
         } else {
@@ -209,7 +209,17 @@ public class Board {
     }
 
     private void registerMove(Piece inPiece, char inMoveType) {
-        moves.add(inPiece.getType(false) + inPiece.getPreviousCell() + inMoveType + inPiece.getCurrentCell());
+        String move = moves.size() + 1 + ". ";
+        move += inPiece.getType(false);
+        move += inPiece.getPreviousCell();
+        move += inMoveType;
+        move += inPiece.getCurrentCell();
+
+        if(getIsCheck(getOtherPlayer())){
+            move += "+";
+        }
+
+        moves.add(move);
         System.out.println(moves);
     }
 
@@ -220,6 +230,18 @@ public class Board {
 
     public char getCurrentPlayer(){
         return currentPlayer;
+    }
+
+    public char getOtherPlayer(){
+        return getOppositeColor(currentPlayer);
+    }
+
+    public char getOppositeColor(char inColor){
+        if(inColor == 'w'){
+            return 'b';
+        } else {
+            return 'w';
+        }
     }
 
     public void nextPlayer(){
@@ -254,13 +276,11 @@ public class Board {
     }
 
     public boolean getIsCheck(char inColor){
-
         if(inColor == 'w'){
             return isKingInLineOfSight(whiteKing);
         } else {
             return isKingInLineOfSight(blackKing);
         }
-
     }
 
     private boolean isKingInLineOfSight(Piece inKing) {
@@ -325,7 +345,6 @@ public class Board {
         calculateCheckmate();
         calculateStalemate();
         calculateDraw();
-        System.out.println(gameState);
     }
 
     private int numberOfAvailableMoves(){
@@ -378,5 +397,37 @@ public class Board {
 
     public ArrayList<Piece> getWhiteCapturedPieces() {
         return whiteCapturedPieces;
+    }
+
+    public boolean isCellInEnemyLineOfSight(char enemyColor, String inCell){
+        for (int i = 0; i <= 7; i++) {
+            for (int j = 0; j <= 7; j++) {
+                Cell currentCell = getSpecificCell(getCoordinatesFromIndices(i, j));
+                if(currentCell.getOccupied()) {
+                    Piece currentPiece = currentCell.getPiece();
+                    if (currentPiece.getColor() == enemyColor) {
+                        if (currentPiece.getAccessibleCells().contains(inCell)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean getCanCastleKingside(char color){
+        boolean kingMoved = getKing(currentPlayer).getMoved();
+        String rookCell = color == 'w' ? "h1" : "h8";
+        boolean rookMoved = getSpecificCell(rookCell).getPiece().getMoved();
+        if(!kingMoved && !rookMoved){
+            String[] cellsToCheck = color == 'w' ? new String[]{"e1","f1"} : new String[]{"e8","f8"};
+            for(String c : cellsToCheck){
+                if(isCellInEnemyLineOfSight(getOppositeColor(color),c)){
+                    return true;
+                }
+            }
+        }
+        return true;
     }
 }

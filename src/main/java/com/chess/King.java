@@ -86,6 +86,7 @@ public class King extends Piece {
         }
 
         //Missing castling
+        if(!super.getMoved())
 
         if(removeInvalidMoves){
             ArrayList<String> cleanedAccessibleCells = removeIllegalCells(board, accessibleCells, super.getCurrentCell());
