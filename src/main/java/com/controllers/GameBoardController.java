@@ -235,64 +235,38 @@ public class GameBoardController {
                         setImage(cellIVs[coords[0]][coords[1]], "/cellBlurs/mid_blue");
                     }
                 }
-
             }
         }
     }
 
     @FXML
-    public void onQueenPromotionClick() throws FileNotFoundException {
+    public void promotePawn(char desiredPiece) throws FileNotFoundException {
         Piece activePiece = mainBoard.getActivePiece();
-        if(activePiece.getColor() == 'w'){
-            mainBoard.promotePawn(activePiece.getCurrentCell(), 'Q');
-        } else {
-            mainBoard.promotePawn(activePiece.getCurrentCell(), 'q');
-        }
+        char promotedPiece = activePiece.getColor() == 'w' ? desiredPiece : Character.toLowerCase(desiredPiece);
+        mainBoard.promotePawn(activePiece.getCurrentCell(), promotedPiece);
         promotionVB.setDisable(true);
         promotionVB.setVisible(false);
         setCellClickableState(true);
         refreshImages();
+    }
+
+    @FXML
+    public void onQueenPromotionClick() throws FileNotFoundException {
+        promotePawn('Q');
     }
 
     @FXML
     public void onBishopPromotionClick() throws FileNotFoundException {
-        Piece activePiece = mainBoard.getActivePiece();
-        if(activePiece.getColor() == 'w'){
-            mainBoard.promotePawn(activePiece.getCurrentCell(), 'B');
-        } else {
-            mainBoard.promotePawn(activePiece.getCurrentCell(), 'b');
-        }
-        promotionVB.setDisable(true);
-        promotionVB.setVisible(false);
-        setCellClickableState(true);
-        refreshImages();
+        promotePawn('B');
     }
 
     @FXML
     public void onKnightPromotionClick() throws FileNotFoundException {
-        Piece activePiece = mainBoard.getActivePiece();
-        if(activePiece.getColor() == 'w'){
-            mainBoard.promotePawn(activePiece.getCurrentCell(), 'N');
-        } else {
-            mainBoard.promotePawn(activePiece.getCurrentCell(), 'n');
-        }
-        promotionVB.setDisable(true);
-        promotionVB.setVisible(false);
-        setCellClickableState(true);
-        refreshImages();
+        promotePawn('N');
     }
 
     @FXML
     public void onRookPromotionClick() throws FileNotFoundException {
-        Piece activePiece = mainBoard.getActivePiece();
-        if(activePiece.getColor() == 'w'){
-            mainBoard.promotePawn(activePiece.getCurrentCell(), 'R');
-        } else {
-            mainBoard.promotePawn(activePiece.getCurrentCell(), 'r');
-        }
-        promotionVB.setDisable(true);
-        promotionVB.setVisible(false);
-        setCellClickableState(true);
-        refreshImages();
+        promotePawn('R');
     }
 }
