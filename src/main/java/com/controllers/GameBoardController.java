@@ -51,7 +51,8 @@ public class GameBoardController {
         promotionVB.setVisible(false);
 
         //String testPos = "rnbqkbnRpppppNpxxxrNxrxxxNNxxxxxNxxxxxxxxxNNNNxxPPPPPPPxRNBQKBNR";
-        String testPos = "kxxxxxxxxxxxxxxxxxxxxRxxxxxxxxRxxxxxxxxxxxxxxxxxxxxxxxxxKxxxxxxx";
+        String testPos = "rnbqkbnRpppppNpxxxrNxrxxxNNxxxxxNxxxxxxxxxNNNNxxPPPPPPPPRxxxKxxR";
+        //String testPos = "kxxxxxxxxxxxxxxxxxxxxRxxxxxxxxRxxxxxxxxxxxxxxxxxxxxxxxxxKxxxxxxx";
         mainBoard = new Board(testPos);
         //mainBoard = new Board();
 
@@ -200,7 +201,17 @@ public class GameBoardController {
         Cell clickedCell = mainBoard.getSpecificCell(cellCoord);
 
         if(clickedCell.getValidMove()){
-            mainBoard.movePiece(true, mainBoard.getActivePiece().getCurrentCell(), cellCoord);
+            if(mainBoard.getActivePiece().getType(false) == 'K'){
+                switch (cellCoord){
+                    case "g1" -> mainBoard.castleKingside('w');
+                    case "c1" -> mainBoard.castleQueenside('w');
+                    case "g8" -> mainBoard.castleKingside('b');
+                    case "c8" -> mainBoard.castleQueenside('b');
+                }
+            } else {
+                mainBoard.movePiece(true, mainBoard.getActivePiece().getCurrentCell(), cellCoord);
+            }
+
             if(mainBoard.getPromotionRequired()){
                 promotionVB.setDisable(false);
                 promotionVB.setVisible(true);

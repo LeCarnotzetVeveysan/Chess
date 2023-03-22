@@ -418,16 +418,64 @@ public class Board {
 
     public boolean getCanCastleKingside(char color){
         boolean kingMoved = getKing(currentPlayer).getMoved();
-        String rookCell = color == 'w' ? "h1" : "h8";
-        boolean rookMoved = getSpecificCell(rookCell).getPiece().getMoved();
-        if(!kingMoved && !rookMoved){
-            String[] cellsToCheck = color == 'w' ? new String[]{"e1","f1"} : new String[]{"e8","f8"};
-            for(String c : cellsToCheck){
-                if(isCellInEnemyLineOfSight(getOppositeColor(color),c)){
-                    return true;
+        Cell rookCell = getSpecificCell(color == 'w' ? "h1" : "h8");
+        if(rookCell.getOccupied() && rookCell.getPiece().getType(false) == 'R'){
+            boolean rookMoved = rookCell.getPiece().getMoved();
+            if(!kingMoved && !rookMoved){
+                String[] cellsToCheck = color == 'w' ? new String[]{"f1","g1"} : new String[]{"f8","g8"};
+                for(String c : cellsToCheck){
+                    if(isCellInEnemyLineOfSight(getOppositeColor(color),c)){
+                        return false;
+                    }
+                    if(getSpecificCell(c).getOccupied()){
+                        return false;
+                    }
                 }
+                return true;
             }
         }
-        return true;
+        return false;
+    }
+
+    public boolean getCanCastleQueenside(char color) {
+        boolean kingMoved = getKing(currentPlayer).getMoved();
+        Cell rookCell = getSpecificCell(color == 'w' ? "a1" : "a8");
+        if(rookCell.getOccupied() && rookCell.getPiece().getType(false) == 'R'){
+            boolean rookMoved = rookCell.getPiece().getMoved();
+            if(!kingMoved && !rookMoved){
+                String[] cellsToCheck = color == 'w' ? new String[]{"b1","c1","d1"} : new String[]{"b8","c8","d8"};
+                for(String c : cellsToCheck){
+                    if(isCellInEnemyLineOfSight(getOppositeColor(color),c)){
+                        return false;
+                    }
+                    if(getSpecificCell(c).getOccupied()){
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void castleKingside(char color){
+        if(color == 'w'){
+            movePiece(true, "e1","g1");
+            movePiece(true, "h1", "f1");
+        } else {
+            movePiece(true, "e8","g8");
+            movePiece(true, "h8", "f8");
+        }
+
+    }
+
+    public void castleQueenside(char color){
+        if(color == 'w'){
+            movePiece(true, "e1","c1");
+            movePiece(true, "a1", "d1");
+        } else {
+            movePiece(true, "e8","c8");
+            movePiece(true, "a8", "d8");
+        }
     }
 }

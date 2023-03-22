@@ -86,7 +86,13 @@ public class King extends Piece {
         }
 
         //Missing castling
-        if(!super.getMoved())
+        if(board.getCanCastleKingside(super.getColor())){
+            accessibleCells.add(super.getColor() == 'w' ? "g1" : "g8");
+        }
+        if(board.getCanCastleQueenside(super.getColor())){
+            accessibleCells.add(super.getColor() == 'w' ? "c1" : "c8");
+        }
+
 
         if(removeInvalidMoves){
             ArrayList<String> cleanedAccessibleCells = removeIllegalCells(board, accessibleCells, super.getCurrentCell());
