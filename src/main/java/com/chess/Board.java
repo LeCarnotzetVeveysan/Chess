@@ -181,7 +181,7 @@ public class Board {
         activePiece = inPiece;
         setValidMoves();
     }
-    public void movePiece(boolean realMove, String inStartCell, String inEndCell){
+    public void movePiece(boolean realMove, boolean register, String inStartCell, String inEndCell){
         char moveType = '-';
         Cell startCell = getSpecificCell(inStartCell);
         Cell endCell = getSpecificCell(inEndCell);
@@ -201,29 +201,48 @@ public class Board {
         if(realMove) {
             calculatePromotionRequired();
             updateMoves();
-            registerMove(endCell.getPiece(), moveType);
-            nextPlayer();
+            registerMove(register, endCell.getPiece(), moveType);
             calculateGameState();
+            nextPlayer();
         } else {
             calculateLineOfSight();
         }
     }
 
-    private void registerMove(Piece inPiece, char inMoveType) {
-        String move = moves.size() + 1 + ". ";
-        move += inPiece.getType(false);
-        move += inPiece.getPreviousCell();
-        move += inMoveType;
-        move += inPiece.getCurrentCell();
+    private void registerMove(boolean register, Piece inPiece, char inMoveType) {
+        if (register) {
+            String move = moves.size() + 1 + ". ";
+            move += inPiece.getType(false);
+            move += inPiece.getPreviousCell();
+            move += inMoveType;
+            move += inPiece.getCurrentCell();
 
-        if(getIsCheck(getOtherPlayer())){
+            if(isCheckmate(getOppositeColor(inPiece.getColor()))){
+                move += "#";
+            } else if (getIsCheck(getOtherPlayer())) {
+                move += "+";
+            }
+
+            moves.add(move);
+            System.out.println(moves.get(moves.size() - 1));
+        }
+    }
+
+    public void registerCastle(boolean kingside){
+        String move = moves.size() + 1 + ". ";
+        if(kingside){
+            move += "0-0";
+        } else {
+            move += "0-0-0";
+        }
+
+        if (getIsCheck(getOtherPlayer())) {
             move += "+";
         }
 
         moves.add(move);
         System.out.println(moves.get(moves.size() - 1));
     }
-
     public void updateMoves(){
         calculateValidMoves();
         resetValidMoves();
@@ -346,15 +365,16 @@ public class Board {
         calculateCheckmate();
         calculateStalemate();
         calculateDraw();
+        System.out.println(gameState);
     }
 
-    private int numberOfAvailableMoves(){
+    private int numberOfAvailableMoves(char color){
         int count = 0;
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j <= 7; j++) {
                 Cell currentCell = getSpecificCell(getCoordinatesFromIndices(i, j));
                 if(currentCell.getOccupied()) {
-                    if(currentCell.getPiece().getColor() == currentPlayer){
+                    if(currentCell.getPiece().getColor() == color){
                         count += currentCell.getPiece().getAccessibleCells().size();
                     }
                 }
@@ -368,28 +388,30 @@ public class Board {
     }
 
     private void calculateStalemate() {
-        if(currentPlayer == 'w'){
-            if(numberOfAvailableMoves() == 0 && !getIsCheck('w')){
-                gameState = STALEMATE_WHITE;
-            }
-        } else {
-            if(numberOfAvailableMoves() == 0 && !getIsCheck('b')){
-                gameState = STALEMATE_BLACK;
-            }
+        if(isStalemate('w')){
+            gameState = STALEMATE_WHITE;
+        }
+        if(isStalemate('b')){
+            gameState = STALEMATE_BLACK;
         }
 
     }
 
     private void calculateCheckmate() {
-        if(currentPlayer == 'w'){
-            if(numberOfAvailableMoves() == 0 && getIsCheck('w')){
-                gameState = CHECKMATE_WHITE;
-            }
-        } else {
-            if(numberOfAvailableMoves() == 0 && getIsCheck('b')){
-                gameState = CHECKMATE_BLACK;
-            }
+        if(isCheckmate('w')){
+            gameState = CHECKMATE_WHITE;
         }
+        if(isCheckmate('b')){
+            gameState = CHECKMATE_BLACK;
+        }
+    }
+
+    public boolean isStalemate(char color){
+        return numberOfAvailableMoves(color) == 0 && !getIsCheck(color);
+    }
+
+    public boolean isCheckmate(char color){
+        return numberOfAvailableMoves(color) == 0 && getIsCheck(color);
     }
 
     public ArrayList<Piece> getBlackCapturedPieces() {
@@ -461,22 +483,27 @@ public class Board {
 
     public void castleKingside(char color){
         if(color == 'w'){
-            movePiece(true, "e1","g1");
-            movePiece(true, "h1", "f1");
+            movePiece(true, false, "e1","g1");
+            movePiece(true, false, "h1", "f1");
         } else {
-            movePiece(true, "e8","g8");
-            movePiece(true, "h8", "f8");
+            movePiece(true, false, "e8","g8");
+            movePiece(true, false, "h8", "f8");
         }
-
+        registerCastle(true);
     }
 
     public void castleQueenside(char color){
         if(color == 'w'){
-            movePiece(true, "e1","c1");
-            movePiece(true, "a1", "d1");
+            movePiece(true, false, "e1","c1");
+            movePiece(true, false, "a1", "d1");
         } else {
-            movePiece(true, "e8","c8");
-            movePiece(true, "a8", "d8");
+            movePiece(true, false, "e8","c8");
+            movePiece(true, false, "a8", "d8");
         }
+        registerCastle(false);
+    }
+
+    public ArrayList<String> getMoves(){
+        return moves;
     }
 }

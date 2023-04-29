@@ -208,7 +208,7 @@ public class GameBoardController {
                     case "c8" -> mainBoard.castleQueenside('b');
                 }
             } else {
-                mainBoard.movePiece(true, mainBoard.getActivePiece().getCurrentCell(), cellCoord);
+                mainBoard.movePiece(true, true, mainBoard.getActivePiece().getCurrentCell(), cellCoord);
             }
 
             if(mainBoard.getPromotionRequired()){

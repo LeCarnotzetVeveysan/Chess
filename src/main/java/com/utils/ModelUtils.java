@@ -1,7 +1,6 @@
 package com.utils;
 
 import com.chess.Board;
-import com.chess.Piece;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -35,7 +34,7 @@ public class ModelUtils {
         char color = mainBoard.getSpecificCell(inCurrentCell).getPiece().getColor();
         for(String testMove : startList){
             Board tempBoard = new Board(mainBoard.getBoardPosition());
-            tempBoard.movePiece(false, inCurrentCell, testMove);
+            tempBoard.movePiece(false, true, inCurrentCell, testMove);
             if(!tempBoard.getIsCheck(color)){
                 validMoves.add(testMove);
             }
