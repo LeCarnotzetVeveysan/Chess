@@ -45,16 +45,15 @@ public class GameBoardController {
     private Board mainBoard;
 
     public void initialize() throws FileNotFoundException {
-
         initIVs();
         promotionVB.setDisable(true);
         promotionVB.setVisible(false);
 
         //String testPos = "rnbqkbnRpppppNpxxxrNxrxxxNNxxxxxNxxxxxxxxxNNNNxxPPPPPPPxRNBQKBNR";
-        String testPos = "rnbqkbnRpppppNpxxxrNxrxxxNNxxxxxNxxxxxxxxxNNNNxxPPPPPPPPRxxxKxxR";
+        //String testPos = "rnbqkbnRpppppNpxxxrNxrxxxNNxxxxxNxxxxxxxxxNNNNxxPPPPPPPPRxxxKxxR";
         //String testPos = "kxxxxxxxxxxxxxxxxxxxxRxxxxxxxxRxxxxxxxxxxxxxxxxxxxxxxxxxKxxxxxxx";
-        mainBoard = new Board(testPos);
-        //mainBoard = new Board();
+        //mainBoard = new Board(testPos);
+        mainBoard = new Board();
 
         refreshImages();
     }

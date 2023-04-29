@@ -27,6 +27,10 @@ public abstract class Piece {
                 }
             }
         } else {
+            if (type.equals("knight")) {
+                return 'N';
+            }
+
             return Character.toUpperCase(type.charAt(0));
         }
     }

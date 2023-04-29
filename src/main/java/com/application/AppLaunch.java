@@ -5,7 +5,6 @@ import javafx.stage.Stage;
 import com.utils.LoadScene;
 
 import static com.utils.LoadScene.changeScene;
-
 public class AppLaunch extends Application {
 
     @Override

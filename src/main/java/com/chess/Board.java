@@ -67,7 +67,7 @@ public class Board {
             cells[i/8][i%8].setPiece(piece);
         }
 
-        moves = new ArrayList<>();
+
         int whiteKingIndex = gameState.indexOf('K');
         whiteKing = cells[whiteKingIndex/8][whiteKingIndex%8].getPiece();
         int blackKingIndex = gameState.indexOf('k');
@@ -110,6 +110,7 @@ public class Board {
         whiteCapturedPieces = new ArrayList<>();
         blackCapturedPieces = new ArrayList<>();
         currentPlayer = 'w';
+        moves = new ArrayList<>();
     }
 
     private void initializePieces() {
@@ -220,7 +221,7 @@ public class Board {
         }
 
         moves.add(move);
-        System.out.println(moves);
+        System.out.println(moves.get(moves.size() - 1));
     }
 
     public void updateMoves(){

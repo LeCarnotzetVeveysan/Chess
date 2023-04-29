@@ -1,7 +1,6 @@
 package com.utils;
 
 
-import com.application.AppLaunch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -24,7 +23,7 @@ public class LoadScene {
         FXMLLoader fxmlLoader = new FXMLLoader(LoadScene.class.getResource("fxmls/" + fxmlToShow + ".fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 500, 400);
         //Set proper window name
-        launcherStage.setTitle("7WA Launcher");
+        launcherStage.setTitle("Chess Launcher");
         launcherStage.setScene(scene);
         launcherStage.show();
     }
