@@ -5,9 +5,11 @@ import com.chess.Cell;
 import com.chess.Piece;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ public class GameBoardController {
 
     @FXML
     public VBox promotionVB;
+    @FXML
+    public Label gamestateLabel;
     @FXML
     private ImageView ca8IV, cb8IV, cc8IV, cd8IV, ce8IV, cf8IV, cg8IV, ch8IV,
             ca7IV, cb7IV, cc7IV, cd7IV, ce7IV, cf7IV, cg7IV, ch7IV,
@@ -52,6 +56,7 @@ public class GameBoardController {
         //String testPos = "rnbqkbnRpppppNpxxxrNxrxxxNNxxxxxNxxxxxxxxxNNNNxxPPPPPPPxRNBQKBNR";
         //String testPos = "rnbqkbnRpppppNpxxxrNxrxxxNNxxxxxNxxxxxxxxxNNNNxxPPPPPPPPRxxxKxxR";
         //String testPos = "kxxxxxxxxxxxxxxxxxxxxRxxxxxxxxRxxxxxxxxxxxxxxxxxxxxxxxxxKxxxxxxx";
+        //String testPos = "kxxxxxxxxxRPxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxKxxxxxxx";
         //mainBoard = new Board(testPos);
         mainBoard = new Board();
 
@@ -63,6 +68,7 @@ public class GameBoardController {
         updatePieceImages();
         updateCellImages();
         updateCapturedPieceImages();
+        gamestateLabel.setText(mainBoard.getGameState().name());
     }
 
     private void updateCapturedPieceImages() throws FileNotFoundException {
@@ -194,21 +200,33 @@ public class GameBoardController {
         }
     }
 
+    public void stopIfFinished(){
+        if(mainBoard.isGameFinished()){
+            setCellClickableState(false);
+        }
+    }
+
     @FXML
     public void onCellCkicked(MouseEvent mouseEvent) throws FileNotFoundException {
         String cellCoord = ((Node) mouseEvent.getSource()).getId().substring(1,3);
         Cell clickedCell = mainBoard.getSpecificCell(cellCoord);
 
         if(clickedCell.getValidMove()){
-            if(mainBoard.getActivePiece().getType(false) == 'K'){
+            Piece piece = mainBoard.getActivePiece();
+            boolean differentColumns = clickedCell.getColumnIndex() != piece.getColumnIndex();
+            boolean emptyEndCell = !clickedCell.getOccupied();
+            boolean castling = cellCoord.equals("g1") || cellCoord.equals("c1") || cellCoord.equals("g8") || cellCoord.equals("c8");
+            if(piece.getType(false) == 'K' && castling){
                 switch (cellCoord){
                     case "g1" -> mainBoard.castleKingside('w');
                     case "c1" -> mainBoard.castleQueenside('w');
                     case "g8" -> mainBoard.castleKingside('b');
                     case "c8" -> mainBoard.castleQueenside('b');
                 }
+            } else if(piece.getType(false) == 'P' && differentColumns && emptyEndCell){
+                mainBoard.enPassant(piece.getCurrentCell(), cellCoord);
             } else {
-                mainBoard.movePiece(true, true, mainBoard.getActivePiece().getCurrentCell(), cellCoord);
+                mainBoard.movePiece(true, true, false, true, piece.getCurrentCell(), cellCoord);
             }
 
             if(mainBoard.getPromotionRequired()){
@@ -217,6 +235,7 @@ public class GameBoardController {
                 setCellClickableState(false);
             }
             refreshImages();
+            stopIfFinished();
         } else {
             if (clickedCell.getOccupied() && clickedCell.getPiece().getColor() == mainBoard.getCurrentPlayer()) {
 
@@ -246,6 +265,7 @@ public class GameBoardController {
         promotionVB.setDisable(true);
         promotionVB.setVisible(false);
         setCellClickableState(true);
+        stopIfFinished();
         refreshImages();
     }
 

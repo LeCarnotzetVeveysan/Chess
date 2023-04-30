@@ -79,6 +79,14 @@ public abstract class Piece {
         cellHistory = new ArrayList<>(Arrays.asList(inStartCell));
     }
 
+    public char getColumn(){
+        return cellHistory.get(cellHistory.size() - 1).charAt(0);
+    }
+
+    public int getColumnIndex(){
+        return getColumn() - 97;
+    }
+
     public String toString(){
         return "I'm a" + (color == 'w' ? " white " : " black ") + type + " in cell " + getCurrentCell() + ".";
     }

@@ -23,6 +23,10 @@ public class ModelUtils {
         return xChar + (8 - inRow);
     }
 
+    public static int columnToIndex(char column){
+        return column - 97;
+    }
+
     public static void setImage(ImageView iv, String fileName) throws FileNotFoundException {
         String path = "src/main/resources/images/" + fileName + ".png";
         Image image = new Image(new FileInputStream(path));
@@ -33,8 +37,8 @@ public class ModelUtils {
         ArrayList<String> validMoves = new ArrayList<>();
         char color = mainBoard.getSpecificCell(inCurrentCell).getPiece().getColor();
         for(String testMove : startList){
-            Board tempBoard = new Board(mainBoard.getBoardPosition());
-            tempBoard.movePiece(false, true, inCurrentCell, testMove);
+            Board tempBoard = new Board(mainBoard.getBoardPosition(), mainBoard.getLastMove());
+            tempBoard.movePiece(false, true, true, false, inCurrentCell, testMove);
             if(!tempBoard.getIsCheck(color)){
                 validMoves.add(testMove);
             }

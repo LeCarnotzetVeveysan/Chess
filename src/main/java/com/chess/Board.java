@@ -1,6 +1,6 @@
 package com.chess;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import static com.chess.GameState.*;
 import static com.utils.ModelUtils.getCoordinatesFromIndices;
@@ -15,15 +15,17 @@ public class Board {
     private Piece activePiece;
     private char currentPlayer;
     private boolean promotionRequired = false;
-    private ArrayList<String> moves;
+    private ArrayList<String> moves, positions;
 
     public Board(){
         initializeBoard();
         initializePieces();
         calculateValidMoves();
+        registerPosition();
+        calculateGameState();
     }
 
-    public Board(String gameState){
+    public Board(String gameState, String lastMove){
 
         initializeBoard();
 
@@ -67,12 +69,22 @@ public class Board {
             cells[i/8][i%8].setPiece(piece);
         }
 
-
         int whiteKingIndex = gameState.indexOf('K');
         whiteKing = cells[whiteKingIndex/8][whiteKingIndex%8].getPiece();
         int blackKingIndex = gameState.indexOf('k');
         blackKing = cells[blackKingIndex/8][blackKingIndex%8].getPiece();
+
+        moves.add(lastMove);
+        registerPosition();
         calculateLineOfSight();
+        calculateGameState();
+    }
+
+    public boolean isGameFinished(){
+        return !gameState.equals(ONGOING);
+    }
+    public GameState getGameState(){
+        return gameState;
     }
 
     public String toStringSquare(){
@@ -100,6 +112,10 @@ public class Board {
         return position;
     }
 
+    public void registerPosition(){
+        positions.add(getBoardPosition());
+    }
+
     public void initializeBoard(){
         cells = new Cell[8][8];
         for(int i = 0; i <= 7; i++){
@@ -110,7 +126,8 @@ public class Board {
         whiteCapturedPieces = new ArrayList<>();
         blackCapturedPieces = new ArrayList<>();
         currentPlayer = 'w';
-        moves = new ArrayList<>();
+        moves = new ArrayList<>(Arrays.asList("Initialization"));
+        positions = new ArrayList<>();
     }
 
     private void initializePieces() {
@@ -148,6 +165,20 @@ public class Board {
         calculateValidMoves();
     }
 
+    public int numberOfPieces(char color){
+        int count = 0;
+        for(int i = 0; i <= 7; i++){
+            for(int j = 0; j <= 7; j++){
+                if(cells[i][j].getOccupied()){
+                    if(cells[i][j].getPiece().getColor() == color){
+                        count++;
+                    }
+                }
+            }
+        }
+        return count;
+    }
+
     public void calculateValidMoves() {
         for(int i = 0; i <= 7; i++){
             for(int j = 0; j <= 7; j++){
@@ -181,7 +212,7 @@ public class Board {
         activePiece = inPiece;
         setValidMoves();
     }
-    public void movePiece(boolean realMove, boolean register, String inStartCell, String inEndCell){
+    public void movePiece(boolean realMove, boolean register, boolean enPassant, boolean changePlayer, String inStartCell, String inEndCell){
         char moveType = '-';
         Cell startCell = getSpecificCell(inStartCell);
         Cell endCell = getSpecificCell(inEndCell);
@@ -200,32 +231,42 @@ public class Board {
 
         if(realMove) {
             calculatePromotionRequired();
+            registerMove(register, endCell.getPiece(), moveType, enPassant);
             updateMoves();
-            registerMove(register, endCell.getPiece(), moveType);
             calculateGameState();
-            nextPlayer();
+            if(changePlayer){
+                nextPlayer();
+            }
         } else {
             calculateLineOfSight();
         }
     }
 
-    private void registerMove(boolean register, Piece inPiece, char inMoveType) {
-        if (register) {
+    private void registerMove(boolean register, Piece inPiece, char inMoveType, boolean enPassant) {
+        if (register){
             String move = moves.size() + 1 + ". ";
             move += inPiece.getType(false);
             move += inPiece.getPreviousCell();
             move += inMoveType;
             move += inPiece.getCurrentCell();
 
-            if(isCheckmate(getOppositeColor(inPiece.getColor()))){
+            if(enPassant){
+                move += "e.p";
+            }
+
+            if(isCheckmate(getOtherPlayer())){
                 move += "#";
             } else if (getIsCheck(getOtherPlayer())) {
                 move += "+";
             }
 
             moves.add(move);
-            System.out.println(moves.get(moves.size() - 1));
+            registerPosition();
         }
+    }
+
+    public String getLastMove(){
+        return moves.get(moves.size() - 1);
     }
 
     public void registerCastle(boolean kingside){
@@ -236,12 +277,14 @@ public class Board {
             move += "0-0-0";
         }
 
-        if (getIsCheck(getOtherPlayer())) {
+        if(isCheckmate(getOtherPlayer())){
+            move += "#";
+        } else if (getIsCheck(getOtherPlayer())) {
             move += "+";
         }
 
         moves.add(move);
-        System.out.println(moves.get(moves.size() - 1));
+        registerPosition();
     }
     public void updateMoves(){
         calculateValidMoves();
@@ -334,6 +377,7 @@ public class Board {
             case 'r' -> currentCell.setPiece(new Rook('r', inCell));
         }
         updateMoves();
+        calculateGameState();
     }
 
     public void calculatePromotionRequired(){
@@ -365,7 +409,9 @@ public class Board {
         calculateCheckmate();
         calculateStalemate();
         calculateDraw();
-        System.out.println(gameState);
+        /*if(!gameState.toString().equals(ONGOING)){
+            System.out.println("Game ended");
+        }*/
     }
 
     private int numberOfAvailableMoves(char color){
@@ -384,7 +430,20 @@ public class Board {
     }
 
     private void calculateDraw() {
+        //draw if can't finish
+        noCheckmatePossible();
+        //draw by 3 times position
+        //draw by 5 times position
+    }
 
+    private void noCheckmatePossible() {
+        onlyKingsRemain();
+    }
+
+    private void onlyKingsRemain() {
+        if(numberOfPieces('w') == 1 && numberOfPieces('b') == 1){
+            gameState = ONLY_KINGS;
+        }
     }
 
     private void calculateStalemate() {
@@ -483,24 +542,37 @@ public class Board {
 
     public void castleKingside(char color){
         if(color == 'w'){
-            movePiece(true, false, "e1","g1");
-            movePiece(true, false, "h1", "f1");
+            movePiece(true, false, false, false,"e1","g1");
+            movePiece(true, false, false, false, "h1", "f1");
         } else {
-            movePiece(true, false, "e8","g8");
-            movePiece(true, false, "h8", "f8");
+            movePiece(true, false, false, false, "e8","g8");
+            movePiece(true, false, false, false, "h8", "f8");
         }
         registerCastle(true);
+        nextPlayer();
     }
 
     public void castleQueenside(char color){
         if(color == 'w'){
-            movePiece(true, false, "e1","c1");
-            movePiece(true, false, "a1", "d1");
+            movePiece(true, false, false, false, "e1","c1");
+            movePiece(true, false, false, false, "a1", "d1");
         } else {
-            movePiece(true, false, "e8","c8");
-            movePiece(true, false, "a8", "d8");
+            movePiece(true, false, false, false, "e8","c8");
+            movePiece(true, false, false, false, "a8", "d8");
         }
         registerCastle(false);
+    }
+
+    public void enPassant(String startCell, String endcell){
+        movePiece(true, false, true, true, startCell, endcell);
+        Cell captureCell = cells[getIndicesFromCoordinates(startCell)[0]][getIndicesFromCoordinates(endcell)[1]];
+        Piece capturedPiece = captureCell.getPiece();
+        if(capturedPiece.getColor() == 'w'){
+            whiteCapturedPieces.add(capturedPiece);
+        } else {
+            blackCapturedPieces.add(capturedPiece);
+        }
+        captureCell.setPiece(null);
     }
 
     public ArrayList<String> getMoves(){

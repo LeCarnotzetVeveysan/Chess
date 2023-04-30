@@ -1,6 +1,7 @@
 package com.chess;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static com.utils.ModelUtils.*;
 
@@ -46,6 +47,39 @@ public class Pawn extends Piece {
             }
 
             //Do en-passant movement
+            if(super.getColor() == 'w' && currentPos[0] == 3){
+                String lastMove = board.getLastMove();
+                boolean wasPawn = lastMove.charAt(3) == 'P';
+                boolean twoCells = lastMove.charAt(5) == '7' && lastMove.charAt(8) == '5';
+
+                if(wasPawn && twoCells){
+                    boolean leftColumn = columnToIndex(lastMove.charAt(4)) == currentPos[1] - 1;
+                    boolean rightColumn = columnToIndex(lastMove.charAt(4)) == currentPos[1] + 1;
+                    if(leftColumn){
+                        accessibleCells.add(getCoordinatesFromIndices(currentPos[0] - 1, currentPos[1] - 1));
+                    }
+                    if(rightColumn){
+                        accessibleCells.add(getCoordinatesFromIndices(currentPos[0] - 1, currentPos[1] + 1));
+                    }
+                }
+            }
+
+            if(super.getColor() == 'b' && currentPos[0] == 4){
+                String lastMove = board.getLastMove();
+                boolean wasPawn = lastMove.charAt(3) == 'P';
+                boolean twoCells = lastMove.charAt(5) == '2' && lastMove.charAt(8) == '4';
+
+                if(wasPawn && twoCells){
+                    boolean leftColumn = columnToIndex(lastMove.charAt(4)) == currentPos[1] - 1;
+                    boolean rightColumn = columnToIndex(lastMove.charAt(4)) == currentPos[1] + 1;
+                    if(leftColumn){
+                        accessibleCells.add(getCoordinatesFromIndices(currentPos[0] + 1 , currentPos[1] - 1));
+                    }
+                    if(rightColumn){
+                        accessibleCells.add(getCoordinatesFromIndices(currentPos[0] + 1, currentPos[1] + 1));
+                    }
+                }
+            }
 
         }
 

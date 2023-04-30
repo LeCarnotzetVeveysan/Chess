@@ -35,4 +35,8 @@ public class Cell {
     public void setValidMove(boolean inState){
         validMove = inState;
     }
+
+    public int getColumnIndex(){
+        return coordinates.charAt(0) - 97;
+    }
 }

@@ -458,5 +458,6 @@
             </ImageView>
          </children>
       </VBox>
+      <Label fx:id="gamestateLabel" alignment="CENTER" layoutX="25.0" layoutY="31.0" prefHeight="18.0" prefWidth="226.0" text="gameState" textAlignment="CENTER" />
    </children>
 </AnchorPane>
