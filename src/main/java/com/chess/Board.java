@@ -13,7 +13,7 @@ public class Board {
     private ArrayList<Piece> whiteCapturedPieces, blackCapturedPieces;
     private Piece activePiece;
     private char currentPlayer;
-    private boolean promotionRequired = false;
+    private boolean promotionRequired = false, fiftyMoveDrawOffer = false, threefoldDrawOffer = false;
     private ArrayList<String> moves, positions;
 
     public Board(){
@@ -84,6 +84,25 @@ public class Board {
     }
     public GameState getGameState(){
         return gameState;
+    }
+    public boolean getFiftyMoveDrawOffer(){
+        return fiftyMoveDrawOffer;
+    }
+
+    public void acceptFiftyMoveDrawOffer(boolean accept){
+        if(accept){
+            gameState = FIFTY_MOVE_DRAW_OFFER_ACCEPTED;
+        }
+    }
+
+    public boolean getThreefoldDrawOffer(){
+        return fiftyMoveDrawOffer;
+    }
+
+    public void acceptThreefoldDrawOffer(boolean accept){
+        if(accept){
+            gameState = THREEFOLD_REPETITION_DRAW_OFFER_ACCEPTED;
+        }
     }
 
     public String toStringSquare(){
@@ -255,7 +274,7 @@ public class Board {
 
     private void registerMove(boolean register, Piece inPiece, char inMoveType, boolean enPassant) {
         if (register){
-            String move = moves.size() + 1 + ". ";
+            String move = "";
             move += inPiece.getType(false);
             move += inPiece.getPreviousCell();
             move += inMoveType;
@@ -281,7 +300,7 @@ public class Board {
     }
 
     public void registerCastle(boolean kingside){
-        String move = moves.size() + 1 + ". ";
+        String move = "";
         if(kingside){
             move += "0-0";
         } else {
@@ -444,10 +463,104 @@ public class Board {
         //draw if can't finish
         noCheckmatePossible();
         //draw by 3 times position
-        //draw by 5 times position
-        //draw by 50 move rule
+        threefoldPositionRule();
+        //draw offer by 50 move rule
+        fiftyMoveDrawOffer();
+        //forced draw by 5 times position
+        fivefoldPositionRule();
+        //forced draw by 75 move rule
+        seventyFiveMoveDraw();
     }
 
+    private void threefoldPositionRule() {
+        ArrayList<String> whiteToPlayPositions = new ArrayList<>();
+        ArrayList<String> blackToPlayPositions = new ArrayList<>();
+        for(int i = 1; i < positions.size(); i += 2){
+            whiteToPlayPositions.add(positions.get(i));
+        }
+        for(int i = 2; i < positions.size(); i += 2){
+            blackToPlayPositions.add(positions.get(i));
+        }
+        Map<String, Integer> whitePositions = new HashMap<>();
+        Map<String, Integer> blackPositions = new HashMap<>();
+        for (String str : whiteToPlayPositions) {
+            if (whitePositions.containsKey(str)) {
+                whitePositions.put(str, whitePositions.get(str) + 1);
+            } else {
+                whitePositions.put(str, 1);
+            }
+        }
+        for (String str : blackToPlayPositions) {
+            if (blackPositions.containsKey(str)) {
+                blackPositions.put(str, blackPositions.get(str) + 1);
+            } else {
+                blackPositions.put(str, 1);
+            }
+        }
+        if(whitePositions.containsValue(3) || blackPositions.containsValue(3)){
+            threefoldDrawOffer = true;
+        }
+    }
+
+    private void fivefoldPositionRule(){
+        ArrayList<String> whiteToPlayPositions = new ArrayList<>();
+        ArrayList<String> blackToPlayPositions = new ArrayList<>();
+        for(int i = 1; i < positions.size(); i += 2){
+            whiteToPlayPositions.add(positions.get(i));
+        }
+        for(int i = 2; i < positions.size(); i += 2){
+            blackToPlayPositions.add(positions.get(i));
+        }
+        Map<String, Integer> whitePositions = new HashMap<>();
+        Map<String, Integer> blackPositions = new HashMap<>();
+        for (String str : whiteToPlayPositions) {
+            if (whitePositions.containsKey(str)) {
+                whitePositions.put(str, whitePositions.get(str) + 1);
+            } else {
+                whitePositions.put(str, 1);
+            }
+        }
+        for (String str : blackToPlayPositions) {
+            if (blackPositions.containsKey(str)) {
+                blackPositions.put(str, blackPositions.get(str) + 1);
+            } else {
+                blackPositions.put(str, 1);
+            }
+        }
+        if(whitePositions.containsValue(5) || blackPositions.containsValue(5)){
+            gameState = FIVEFOLD_REPETITION_RULE_DRAW;
+        }
+    }
+
+    private void fiftyMoveDrawOffer() {
+        if(moves.size() >= 101){
+            boolean hasPawnMoveOrCapture = false;
+            for(int i = moves.size() - 1; i > moves.size() - 11; i--){
+                if (moves.get(i).contains("P") || moves.get(i).contains("x")) {
+                    hasPawnMoveOrCapture = true;
+                    break;
+                }
+            }
+            if(!hasPawnMoveOrCapture){
+                fiftyMoveDrawOffer = true;
+            }
+        }
+    }
+
+    private void seventyFiveMoveDraw(){
+        if(moves.size() >= 151){
+            boolean hasPawnMoveOrCapture = false;
+            for(int i = moves.size() - 1; i > moves.size() - 11; i--){
+                if (moves.get(i).contains("P") || moves.get(i).contains("x")) {
+                    hasPawnMoveOrCapture = true;
+                    break;
+                }
+            }
+            if(!hasPawnMoveOrCapture){
+                gameState = SEVENTY_FIVE_MOVE_RULE_DRAW;
+            }
+        }
+    }
     private void noCheckmatePossible() {
         onlyKingsRemain();
         kingVSKingAndBishop();

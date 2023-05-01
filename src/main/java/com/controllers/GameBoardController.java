@@ -56,9 +56,9 @@ public class GameBoardController {
         //String testPos = "rnbqkbnRpppppNpxxxrNxrxxxNNxxxxxNxxxxxxxxxNNNNxxPPPPPPPxRNBQKBNR";
         //String testPos = "rnbqkbnRpppppNpxxxrNxrxxxNNxxxxxNxxxxxxxxxNNNNxxPPPPPPPPRxxxKxxR";
         //String testPos = "kxxxxxxxxxxxxxxxxxxxxRxxxxxxxxRxxxxxxxxxxxxxxxxxxxxxxxxxKxxxxxxx";
-        String testPos = "kxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxBxBxxxxxxxxxxxxxxxxKxxxxxxx";
-        mainBoard = new Board(testPos, "Initialization");
-        //mainBoard = new Board();
+        //String testPos = "kxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxBxBxxxxxxxxxxxxxxxxKxxxxxxx";
+        //mainBoard = new Board(testPos, "Initialization");
+        mainBoard = new Board();
 
         refreshImages();
     }
