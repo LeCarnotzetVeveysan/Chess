@@ -3,8 +3,7 @@ package com.chess;
 import java.util.*;
 
 import static com.chess.GameState.*;
-import static com.utils.ModelUtils.getCoordinatesFromIndices;
-import static com.utils.ModelUtils.getIndicesFromCoordinates;
+import static com.utils.ModelUtils.*;
 
 public class Board {
 
@@ -165,18 +164,30 @@ public class Board {
         calculateValidMoves();
     }
 
-    public int numberOfPieces(char color){
-        int count = 0;
+    public ArrayList<Piece> remainingPieces(char color){
+        ArrayList<Piece> pieces = new ArrayList<>();
         for(int i = 0; i <= 7; i++){
             for(int j = 0; j <= 7; j++){
                 if(cells[i][j].getOccupied()){
                     if(cells[i][j].getPiece().getColor() == color){
-                        count++;
+                        pieces.add(cells[i][j].getPiece());
                     }
                 }
             }
         }
-        return count;
+        return pieces;
+    }
+
+    public String remainingPieceTypes(char color){
+        String types = "";
+        for(Piece p : remainingPieces(color)){
+            types += p.getType(false);
+        }
+        return types;
+    }
+
+    public int numberOfPieces(char color){
+        return remainingPieces(color).size();
     }
 
     public void calculateValidMoves() {
@@ -409,9 +420,9 @@ public class Board {
         calculateCheckmate();
         calculateStalemate();
         calculateDraw();
-        /*if(!gameState.toString().equals(ONGOING)){
+        if(!(gameState == ONGOING)){
             System.out.println("Game ended");
-        }*/
+        }
     }
 
     private int numberOfAvailableMoves(char color){
@@ -434,15 +445,80 @@ public class Board {
         noCheckmatePossible();
         //draw by 3 times position
         //draw by 5 times position
+        //draw by 50 move rule
     }
 
     private void noCheckmatePossible() {
         onlyKingsRemain();
+        kingVSKingAndBishop();
+        kingVSKingAndSameColorBishops();
+        kingVSKingAndKnight();
+        
+        deadPosition();
+    }
+
+    private void deadPosition() {
+        //Really complicated but maybe avoid doing it
     }
 
     private void onlyKingsRemain() {
         if(numberOfPieces('w') == 1 && numberOfPieces('b') == 1){
-            gameState = ONLY_KINGS;
+            gameState = NO_CHECKMATE_POSSIBLE;
+        }
+    }
+
+    private void kingVSKingAndKnight() {
+        if(numberOfPieces('w') == 1){
+            if(remainingPieceTypes('b').equals("KN") || remainingPieceTypes('b').equals("NK")){
+                gameState = NO_CHECKMATE_POSSIBLE;
+            }
+        }
+        if(numberOfPieces('b') == 1){
+            if(remainingPieceTypes('w').equals("KN") || remainingPieceTypes('w').equals("NK")){
+                gameState = NO_CHECKMATE_POSSIBLE;
+            }
+        }
+    }
+
+    private void kingVSKingAndSameColorBishops() {
+        if(numberOfPieces('w') == 1){
+            ArrayList<String> types = new ArrayList<>(Arrays.asList("KBB", "BKB", "BBK"));
+            if(types.contains(remainingPieceTypes('b'))){
+                char colors = 'x';
+                for(Piece p : remainingPieces('b')){
+                    if(colors == 'x' && p.getType(false) == 'B'){
+                        colors = getCellColor(p.getCurrentCell());
+                    } else if(p.getType(false) == 'B' && getCellColor(p.getCurrentCell()) == colors) {
+                        gameState = NO_CHECKMATE_POSSIBLE;
+                    }
+                }
+            }
+        }
+        if(numberOfPieces('b') == 1){
+            ArrayList<String> types = new ArrayList<>(Arrays.asList("KBB", "BKB", "BBK"));
+            if(types.contains(remainingPieceTypes('w'))){
+                char colors = 'x';
+                for(Piece p : remainingPieces('w')){
+                    if(colors == 'x' && p.getType(false) == 'B'){
+                        colors = getCellColor(p.getCurrentCell());
+                    } else if(p.getType(false) == 'B' && getCellColor(p.getCurrentCell()) == colors) {
+                        gameState = NO_CHECKMATE_POSSIBLE;
+                    }
+                }
+            }
+        }
+    }
+
+    private void kingVSKingAndBishop() {
+        if(numberOfPieces('w') == 1){
+            if(remainingPieceTypes('b').equals("KB") || remainingPieceTypes('b').equals("BK")){
+                gameState = NO_CHECKMATE_POSSIBLE;
+            }
+        }
+        if(numberOfPieces('b') == 1){
+            if(remainingPieceTypes('w').equals("KB") || remainingPieceTypes('w').equals("BK")){
+                gameState = NO_CHECKMATE_POSSIBLE;
+            }
         }
     }
 

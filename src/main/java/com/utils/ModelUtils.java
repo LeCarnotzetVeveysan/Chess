@@ -45,6 +45,15 @@ public class ModelUtils {
         }
         return validMoves;
     }
+
+    public static char getCellColor(String coordinates){
+        int[] indices = getIndicesFromCoordinates(coordinates);
+        if((indices[0] + indices[1])%2 == 0 ){
+            return 'w';
+        } else {
+            return 'b';
+        }
+    }
 }
 
 

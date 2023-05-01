@@ -56,9 +56,9 @@ public class GameBoardController {
         //String testPos = "rnbqkbnRpppppNpxxxrNxrxxxNNxxxxxNxxxxxxxxxNNNNxxPPPPPPPxRNBQKBNR";
         //String testPos = "rnbqkbnRpppppNpxxxrNxrxxxNNxxxxxNxxxxxxxxxNNNNxxPPPPPPPPRxxxKxxR";
         //String testPos = "kxxxxxxxxxxxxxxxxxxxxRxxxxxxxxRxxxxxxxxxxxxxxxxxxxxxxxxxKxxxxxxx";
-        //String testPos = "kxxxxxxxxxRPxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxKxxxxxxx";
-        //mainBoard = new Board(testPos);
-        mainBoard = new Board();
+        String testPos = "kxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxBxBxxxxxxxxxxxxxxxxKxxxxxxx";
+        mainBoard = new Board(testPos, "Initialization");
+        //mainBoard = new Board();
 
         refreshImages();
     }
@@ -69,6 +69,7 @@ public class GameBoardController {
         updateCellImages();
         updateCapturedPieceImages();
         gamestateLabel.setText(mainBoard.getGameState().name());
+        stopIfFinished();
     }
 
     private void updateCapturedPieceImages() throws FileNotFoundException {
