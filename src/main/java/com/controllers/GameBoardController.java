@@ -5,24 +5,34 @@ import com.chess.Cell;
 import com.chess.Piece;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static com.utils.LoadScene.changeLauncherScene;
 import static com.utils.ModelUtils.*;
 
 public class GameBoardController {
 
     @FXML
+    private AnchorPane mainPane;
+    @FXML
     public VBox promotionVB;
     @FXML
-    public Label gamestateLabel;
+    public Label gamestateLabel, drawOfferLabel;
+    @FXML
+    public Button resignBT;
+    @FXML
+    public Button acceptDrawBT, offerStandardDrawBT, claimFiftyMoveDrawBT, claimThreefoldDrawBT;
     @FXML
     private ImageView ca8IV, cb8IV, cc8IV, cd8IV, ce8IV, cf8IV, cg8IV, ch8IV,
             ca7IV, cb7IV, cc7IV, cd7IV, ce7IV, cf7IV, cg7IV, ch7IV,
@@ -48,7 +58,7 @@ public class GameBoardController {
     private ArrayList<ImageView> wCaptPieceIVs, bCaptPieceIVs;
     private Board mainBoard;
 
-    public void initialize() throws FileNotFoundException {
+    public void initialize() throws IOException {
         initIVs();
         promotionVB.setDisable(true);
         promotionVB.setVisible(false);
@@ -60,16 +70,43 @@ public class GameBoardController {
         //mainBoard = new Board(testPos, "Initialization");
         mainBoard = new Board();
 
-        refreshImages();
+        refreshScene();
     }
 
-    public void refreshImages() throws FileNotFoundException {
+    public void refreshScene() throws IOException {
+        stopIfFinished();
+        drawOffer();
+        stopIfFinished();
+        gamestateLabel.setText(mainBoard.getGameState().name());
         cleanImages();
         updatePieceImages();
         updateCellImages();
         updateCapturedPieceImages();
-        gamestateLabel.setText(mainBoard.getGameState().name());
-        stopIfFinished();
+
+    }
+
+    private void drawOffer() {
+        claimThreefoldDrawBT.setVisible(false);
+        claimThreefoldDrawBT.setDisable(true);
+        claimFiftyMoveDrawBT.setVisible(false);
+        claimFiftyMoveDrawBT.setDisable(true);
+
+        if(mainBoard.getCanClaimThreefoldDraw()){
+            claimThreefoldDrawBT.setVisible(true);
+            claimThreefoldDrawBT.setDisable(false);
+        }
+        if(mainBoard.getCanClaimFiftyMoveDraw()){
+            claimFiftyMoveDrawBT.setVisible(true);
+            claimFiftyMoveDrawBT.setDisable(false);
+        }
+    }
+
+    public void claimFiftyMoveDraw(){
+        mainBoard.claimFiftyMoveDrawOffer();
+    }
+
+    public void claimThreefoldDraw(){
+        mainBoard.claimThreefoldDrawOffer();
     }
 
     private void updateCapturedPieceImages() throws FileNotFoundException {
@@ -121,7 +158,7 @@ public class GameBoardController {
     private void updatePieceImages() throws FileNotFoundException {
         for (int i = 0; i <= 7; i++){
             for (int j = 0; j <= 7; j++){
-                Cell cell = mainBoard.getSpecificCell(getCoordinatesFromIndices(i,j));
+                Cell cell = mainBoard.getSpecificCell(indicesToCoordinates(i,j));
                 if(cell.getOccupied()){
                     setImage(pieceIVs[i][j], "sprites/" + cell.getPiece().getImageFileName());
                 }
@@ -137,7 +174,7 @@ public class GameBoardController {
         if(mainBoard.getIsCheck('w')){
             for (int i = 0; i <= 7; i++){
                 for (int j = 0; j <= 7; j++){
-                    Cell cell = mainBoard.getSpecificCell(getCoordinatesFromIndices(i,j));
+                    Cell cell = mainBoard.getSpecificCell(indicesToCoordinates(i,j));
                     if(cell.getOccupied() && cell.getPiece().getAccessibleCells().contains(mainBoard.getKing('w').getCurrentCell())){
                         setImage(cellIVs[i][j], "/cellBlurs/mid_pink");
                     }
@@ -147,7 +184,7 @@ public class GameBoardController {
         if(mainBoard.getIsCheck('b')){
             for (int i = 0; i <= 7; i++){
                 for (int j = 0; j <= 7; j++){
-                    Cell cell = mainBoard.getSpecificCell(getCoordinatesFromIndices(i,j));
+                    Cell cell = mainBoard.getSpecificCell(indicesToCoordinates(i,j));
                     if(cell.getOccupied() && cell.getPiece().getAccessibleCells().contains(mainBoard.getKing('b').getCurrentCell())){
                         setImage(cellIVs[i][j], "/cellBlurs/mid_pink");
                     }
@@ -201,92 +238,103 @@ public class GameBoardController {
         }
     }
 
-    public void stopIfFinished(){
+    public void stopIfFinished() throws IOException {
         if(mainBoard.isGameFinished()){
             setCellClickableState(false);
+            mainPane.setDisable(true);
+            changeLauncherScene("results");
         }
     }
 
     @FXML
-    public void onCellCkicked(MouseEvent mouseEvent) throws FileNotFoundException {
+    public void onCellCkicked(MouseEvent mouseEvent) throws IOException {
         String cellCoord = ((Node) mouseEvent.getSource()).getId().substring(1,3);
         Cell clickedCell = mainBoard.getSpecificCell(cellCoord);
 
         if(clickedCell.getValidMove()){
-            Piece piece = mainBoard.getActivePiece();
-            boolean differentColumns = clickedCell.getColumnIndex() != piece.getColumnIndex();
-            boolean emptyEndCell = !clickedCell.getOccupied();
-            boolean castling = cellCoord.equals("g1") || cellCoord.equals("c1") || cellCoord.equals("g8") || cellCoord.equals("c8");
-            if(piece.getType(false) == 'K' && castling){
-                switch (cellCoord){
-                    case "g1" -> mainBoard.castleKingside('w');
-                    case "c1" -> mainBoard.castleQueenside('w');
-                    case "g8" -> mainBoard.castleKingside('b');
-                    case "c8" -> mainBoard.castleQueenside('b');
-                }
-            } else if(piece.getType(false) == 'P' && differentColumns && emptyEndCell){
-                mainBoard.enPassant(piece.getCurrentCell(), cellCoord);
+            moveSequence(cellCoord, clickedCell);
+        } else if (clickedCell.getOccupied() && pieceIsPlayersColor(clickedCell)) {
+            showAvailableMovesSequence(clickedCell);
+        }
+    }
+
+    public boolean pieceIsPlayersColor(Cell clickedCell){
+        return clickedCell.getPiece().getColor() == mainBoard.getCurrentPlayer();
+    }
+
+    private void showAvailableMovesSequence(Cell clickedCell) throws FileNotFoundException {
+        cleanCellImages();
+        updateCheckCells();
+        mainBoard.setActivePiece(clickedCell.getPiece());
+
+        for (String coord : mainBoard.getActivePiece().getAccessibleCells()) {
+            int[] coords = coordinatesToIndices(coord);
+            Cell cell = mainBoard.getSpecificCell(coord);
+
+            if (cell.getOccupied()) {
+                setImage(cellIVs[coords[0]][coords[1]], "/cellBlurs/mid_red");
             } else {
-                mainBoard.movePiece(true, true, false, true, piece.getCurrentCell(), cellCoord);
-            }
-
-            if(mainBoard.getPromotionRequired()){
-                promotionVB.setDisable(false);
-                promotionVB.setVisible(true);
-                setCellClickableState(false);
-            }
-            refreshImages();
-            stopIfFinished();
-        } else {
-            if (clickedCell.getOccupied() && clickedCell.getPiece().getColor() == mainBoard.getCurrentPlayer()) {
-
-                cleanCellImages();
-                updateCheckCells();
-                mainBoard.setActivePiece(clickedCell.getPiece());
-
-                for (String coord : mainBoard.getActivePiece().getAccessibleCells()) {
-                    int[] coords = getIndicesFromCoordinates(coord);
-                    Cell cell = mainBoard.getSpecificCell(coord);
-
-                    if (cell.getOccupied()) {
-                        setImage(cellIVs[coords[0]][coords[1]], "/cellBlurs/mid_red");
-                    } else {
-                        setImage(cellIVs[coords[0]][coords[1]], "/cellBlurs/mid_blue");
-                    }
-                }
+                setImage(cellIVs[coords[0]][coords[1]], "/cellBlurs/mid_blue");
             }
         }
     }
 
+    private void moveSequence(String cellCoord, Cell clickedCell) throws IOException {
+        Piece piece = mainBoard.getActivePiece();
+        boolean differentColumns = clickedCell.getColumnIndex() != piece.getColumnIndex();
+        boolean emptyEndCell = !clickedCell.getOccupied();
+        boolean castling = cellCoord.equals("g1") || cellCoord.equals("c1") || cellCoord.equals("g8") || cellCoord.equals("c8");
+        boolean hasMoved = piece.getMoved();
+        if(piece.getType(false) == 'K' && castling && !hasMoved){
+            switch (cellCoord){
+                case "g1" -> mainBoard.castleKingside('w');
+                case "c1" -> mainBoard.castleQueenside('w');
+                case "g8" -> mainBoard.castleKingside('b');
+                case "c8" -> mainBoard.castleQueenside('b');
+            }
+        } else if(piece.getType(false) == 'P' && differentColumns && emptyEndCell){
+            mainBoard.enPassant(piece.getCurrentCell(), cellCoord);
+        } else {
+            mainBoard.movePiece(true, true, false, true, piece.getCurrentCell(), cellCoord);
+        }
+
+        if(mainBoard.getPromotionRequired()){
+            promotionVB.setDisable(false);
+            promotionVB.setVisible(true);
+            setCellClickableState(false);
+        }
+
+        refreshScene();
+    }
+
     @FXML
-    public void promotePawn(char desiredPiece) throws FileNotFoundException {
+    public void promotePawn(char desiredPiece) throws IOException {
         Piece activePiece = mainBoard.getActivePiece();
         char promotedPiece = activePiece.getColor() == 'w' ? desiredPiece : Character.toLowerCase(desiredPiece);
         mainBoard.promotePawn(activePiece.getCurrentCell(), promotedPiece);
         promotionVB.setDisable(true);
         promotionVB.setVisible(false);
         setCellClickableState(true);
-        stopIfFinished();
-        refreshImages();
+        refreshScene();
     }
 
     @FXML
-    public void onQueenPromotionClick() throws FileNotFoundException {
+    public void onQueenPromotionClick() throws IOException {
         promotePawn('Q');
     }
 
     @FXML
-    public void onBishopPromotionClick() throws FileNotFoundException {
+    public void onBishopPromotionClick() throws IOException {
         promotePawn('B');
     }
 
     @FXML
-    public void onKnightPromotionClick() throws FileNotFoundException {
+    public void onKnightPromotionClick() throws IOException {
         promotePawn('N');
     }
 
     @FXML
-    public void onRookPromotionClick() throws FileNotFoundException {
+    public void onRookPromotionClick() throws IOException {
         promotePawn('R');
     }
 }

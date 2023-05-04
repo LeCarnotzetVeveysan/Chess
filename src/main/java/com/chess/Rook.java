@@ -13,10 +13,10 @@ public class Rook extends Piece {
     @Override
     public void calculateAccessibleCells(boolean removeInvalidMoves, Board board) {
         ArrayList<String> accessibleCells = new ArrayList<>();
-        int[] currentPos = getIndicesFromCoordinates(super.getCurrentCell());
+        int[] currentPos = coordinatesToIndices(super.getCurrentCell());
 
         for (int i = currentPos[0] - 1; i >= 0; i--) {
-            String nCellUpMove = getCoordinatesFromIndices(i, currentPos[1]);
+            String nCellUpMove = indicesToCoordinates(i, currentPos[1]);
             Cell nCellUp = board.getSpecificCell(nCellUpMove);
             if (!nCellUp.getOccupied()) {
                 accessibleCells.add(nCellUpMove);
@@ -29,7 +29,7 @@ public class Rook extends Piece {
         }
 
         for (int i = currentPos[0] + 1; i <= 7; i++){
-            String nCellDownMove = getCoordinatesFromIndices(i, currentPos[1]);
+            String nCellDownMove = indicesToCoordinates(i, currentPos[1]);
             Cell nCellDown = board.getSpecificCell(nCellDownMove);
             if (!nCellDown.getOccupied()) {
                 accessibleCells.add(nCellDownMove);
@@ -42,7 +42,7 @@ public class Rook extends Piece {
         }
 
         for (int i = currentPos[1] - 1; i >= 0; i--){
-            String nCellLeftMove = getCoordinatesFromIndices(currentPos[0], i);
+            String nCellLeftMove = indicesToCoordinates(currentPos[0], i);
             Cell nCellLeft = board.getSpecificCell(nCellLeftMove);
             if (!nCellLeft.getOccupied()) {
                 accessibleCells.add(nCellLeftMove);
@@ -55,7 +55,7 @@ public class Rook extends Piece {
         }
 
         for (int i = currentPos[1] + 1; i <= 7; i++){
-            String nCellRightMove = getCoordinatesFromIndices(currentPos[0], i);
+            String nCellRightMove = indicesToCoordinates(currentPos[0], i);
             Cell nCellRight = board.getSpecificCell(nCellRightMove);
             if (!nCellRight.getOccupied()) {
                 accessibleCells.add(nCellRightMove);

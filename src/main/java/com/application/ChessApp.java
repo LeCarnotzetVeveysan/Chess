@@ -4,14 +4,15 @@ import com.utils.LoadScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import static com.application.AppData.setStages;
+import static com.utils.LoadScene.changeLauncherScene;
+
 public class ChessApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Stage mainStage = new Stage();
-        Stage seconStage = new Stage();
-        LoadScene ls = new LoadScene(mainStage, seconStage);
-        ls.changeLauncherScene("main-menu");
+        setStages();
+        changeLauncherScene("main-menu");
     }
 
     public static void main(String[] args) {

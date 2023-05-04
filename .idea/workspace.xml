@@ -4,11 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="More work on draw conditions">
+    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="Added Threefold / Fivefold dra and fifty and seventy-five draw offers or forced draws">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/controllers/ResultsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxmls/results.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/application/AppData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/application/AppData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/application/AppLaunch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/application/AppLaunch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/application/ChessApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/application/ChessApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Bishop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Cell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/King.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Knight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Queen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Rook.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controllers/GameBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controllers/GameBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controllers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controllers/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/LoadScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/utils/LoadScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/ModelUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/utils/ModelUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxmls/game-board.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/game-board.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxmls/main-menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/main-menu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,28 +77,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JavaMethodFindUsagesOptions.isOverridingMethods": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "extract.method.default.visibility": "private",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaMethodFindUsagesOptions.isOverridingMethods&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
@@ -97,14 +114,25 @@
       <recent name="com" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="ChessGame" type="Application" factoryName="Application">
+  <component name="RunManager" selected="Application.Full Chess">
+    <configuration name="ChessBoard" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.application.AppLaunch" />
       <module name="Chess" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Full Chess" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.application.ChessApp" />
+      <module name="Chess" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.ChessBoard" />
+      <item itemvalue="Application.Full Chess" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -157,7 +185,12 @@
       <workItem from="1682962444376" duration="235000" />
       <workItem from="1682962819373" duration="160000" />
       <workItem from="1682963178742" duration="485000" />
-      <workItem from="1682963815336" duration="1439000" />
+      <workItem from="1682963815336" duration="1858000" />
+      <workItem from="1682972001540" duration="4573000" />
+      <workItem from="1683027695986" duration="54000" />
+      <workItem from="1683053847495" duration="74000" />
+      <workItem from="1683053933688" duration="1084000" />
+      <workItem from="1683210129071" duration="1407000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1677412746648</created>
@@ -460,7 +493,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682949835933</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Added Threefold / Fivefold dra and fifty and seventy-five draw offers or forced draws">
+      <created>1682965644864</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1682965644864</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -478,7 +518,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added piece ImageViews to differentiate cell and piece images" />
     <MESSAGE value="Refactor + Started highlighting of allowed moves" />
     <MESSAGE value="Highlight cells with capture in red instead of blue." />
     <MESSAGE value="Work on moves, requiring activePiece and validMove attributes in Board and Piece." />
@@ -503,7 +542,8 @@
     <MESSAGE value="Proper move registering" />
     <MESSAGE value="Finished En-Passant implementation after 4 long hours&#10;+ Work on draw conditions" />
     <MESSAGE value="More work on draw conditions" />
-    <option name="LAST_COMMIT_MESSAGE" value="More work on draw conditions" />
+    <MESSAGE value="Added Threefold / Fivefold dra and fifty and seventy-five draw offers or forced draws" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Threefold / Fivefold dra and fifty and seventy-five draw offers or forced draws" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -13,12 +13,12 @@ public class Bishop extends Piece {
     public void calculateAccessibleCells(boolean removeInvalidMoves, Board board) {
 
         ArrayList<String> accessibleCells = new ArrayList<>();
-        int[] currentPos = getIndicesFromCoordinates(super.getCurrentCell());
+        int[] currentPos = coordinatesToIndices(super.getCurrentCell());
 
         int i,j;
 
         for (i = currentPos[0] + 1, j = currentPos[1] + 1; i <= 7 && j <= 7; i++, j++) {
-            String nCellBottomRightMove = getCoordinatesFromIndices(i, j);
+            String nCellBottomRightMove = indicesToCoordinates(i, j);
             Cell nCellBottomRight = board.getSpecificCell(nCellBottomRightMove);
             if (!nCellBottomRight.getOccupied()) {
                 accessibleCells.add(nCellBottomRightMove);
@@ -31,7 +31,7 @@ public class Bishop extends Piece {
         }
 
         for (i = currentPos[0] + 1, j = currentPos[1] - 1; i <= 7 && j >= 0; i++, j--) {
-            String nCellBottomLeftMove = getCoordinatesFromIndices(i, j);
+            String nCellBottomLeftMove = indicesToCoordinates(i, j);
             Cell nCellBottomLeft = board.getSpecificCell(nCellBottomLeftMove);
             if (!nCellBottomLeft.getOccupied()) {
                 accessibleCells.add(nCellBottomLeftMove);
@@ -44,7 +44,7 @@ public class Bishop extends Piece {
         }
 
         for (i = currentPos[0] - 1, j = currentPos[1] + 1; i >= 0 && j <= 7; i--, j++) {
-            String nCellTopRightMove = getCoordinatesFromIndices(i, j);
+            String nCellTopRightMove = indicesToCoordinates(i, j);
             Cell nCellTopRight = board.getSpecificCell(nCellTopRightMove);
             if (!nCellTopRight.getOccupied()) {
                 accessibleCells.add(nCellTopRightMove);
@@ -57,7 +57,7 @@ public class Bishop extends Piece {
         }
 
         for (i = currentPos[0] - 1, j = currentPos[1] - 1; i >= 0 && j >= 0; i--, j--) {
-            String nCellTopLeftMove = getCoordinatesFromIndices(i, j);
+            String nCellTopLeftMove = indicesToCoordinates(i, j);
             Cell nCellTopLeft = board.getSpecificCell(nCellTopLeftMove);
             if (!nCellTopLeft.getOccupied()) {
                 accessibleCells.add(nCellTopLeftMove);

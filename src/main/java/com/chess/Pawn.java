@@ -1,7 +1,6 @@
 package com.chess;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static com.utils.ModelUtils.*;
 
@@ -13,25 +12,25 @@ public class Pawn extends Piece {
     @Override
     public void calculateAccessibleCells(boolean removeInvalidMoves, Board board) {
         ArrayList<String> accessibleCells = new ArrayList<>();
-        int[] currentPos = getIndicesFromCoordinates(super.getCurrentCell());
+        int[] currentPos = coordinatesToIndices(super.getCurrentCell());
         int upDown = super.getColor() == 'b' ? 1 : -1;
 
         if(currentPos[0] != 0 && currentPos[0] != 7) {
-            String oneCellMove = getCoordinatesFromIndices(currentPos[0] + upDown, currentPos[1]);
+            String oneCellMove = indicesToCoordinates(currentPos[0] + upDown, currentPos[1]);
             if (!board.getSpecificCell(oneCellMove).getOccupied()) {
                 accessibleCells.add(oneCellMove);
             }
 
 
             if (!super.getMoved()) {
-                String twoCellMove = getCoordinatesFromIndices(currentPos[0] + (upDown * 2), currentPos[1]);
+                String twoCellMove = indicesToCoordinates(currentPos[0] + (upDown * 2), currentPos[1]);
                 if (!board.getSpecificCell(oneCellMove).getOccupied() && !board.getSpecificCell(twoCellMove).getOccupied()) {
                     accessibleCells.add(twoCellMove);
                 }
             }
 
             if (currentPos[1] != 0) {
-                String takeLeftMove = getCoordinatesFromIndices(currentPos[0] + upDown, currentPos[1] - 1);
+                String takeLeftMove = indicesToCoordinates(currentPos[0] + upDown, currentPos[1] - 1);
                 Cell takeLeftCell = board.getSpecificCell(takeLeftMove);
                 if (takeLeftCell.getOccupied() && takeLeftCell.getPiece().getColor() != super.getColor()) {
                     accessibleCells.add(takeLeftMove);
@@ -39,7 +38,7 @@ public class Pawn extends Piece {
             }
 
             if (currentPos[1] != 7) {
-                String takeRightMove = getCoordinatesFromIndices(currentPos[0] + upDown, currentPos[1] + 1);
+                String takeRightMove = indicesToCoordinates(currentPos[0] + upDown, currentPos[1] + 1);
                 Cell takeRightCell = board.getSpecificCell(takeRightMove);
                 if (takeRightCell.getOccupied() && takeRightCell.getPiece().getColor() != super.getColor()) {
                     accessibleCells.add(takeRightMove);
@@ -56,10 +55,10 @@ public class Pawn extends Piece {
                     boolean leftColumn = columnToIndex(lastMove.charAt(4)) == currentPos[1] - 1;
                     boolean rightColumn = columnToIndex(lastMove.charAt(4)) == currentPos[1] + 1;
                     if(leftColumn){
-                        accessibleCells.add(getCoordinatesFromIndices(currentPos[0] - 1, currentPos[1] - 1));
+                        accessibleCells.add(indicesToCoordinates(currentPos[0] - 1, currentPos[1] - 1));
                     }
                     if(rightColumn){
-                        accessibleCells.add(getCoordinatesFromIndices(currentPos[0] - 1, currentPos[1] + 1));
+                        accessibleCells.add(indicesToCoordinates(currentPos[0] - 1, currentPos[1] + 1));
                     }
                 }
             }
@@ -73,10 +72,10 @@ public class Pawn extends Piece {
                     boolean leftColumn = columnToIndex(lastMove.charAt(4)) == currentPos[1] - 1;
                     boolean rightColumn = columnToIndex(lastMove.charAt(4)) == currentPos[1] + 1;
                     if(leftColumn){
-                        accessibleCells.add(getCoordinatesFromIndices(currentPos[0] + 1 , currentPos[1] - 1));
+                        accessibleCells.add(indicesToCoordinates(currentPos[0] + 1 , currentPos[1] - 1));
                     }
                     if(rightColumn){
-                        accessibleCells.add(getCoordinatesFromIndices(currentPos[0] + 1, currentPos[1] + 1));
+                        accessibleCells.add(indicesToCoordinates(currentPos[0] + 1, currentPos[1] + 1));
                     }
                 }
             }

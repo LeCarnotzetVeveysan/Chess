@@ -13,7 +13,7 @@ public class Board {
     private ArrayList<Piece> whiteCapturedPieces, blackCapturedPieces;
     private Piece activePiece;
     private char currentPlayer;
-    private boolean promotionRequired = false, fiftyMoveDrawOffer = false, threefoldDrawOffer = false;
+    private boolean promotionRequired = false, canClaimFiftyMoveDraw = false, canClaimThreefoldDraw = false;
     private ArrayList<String> moves, positions;
 
     public Board(){
@@ -32,35 +32,35 @@ public class Board {
             Piece piece = null;
             switch (gameState.charAt(i)){
                 case 'K' -> {
-                    piece = new King('w', getCoordinatesFromIndices(i/8, i%8));
+                    piece = new King('w', indicesToCoordinates(i/8, i%8));
                     if(i/8 != 7 && i%8 != 4){
-                        piece.setCurrentCell(getCoordinatesFromIndices(i/8, i % 8));
+                        piece.setCurrentCell(indicesToCoordinates(i/8, i % 8));
                     }
                 }
                 case 'k' -> {
-                    piece = new King('b', getCoordinatesFromIndices(i/8, i%8));
+                    piece = new King('b', indicesToCoordinates(i/8, i%8));
                     if(i/8 != 0 && i%8 != 4){
-                        piece.setCurrentCell(getCoordinatesFromIndices(i/8, i % 8));
+                        piece.setCurrentCell(indicesToCoordinates(i/8, i % 8));
                     }
                 }
-                case 'Q' -> piece = new Queen('w', getCoordinatesFromIndices(i/8, i%8));
-                case 'q' -> piece = new Queen('b', getCoordinatesFromIndices(i/8, i%8));
-                case 'B' -> piece = new Bishop('w', getCoordinatesFromIndices(i/8, i%8));
-                case 'b' -> piece = new Bishop('b', getCoordinatesFromIndices(i/8, i%8));
-                case 'N' -> piece = new Knight('w', getCoordinatesFromIndices(i/8, i%8));
-                case 'n' -> piece = new Knight('b', getCoordinatesFromIndices(i/8, i%8));
-                case 'R' -> piece = new Rook('w', getCoordinatesFromIndices(i/8, i%8));
-                case 'r' -> piece = new Rook('b', getCoordinatesFromIndices(i/8, i%8));
+                case 'Q' -> piece = new Queen('w', indicesToCoordinates(i/8, i%8));
+                case 'q' -> piece = new Queen('b', indicesToCoordinates(i/8, i%8));
+                case 'B' -> piece = new Bishop('w', indicesToCoordinates(i/8, i%8));
+                case 'b' -> piece = new Bishop('b', indicesToCoordinates(i/8, i%8));
+                case 'N' -> piece = new Knight('w', indicesToCoordinates(i/8, i%8));
+                case 'n' -> piece = new Knight('b', indicesToCoordinates(i/8, i%8));
+                case 'R' -> piece = new Rook('w', indicesToCoordinates(i/8, i%8));
+                case 'r' -> piece = new Rook('b', indicesToCoordinates(i/8, i%8));
                 case 'P' -> {
-                    piece = new Pawn('w', getCoordinatesFromIndices(i / 8, i % 8));
+                    piece = new Pawn('w', indicesToCoordinates(i / 8, i % 8));
                     if(i/8 != 6){
-                        piece.setCurrentCell(getCoordinatesFromIndices(i/8, i % 8));
+                        piece.setCurrentCell(indicesToCoordinates(i/8, i % 8));
                     }
                 }
                 case 'p' -> {
-                    piece = new Pawn('b', getCoordinatesFromIndices(i/8, i%8));
+                    piece = new Pawn('b', indicesToCoordinates(i/8, i%8));
                     if(i/8 != 1){
-                        piece.setCurrentCell(getCoordinatesFromIndices(i/8, i % 8));
+                        piece.setCurrentCell(indicesToCoordinates(i/8, i % 8));
                     }
                 }
 
@@ -85,37 +85,21 @@ public class Board {
     public GameState getGameState(){
         return gameState;
     }
-    public boolean getFiftyMoveDrawOffer(){
-        return fiftyMoveDrawOffer;
+    public boolean getCanClaimFiftyMoveDraw(){
+        return canClaimFiftyMoveDraw;
     }
 
-    public void acceptFiftyMoveDrawOffer(boolean accept){
-        if(accept){
-            gameState = FIFTY_MOVE_DRAW_OFFER_ACCEPTED;
-        }
+    public void claimFiftyMoveDrawOffer(){
+        gameState = FIFTY_MOVE_DRAW_CLAIMED;
     }
 
-    public boolean getThreefoldDrawOffer(){
-        return fiftyMoveDrawOffer;
+    public boolean getCanClaimThreefoldDraw(){
+        return canClaimFiftyMoveDraw;
     }
 
-    public void acceptThreefoldDrawOffer(boolean accept){
-        if(accept){
-            gameState = THREEFOLD_REPETITION_DRAW_OFFER_ACCEPTED;
-        }
+    public void claimThreefoldDrawOffer(){
+        gameState = THREEFOLD_REPETITION_DRAW_CLAIMED;
     }
-
-    public String toStringSquare(){
-        String toReturn = "";
-        for(int i = 0; i < 8; i++){
-            for(int j = 0; j < 8; j++){
-                toReturn += cells[i][j].getCoordinates();
-            }
-            toReturn += "\n";
-        }
-        return toReturn;
-    }
-
     public String getBoardPosition(){
         String position = "";
         for(int i = 0; i <= 7; i++){
@@ -138,7 +122,7 @@ public class Board {
         cells = new Cell[8][8];
         for(int i = 0; i <= 7; i++){
             for(int j = 0; j <= 7; j++){
-                cells[i][j] = new Cell(getCoordinatesFromIndices(i,j));
+                cells[i][j] = new Cell(indicesToCoordinates(i,j));
             }
         }
         whiteCapturedPieces = new ArrayList<>();
@@ -176,8 +160,8 @@ public class Board {
         cells[0][7].setPiece(new Rook('b', "h8"));
         //Pawns
         for (int i = 0; i < 8; i++){
-            cells[6][i].setPiece(new Pawn('w', getCoordinatesFromIndices(6,i)));
-            cells[1][i].setPiece(new Pawn('b', getCoordinatesFromIndices(1,i)));
+            cells[6][i].setPiece(new Pawn('w', indicesToCoordinates(6,i)));
+            cells[1][i].setPiece(new Pawn('b', indicesToCoordinates(1,i)));
         }
 
         calculateValidMoves();
@@ -230,7 +214,7 @@ public class Board {
     }
 
     public Cell getSpecificCell(String inCoordinates){
-        int[] coordinates = getIndicesFromCoordinates(inCoordinates);
+        int[] coordinates = coordinatesToIndices(inCoordinates);
         return cells[coordinates[0]][coordinates[1]];
     }
 
@@ -355,7 +339,7 @@ public class Board {
 
     public void setValidMoves(){
         for (String coord : activePiece.getAccessibleCells()){
-            int[] intCoord = getIndicesFromCoordinates(coord);
+            int[] intCoord = coordinatesToIndices(coord);
             cells[intCoord[0]][intCoord[1]].setValidMove(true);
         }
     }
@@ -379,7 +363,7 @@ public class Board {
     private boolean isKingInLineOfSight(Piece inKing) {
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j <= 7; j++) {
-                Cell currentCell = getSpecificCell(getCoordinatesFromIndices(i, j));
+                Cell currentCell = getSpecificCell(indicesToCoordinates(i, j));
                 if(currentCell.getOccupied()) {
                     Piece currentPiece = currentCell.getPiece();
                     if (currentPiece.getColor() != inKing.getColor()) {
@@ -412,13 +396,13 @@ public class Board {
 
     public void calculatePromotionRequired(){
         for(int i = 0; i <= 7; i++){
-            Cell currentCell = getSpecificCell(getCoordinatesFromIndices(0,i));
+            Cell currentCell = getSpecificCell(indicesToCoordinates(0,i));
             if(currentCell.getOccupied()){
                 if(currentCell.getPiece().getType(true) == 'P'){
                     setPromotionRequired(true);
                 }
             }
-            currentCell = getSpecificCell(getCoordinatesFromIndices(7,i));
+            currentCell = getSpecificCell(indicesToCoordinates(7,i));
             if (currentCell.getOccupied()) {
                 if (currentCell.getPiece().getType(true) == 'p') {
                     setPromotionRequired(true);
@@ -448,7 +432,7 @@ public class Board {
         int count = 0;
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j <= 7; j++) {
-                Cell currentCell = getSpecificCell(getCoordinatesFromIndices(i, j));
+                Cell currentCell = getSpecificCell(indicesToCoordinates(i, j));
                 if(currentCell.getOccupied()) {
                     if(currentCell.getPiece().getColor() == color){
                         count += currentCell.getPiece().getAccessibleCells().size();
@@ -460,196 +444,99 @@ public class Board {
     }
 
     private void calculateDraw() {
-        //draw if can't finish
-        noCheckmatePossible();
-        //draw by 3 times position
-        threefoldPositionRule();
-        //draw offer by 50 move rule
-        fiftyMoveDrawOffer();
-        //forced draw by 5 times position
-        fivefoldPositionRule();
-        //forced draw by 75 move rule
-        seventyFiveMoveDraw();
-    }
-
-    private void threefoldPositionRule() {
-        ArrayList<String> whiteToPlayPositions = new ArrayList<>();
-        ArrayList<String> blackToPlayPositions = new ArrayList<>();
-        for(int i = 1; i < positions.size(); i += 2){
-            whiteToPlayPositions.add(positions.get(i));
-        }
-        for(int i = 2; i < positions.size(); i += 2){
-            blackToPlayPositions.add(positions.get(i));
-        }
-        Map<String, Integer> whitePositions = new HashMap<>();
-        Map<String, Integer> blackPositions = new HashMap<>();
-        for (String str : whiteToPlayPositions) {
-            if (whitePositions.containsKey(str)) {
-                whitePositions.put(str, whitePositions.get(str) + 1);
-            } else {
-                whitePositions.put(str, 1);
-            }
-        }
-        for (String str : blackToPlayPositions) {
-            if (blackPositions.containsKey(str)) {
-                blackPositions.put(str, blackPositions.get(str) + 1);
-            } else {
-                blackPositions.put(str, 1);
-            }
-        }
-        if(whitePositions.containsValue(3) || blackPositions.containsValue(3)){
-            threefoldDrawOffer = true;
-        }
-    }
-
-    private void fivefoldPositionRule(){
-        ArrayList<String> whiteToPlayPositions = new ArrayList<>();
-        ArrayList<String> blackToPlayPositions = new ArrayList<>();
-        for(int i = 1; i < positions.size(); i += 2){
-            whiteToPlayPositions.add(positions.get(i));
-        }
-        for(int i = 2; i < positions.size(); i += 2){
-            blackToPlayPositions.add(positions.get(i));
-        }
-        Map<String, Integer> whitePositions = new HashMap<>();
-        Map<String, Integer> blackPositions = new HashMap<>();
-        for (String str : whiteToPlayPositions) {
-            if (whitePositions.containsKey(str)) {
-                whitePositions.put(str, whitePositions.get(str) + 1);
-            } else {
-                whitePositions.put(str, 1);
-            }
-        }
-        for (String str : blackToPlayPositions) {
-            if (blackPositions.containsKey(str)) {
-                blackPositions.put(str, blackPositions.get(str) + 1);
-            } else {
-                blackPositions.put(str, 1);
-            }
-        }
-        if(whitePositions.containsValue(5) || blackPositions.containsValue(5)){
+        if((insufficientMaterial('w') && insufficientMaterial('b'))){
+            gameState = INSUFFICIENT_MATERIAL;
+        } else if (deadPosition()) {
+            gameState = DEAD_POSITION;
+        } else if(nMovesWithoutPawnMoveOrCapture(75)){
+            gameState = SEVENTY_FIVE_MOVE_RULE_DRAW;
+        } else if (nFoldPosition(5)) {
             gameState = FIVEFOLD_REPETITION_RULE_DRAW;
+        } else if (nMovesWithoutPawnMoveOrCapture(50)) {
+            canClaimFiftyMoveDraw = true;
+        } else if (nFoldPosition(3)) {
+            canClaimThreefoldDraw = true;
         }
     }
 
-    private void fiftyMoveDrawOffer() {
-        if(moves.size() >= 101){
+    private boolean nFoldPosition(int limit) {
+        ArrayList<String> whiteToPlayPositions = new ArrayList<>();
+        ArrayList<String> blackToPlayPositions = new ArrayList<>();
+        for(int i = 1; i < positions.size(); i += 2){
+            whiteToPlayPositions.add(positions.get(i));
+        }
+        for(int i = 2; i < positions.size(); i += 2){
+            blackToPlayPositions.add(positions.get(i));
+        }
+        Map<String, Integer> whitePositions = new HashMap<>();
+        Map<String, Integer> blackPositions = new HashMap<>();
+        for (String str : whiteToPlayPositions) {
+            if (whitePositions.containsKey(str)) {
+                whitePositions.put(str, whitePositions.get(str) + 1);
+            } else {
+                whitePositions.put(str, 1);
+            }
+        }
+        for (String str : blackToPlayPositions) {
+            if (blackPositions.containsKey(str)) {
+                blackPositions.put(str, blackPositions.get(str) + 1);
+            } else {
+                blackPositions.put(str, 1);
+            }
+        }
+        return whitePositions.containsValue(limit) || blackPositions.containsValue(limit);
+    }
+
+    private boolean nMovesWithoutPawnMoveOrCapture(int limit){
+        if(moves.size() >= 2*limit){
             boolean hasPawnMoveOrCapture = false;
-            for(int i = moves.size() - 1; i > moves.size() - 11; i--){
+            for(int i = moves.size() - 1; i > moves.size() - (2*limit); i--){
                 if (moves.get(i).contains("P") || moves.get(i).contains("x")) {
                     hasPawnMoveOrCapture = true;
                     break;
                 }
             }
-            if(!hasPawnMoveOrCapture){
-                fiftyMoveDrawOffer = true;
-            }
+            return !hasPawnMoveOrCapture;
         }
+        return false;
     }
-
-    private void seventyFiveMoveDraw(){
-        if(moves.size() >= 151){
-            boolean hasPawnMoveOrCapture = false;
-            for(int i = moves.size() - 1; i > moves.size() - 11; i--){
-                if (moves.get(i).contains("P") || moves.get(i).contains("x")) {
-                    hasPawnMoveOrCapture = true;
-                    break;
-                }
-            }
-            if(!hasPawnMoveOrCapture){
-                gameState = SEVENTY_FIVE_MOVE_RULE_DRAW;
-            }
-        }
-    }
-    private void noCheckmatePossible() {
-        onlyKingsRemain();
-        kingVSKingAndBishop();
-        kingVSKingAndSameColorBishops();
-        kingVSKingAndKnight();
-        
-        deadPosition();
-    }
-
-    private void deadPosition() {
+    private boolean deadPosition() {
         //Really complicated but maybe avoid doing it
+        return false;
     }
 
-    private void onlyKingsRemain() {
-        if(numberOfPieces('w') == 1 && numberOfPieces('b') == 1){
-            gameState = NO_CHECKMATE_POSSIBLE;
-        }
-    }
-
-    private void kingVSKingAndKnight() {
-        if(numberOfPieces('w') == 1){
-            if(remainingPieceTypes('b').equals("KN") || remainingPieceTypes('b').equals("NK")){
-                gameState = NO_CHECKMATE_POSSIBLE;
-            }
-        }
-        if(numberOfPieces('b') == 1){
-            if(remainingPieceTypes('w').equals("KN") || remainingPieceTypes('w').equals("NK")){
-                gameState = NO_CHECKMATE_POSSIBLE;
-            }
-        }
-    }
-
-    private void kingVSKingAndSameColorBishops() {
-        if(numberOfPieces('w') == 1){
-            ArrayList<String> types = new ArrayList<>(Arrays.asList("KBB", "BKB", "BBK"));
-            if(types.contains(remainingPieceTypes('b'))){
-                char colors = 'x';
-                for(Piece p : remainingPieces('b')){
-                    if(colors == 'x' && p.getType(false) == 'B'){
-                        colors = getCellColor(p.getCurrentCell());
-                    } else if(p.getType(false) == 'B' && getCellColor(p.getCurrentCell()) == colors) {
-                        gameState = NO_CHECKMATE_POSSIBLE;
-                    }
+    public boolean insufficientMaterial(char color){
+        ArrayList<String> simpleTypes = new ArrayList<>(Arrays.asList("K","BK", "KB", "KN", "NK"));
+        ArrayList<String> twoBishops = new ArrayList<>(Arrays.asList("KBB", "BKB", "BBK"));
+        String remainingPieceTypes = remainingPieceTypes(color);
+        if(simpleTypes.contains(remainingPieceTypes)){
+            return true;
+        } else if (twoBishops.contains(remainingPieceTypes)) {
+            char colors = 'x';
+            for(Piece p : remainingPieces(color)){
+                char cellColor = getCellColor(p.getCurrentCell());
+                if(colors == 'x' && p.getType(false) == 'B'){
+                    colors = cellColor;
+                } else if(p.getType(false) == 'B' && cellColor == colors) {
+                    return true;
                 }
             }
         }
-        if(numberOfPieces('b') == 1){
-            ArrayList<String> types = new ArrayList<>(Arrays.asList("KBB", "BKB", "BBK"));
-            if(types.contains(remainingPieceTypes('w'))){
-                char colors = 'x';
-                for(Piece p : remainingPieces('w')){
-                    if(colors == 'x' && p.getType(false) == 'B'){
-                        colors = getCellColor(p.getCurrentCell());
-                    } else if(p.getType(false) == 'B' && getCellColor(p.getCurrentCell()) == colors) {
-                        gameState = NO_CHECKMATE_POSSIBLE;
-                    }
-                }
-            }
-        }
-    }
-
-    private void kingVSKingAndBishop() {
-        if(numberOfPieces('w') == 1){
-            if(remainingPieceTypes('b').equals("KB") || remainingPieceTypes('b').equals("BK")){
-                gameState = NO_CHECKMATE_POSSIBLE;
-            }
-        }
-        if(numberOfPieces('b') == 1){
-            if(remainingPieceTypes('w').equals("KB") || remainingPieceTypes('w').equals("BK")){
-                gameState = NO_CHECKMATE_POSSIBLE;
-            }
-        }
+        return false;
     }
 
     private void calculateStalemate() {
         if(isStalemate('w')){
             gameState = STALEMATE_WHITE;
-        }
-        if(isStalemate('b')){
+        } else if(isStalemate('b')){
             gameState = STALEMATE_BLACK;
         }
-
     }
 
     private void calculateCheckmate() {
         if(isCheckmate('w')){
             gameState = CHECKMATE_WHITE;
-        }
-        if(isCheckmate('b')){
+        } else if(isCheckmate('b')){
             gameState = CHECKMATE_BLACK;
         }
     }
@@ -673,7 +560,7 @@ public class Board {
     public boolean isCellInEnemyLineOfSight(char enemyColor, String inCell){
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j <= 7; j++) {
-                Cell currentCell = getSpecificCell(getCoordinatesFromIndices(i, j));
+                Cell currentCell = getSpecificCell(indicesToCoordinates(i, j));
                 if(currentCell.getOccupied()) {
                     Piece currentPiece = currentCell.getPiece();
                     if (currentPiece.getColor() == enemyColor) {
@@ -750,11 +637,12 @@ public class Board {
             movePiece(true, false, false, false, "a8", "d8");
         }
         registerCastle(false);
+        nextPlayer();
     }
 
     public void enPassant(String startCell, String endcell){
         movePiece(true, false, true, true, startCell, endcell);
-        Cell captureCell = cells[getIndicesFromCoordinates(startCell)[0]][getIndicesFromCoordinates(endcell)[1]];
+        Cell captureCell = cells[coordinatesToIndices(startCell)[0]][coordinatesToIndices(endcell)[1]];
         Piece capturedPiece = captureCell.getPiece();
         if(capturedPiece.getColor() == 'w'){
             whiteCapturedPieces.add(capturedPiece);

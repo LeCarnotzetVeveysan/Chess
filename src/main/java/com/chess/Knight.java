@@ -13,7 +13,7 @@ public class Knight extends Piece {
     public void calculateAccessibleCells(boolean removeInvalidMoves, Board board) {
 
         ArrayList<String> accessibleCells = new ArrayList<>();
-        int[] currentPos = getIndicesFromCoordinates(super.getCurrentCell());
+        int[] currentPos = coordinatesToIndices(super.getCurrentCell());
 
         boolean isInTopRow = currentPos[0] == 0;
         boolean isInBotRow = currentPos[0] == 7;
@@ -25,7 +25,7 @@ public class Knight extends Piece {
         boolean isInRightTwoCols = currentPos[1] >= 6;
 
         if(!isInTopTwoRows && !isInLeftCol) {
-            String topLeftMove = getCoordinatesFromIndices(currentPos[0] - 2, currentPos[1] - 1);
+            String topLeftMove = indicesToCoordinates(currentPos[0] - 2, currentPos[1] - 1);
             Cell topLeftCell = board.getSpecificCell(topLeftMove);
             if (!topLeftCell.getOccupied() || (topLeftCell.getOccupied() && topLeftCell.getPiece().getColor() != super.getColor())) {
                 accessibleCells.add(topLeftMove);
@@ -33,7 +33,7 @@ public class Knight extends Piece {
         }
 
         if(!isInTopTwoRows && !isOnRightCol) {
-            String topRightMove = getCoordinatesFromIndices(currentPos[0] - 2, currentPos[1] + 1);
+            String topRightMove = indicesToCoordinates(currentPos[0] - 2, currentPos[1] + 1);
             Cell topRightCell = board.getSpecificCell(topRightMove);
             if (!topRightCell.getOccupied() || (topRightCell.getOccupied() && topRightCell.getPiece().getColor() != super.getColor())) {
                 accessibleCells.add(topRightMove);
@@ -41,7 +41,7 @@ public class Knight extends Piece {
         }
 
         if(!isInRightTwoCols && !isInTopRow) {
-            String rightTopMove = getCoordinatesFromIndices(currentPos[0] - 1, currentPos[1] + 2);
+            String rightTopMove = indicesToCoordinates(currentPos[0] - 1, currentPos[1] + 2);
             Cell rightTopCell = board.getSpecificCell(rightTopMove);
             if (!rightTopCell.getOccupied() || (rightTopCell.getOccupied() && rightTopCell.getPiece().getColor() != super.getColor())) {
                 accessibleCells.add(rightTopMove);
@@ -49,7 +49,7 @@ public class Knight extends Piece {
         }
 
         if(!isInRightTwoCols && !isInBotRow) {
-            String rightBottomMove = getCoordinatesFromIndices(currentPos[0] + 1, currentPos[1] + 2);
+            String rightBottomMove = indicesToCoordinates(currentPos[0] + 1, currentPos[1] + 2);
             Cell rightBottomCell = board.getSpecificCell(rightBottomMove);
             if (!rightBottomCell.getOccupied() || (rightBottomCell.getOccupied() && rightBottomCell.getPiece().getColor() != super.getColor())) {
                 accessibleCells.add(rightBottomMove);
@@ -57,7 +57,7 @@ public class Knight extends Piece {
         }
 
         if(!isInBotTwoRows && !isOnRightCol) {
-            String bottomRightMove = getCoordinatesFromIndices(currentPos[0] + 2, currentPos[1] + 1);
+            String bottomRightMove = indicesToCoordinates(currentPos[0] + 2, currentPos[1] + 1);
             Cell bottomRightCell = board.getSpecificCell(bottomRightMove);
             if (!bottomRightCell.getOccupied() || (bottomRightCell.getOccupied() && bottomRightCell.getPiece().getColor() != super.getColor())) {
                 accessibleCells.add(bottomRightMove);
@@ -65,7 +65,7 @@ public class Knight extends Piece {
         }
 
         if(!isInBotTwoRows && !isInLeftCol) {
-            String bottomLeftMove = getCoordinatesFromIndices(currentPos[0] + 2, currentPos[1] - 1);
+            String bottomLeftMove = indicesToCoordinates(currentPos[0] + 2, currentPos[1] - 1);
             Cell bottomLeftCell = board.getSpecificCell(bottomLeftMove);
             if (!bottomLeftCell.getOccupied() || (bottomLeftCell.getOccupied() && bottomLeftCell.getPiece().getColor() != super.getColor())) {
                 accessibleCells.add(bottomLeftMove);
@@ -73,7 +73,7 @@ public class Knight extends Piece {
         }
 
         if(!isInLeftTwoCols && !isInTopRow) {
-            String rightTopMove = getCoordinatesFromIndices(currentPos[0] - 1, currentPos[1] - 2);
+            String rightTopMove = indicesToCoordinates(currentPos[0] - 1, currentPos[1] - 2);
             Cell rightTopCell = board.getSpecificCell(rightTopMove);
             if (!rightTopCell.getOccupied() || (rightTopCell.getOccupied() && rightTopCell.getPiece().getColor() != super.getColor())) {
                 accessibleCells.add(rightTopMove);
@@ -81,7 +81,7 @@ public class Knight extends Piece {
         }
 
         if(!isInLeftTwoCols && !isInBotRow) {
-            String rightBottomMove = getCoordinatesFromIndices(currentPos[0] + 1, currentPos[1] - 2);
+            String rightBottomMove = indicesToCoordinates(currentPos[0] + 1, currentPos[1] - 2);
             Cell rightBottomCell = board.getSpecificCell(rightBottomMove);
             if (!rightBottomCell.getOccupied() || (rightBottomCell.getOccupied() && rightBottomCell.getPiece().getColor() != super.getColor())) {
                 accessibleCells.add(rightBottomMove);

@@ -1,18 +1,18 @@
 package com.chess;
 
 import static com.utils.ModelUtils.getCellColor;
-import static com.utils.ModelUtils.getIndicesFromCoordinates;
-
 public class Cell {
 
-    private String coordinates;
+    private final String coordinates;
     private Piece piece;
     private boolean validMove;
+    private final char color;
 
     public Cell(String inCoord){
         coordinates = inCoord;
         piece = null;
         validMove = false;
+        color = getCellColor(coordinates);
     }
 
     public String getCoordinates(){
@@ -44,6 +44,6 @@ public class Cell {
     }
 
     public char getColor(){
-        return getCellColor(coordinates);
+        return color;
     }
 }

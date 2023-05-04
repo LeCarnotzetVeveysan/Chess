@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class ModelUtils {
 
-    public static int[] getIndicesFromCoordinates(String inCoordinates){
+    public static int[] coordinatesToIndices(String inCoordinates){
         char[] stringCoord = inCoordinates.toCharArray();
         int[] intCoord = new int[2];
         intCoord[0] = 8 - Integer.parseInt(String.valueOf(stringCoord[1]));
@@ -18,7 +18,7 @@ public class ModelUtils {
         return intCoord;
     }
 
-    public static String getCoordinatesFromIndices(int inRow, int inCol){
+    public static String indicesToCoordinates(int inRow, int inCol){
         String xChar = String.valueOf((char) (inCol + 97));
         return xChar + (8 - inRow);
     }
@@ -47,7 +47,7 @@ public class ModelUtils {
     }
 
     public static char getCellColor(String coordinates){
-        int[] indices = getIndicesFromCoordinates(coordinates);
+        int[] indices = coordinatesToIndices(coordinates);
         if((indices[0] + indices[1])%2 == 0 ){
             return 'w';
         } else {
