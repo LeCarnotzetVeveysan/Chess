@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="Reworked stages and auxiliary work">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/controllers/GameBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controllers/GameBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/LoadScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/utils/LoadScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/ModelUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/utils/ModelUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxmls/game-board.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxmls/game-board.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="Refactoring code + switching player turn mechanic" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -178,7 +171,7 @@
       <workItem from="1683210129071" duration="1500000" />
       <workItem from="1683222383673" duration="1054000" />
       <workItem from="1683790043958" duration="1584000" />
-      <workItem from="1683878698544" duration="352000" />
+      <workItem from="1683878698544" duration="667000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1677412746648</created>
@@ -495,7 +488,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683211620729</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Refactoring code + switching player turn mechanic">
+      <created>1683879135799</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1683879135799</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -513,7 +513,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Highlight cells with capture in red instead of blue." />
     <MESSAGE value="Work on moves, requiring activePiece and validMove attributes in Board and Piece." />
     <MESSAGE value="reworked validMoves&#10;Semi-proper MVC separation&#10;Added currentPlayer parameter" />
     <MESSAGE value="Added Board position export&#10;Added getIsCheckMethod" />
@@ -538,7 +537,8 @@
     <MESSAGE value="More work on draw conditions" />
     <MESSAGE value="Added Threefold / Fivefold dra and fifty and seventy-five draw offers or forced draws" />
     <MESSAGE value="Reworked stages and auxiliary work" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reworked stages and auxiliary work" />
+    <MESSAGE value="Refactoring code + switching player turn mechanic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring code + switching player turn mechanic" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
