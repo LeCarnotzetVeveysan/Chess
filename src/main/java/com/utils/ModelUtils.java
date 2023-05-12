@@ -38,7 +38,7 @@ public class ModelUtils {
         char color = mainBoard.getSpecificCell(inCurrentCell).getPiece().getColor();
         for(String testMove : startList){
             Board tempBoard = new Board(mainBoard.getBoardPosition(), mainBoard.getLastMove());
-            tempBoard.movePiece(false, true, true, false, inCurrentCell, testMove);
+            tempBoard.movePiece(false, true, true, inCurrentCell, testMove);
             if(!tempBoard.getIsCheck(color)){
                 validMoves.add(testMove);
             }

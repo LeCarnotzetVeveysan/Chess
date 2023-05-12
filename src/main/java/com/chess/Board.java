@@ -12,8 +12,9 @@ public class Board {
     private Piece whiteKing, blackKing;
     private ArrayList<Piece> whiteCapturedPieces, blackCapturedPieces;
     private Piece activePiece;
-    private char currentPlayer;
+    private char gameType = 'p', currentPlayer;
     private boolean promotionRequired = false, canClaimFiftyMoveDraw = false, canClaimThreefoldDraw = false;
+    private boolean autoSwitchPlayer = false;
     private ArrayList<String> moves, positions;
 
     public Board(){
@@ -85,6 +86,13 @@ public class Board {
     public GameState getGameState(){
         return gameState;
     }
+    public boolean getAutoSwitchPlayer(){
+        return autoSwitchPlayer;
+    }
+
+    public void setAutoSwitchPlayer(boolean input){
+        autoSwitchPlayer = input;
+    }
     public boolean getCanClaimFiftyMoveDraw(){
         return canClaimFiftyMoveDraw;
     }
@@ -94,7 +102,7 @@ public class Board {
     }
 
     public boolean getCanClaimThreefoldDraw(){
-        return canClaimFiftyMoveDraw;
+        return canClaimThreefoldDraw;
     }
 
     public void claimThreefoldDrawOffer(){
@@ -226,7 +234,7 @@ public class Board {
         activePiece = inPiece;
         setValidMoves();
     }
-    public void movePiece(boolean realMove, boolean register, boolean enPassant, boolean changePlayer, String inStartCell, String inEndCell){
+    public void movePiece(boolean realMove, boolean register, boolean enPassant, String inStartCell, String inEndCell){
         char moveType = '-';
         Cell startCell = getSpecificCell(inStartCell);
         Cell endCell = getSpecificCell(inEndCell);
@@ -248,9 +256,6 @@ public class Board {
             registerMove(register, endCell.getPiece(), moveType, enPassant);
             updateMoves();
             calculateGameState();
-            if(changePlayer){
-                nextPlayer();
-            }
         } else {
             calculateLineOfSight();
         }
@@ -618,11 +623,11 @@ public class Board {
 
     public void castleKingside(char color){
         if(color == 'w'){
-            movePiece(true, false, false, false,"e1","g1");
-            movePiece(true, false, false, false, "h1", "f1");
+            movePiece(true, false, false, "e1","g1");
+            movePiece(true, false, false, "h1", "f1");
         } else {
-            movePiece(true, false, false, false, "e8","g8");
-            movePiece(true, false, false, false, "h8", "f8");
+            movePiece(true, false, false, "e8","g8");
+            movePiece(true, false, false, "h8", "f8");
         }
         registerCastle(true);
         nextPlayer();
@@ -630,18 +635,18 @@ public class Board {
 
     public void castleQueenside(char color){
         if(color == 'w'){
-            movePiece(true, false, false, false, "e1","c1");
-            movePiece(true, false, false, false, "a1", "d1");
+            movePiece(true, false, false, "e1","c1");
+            movePiece(true, false, false, "a1", "d1");
         } else {
-            movePiece(true, false, false, false, "e8","c8");
-            movePiece(true, false, false, false, "a8", "d8");
+            movePiece(true, false, false, "e8","c8");
+            movePiece(true, false, false, "a8", "d8");
         }
         registerCastle(false);
         nextPlayer();
     }
 
     public void enPassant(String startCell, String endcell){
-        movePiece(true, false, true, true, startCell, endcell);
+        movePiece(true, false, true, startCell, endcell);
         Cell captureCell = cells[coordinatesToIndices(startCell)[0]][coordinatesToIndices(endcell)[1]];
         Piece capturedPiece = captureCell.getPiece();
         if(capturedPiece.getColor() == 'w'){

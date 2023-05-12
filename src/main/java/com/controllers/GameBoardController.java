@@ -30,7 +30,7 @@ public class GameBoardController {
     @FXML
     public Label gamestateLabel, drawOfferLabel;
     @FXML
-    public Button resignBT;
+    public Button nextPlayerBT, resignBT;
     @FXML
     public Button acceptDrawBT, offerStandardDrawBT, claimFiftyMoveDrawBT, claimThreefoldDrawBT;
     @FXML
@@ -57,7 +57,8 @@ public class GameBoardController {
     private ImageView[][] cellIVs, pieceIVs;
     private ArrayList<ImageView> wCaptPieceIVs, bCaptPieceIVs;
     private Board mainBoard;
-
+    private char playerView;
+    private boolean switchViews;
     public void initialize() throws IOException {
         initIVs();
         promotionVB.setDisable(true);
@@ -71,6 +72,7 @@ public class GameBoardController {
         mainBoard = new Board();
 
         refreshScene();
+        nextPlayerBT.setDisable(true);
     }
 
     public void refreshScene() throws IOException {
@@ -82,7 +84,6 @@ public class GameBoardController {
         updatePieceImages();
         updateCellImages();
         updateCapturedPieceImages();
-
     }
 
     private void drawOffer() {
@@ -168,6 +169,10 @@ public class GameBoardController {
 
     private void updateCellImages() throws FileNotFoundException {
         updateCheckCells();
+        updateCheckMateCells();
+    }
+
+    private void updateCheckMateCells() {
     }
 
     private void updateCheckCells() throws FileNotFoundException {
@@ -250,11 +255,12 @@ public class GameBoardController {
     public void onCellCkicked(MouseEvent mouseEvent) throws IOException {
         String cellCoord = ((Node) mouseEvent.getSource()).getId().substring(1,3);
         Cell clickedCell = mainBoard.getSpecificCell(cellCoord);
-
-        if(clickedCell.getValidMove()){
-            moveSequence(cellCoord, clickedCell);
-        } else if (clickedCell.getOccupied() && pieceIsPlayersColor(clickedCell)) {
-            showAvailableMovesSequence(clickedCell);
+        if(canMove()) {
+            if (clickedCell.getValidMove()) {
+                moveSequence(cellCoord, clickedCell);
+            } else if (clickedCell.getOccupied() && pieceIsPlayersColor(clickedCell)) {
+                showAvailableMovesSequence(clickedCell);
+            }
         }
     }
 
@@ -295,8 +301,10 @@ public class GameBoardController {
         } else if(piece.getType(false) == 'P' && differentColumns && emptyEndCell){
             mainBoard.enPassant(piece.getCurrentCell(), cellCoord);
         } else {
-            mainBoard.movePiece(true, true, false, true, piece.getCurrentCell(), cellCoord);
+            mainBoard.movePiece(true, true, false, piece.getCurrentCell(), cellCoord);
         }
+
+        switchPlayerIfAuto();
 
         if(mainBoard.getPromotionRequired()){
             promotionVB.setDisable(false);
@@ -305,6 +313,14 @@ public class GameBoardController {
         }
 
         refreshScene();
+    }
+
+    private void switchPlayerIfAuto() {
+        if(mainBoard.getAutoSwitchPlayer()){
+            mainBoard.nextPlayer();
+        } else {
+            nextPlayerBT.setDisable(false);
+        }
     }
 
     @FXML
@@ -336,5 +352,14 @@ public class GameBoardController {
     @FXML
     public void onRookPromotionClick() throws IOException {
         promotePawn('R');
+    }
+
+    public void onNextPlayerClick(MouseEvent mouseEvent) {
+        mainBoard.nextPlayer();
+        nextPlayerBT.setDisable(true);
+    }
+
+    public boolean canMove(){
+        return nextPlayerBT.isDisabled();
     }
 }
