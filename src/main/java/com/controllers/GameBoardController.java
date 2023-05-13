@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 
@@ -25,6 +26,8 @@ public class GameBoardController {
 
     @FXML
     private AnchorPane mainPane;
+    @FXML
+    private GridPane boardGP;
     @FXML
     public VBox promotionVB;
     @FXML
@@ -57,8 +60,8 @@ public class GameBoardController {
     private ImageView[][] cellIVs, pieceIVs;
     private ArrayList<ImageView> wCaptPieceIVs, bCaptPieceIVs;
     private Board mainBoard;
-    private char playerView;
-    private boolean switchViews;
+    private boolean rotateBoard;
+
     public void initialize() throws IOException {
         initIVs();
         promotionVB.setDisable(true);
@@ -67,12 +70,13 @@ public class GameBoardController {
         //String testPos = "rnbqkbnRpppppNpxxxrNxrxxxNNxxxxxNxxxxxxxxxNNNNxxPPPPPPPxRNBQKBNR";
         //String testPos = "rnbqkbnRpppppNpxxxrNxrxxxNNxxxxxNxxxxxxxxxNNNNxxPPPPPPPPRxxxKxxR";
         //String testPos = "kxxxxxxxxxxxxxxxxxxxxRxxxxxxxxRxxxxxxxxxxxxxxxxxxxxxxxxxKxxxxxxx";
-        //String testPos = "kxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxBxBxxxxxxxxxxxxxxxxKxxxxxxx";
+        //String testPos = "kxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxPxxxxxxxxxxxxxxxxxxKxxxxxxx";
         //mainBoard = new Board(testPos, "Initialization");
         mainBoard = new Board();
 
         refreshScene();
         nextPlayerBT.setDisable(true);
+        rotateBoard = true;
     }
 
     public void refreshScene() throws IOException {
@@ -198,41 +202,14 @@ public class GameBoardController {
         }
     }
 
-    private void initIVs() {
-        ArrayList<ImageView> r8CIVs = new ArrayList<>(Arrays.asList(ca8IV, cb8IV, cc8IV, cd8IV, ce8IV, cf8IV, cg8IV, ch8IV));
-        ArrayList<ImageView> r7CIVs = new ArrayList<>(Arrays.asList(ca7IV, cb7IV, cc7IV, cd7IV, ce7IV, cf7IV, cg7IV, ch7IV));
-        ArrayList<ImageView> r6CIVs = new ArrayList<>(Arrays.asList(ca6IV, cb6IV, cc6IV, cd6IV, ce6IV, cf6IV, cg6IV, ch6IV));
-        ArrayList<ImageView> r5CIVs = new ArrayList<>(Arrays.asList(ca5IV, cb5IV, cc5IV, cd5IV, ce5IV, cf5IV, cg5IV, ch5IV));
-        ArrayList<ImageView> r4CIVs = new ArrayList<>(Arrays.asList(ca4IV, cb4IV, cc4IV, cd4IV, ce4IV, cf4IV, cg4IV, ch4IV));
-        ArrayList<ImageView> r3CIVs = new ArrayList<>(Arrays.asList(ca3IV, cb3IV, cc3IV, cd3IV, ce3IV, cf3IV, cg3IV, ch3IV));
-        ArrayList<ImageView> r2CIVs = new ArrayList<>(Arrays.asList(ca2IV, cb2IV, cc2IV, cd2IV, ce2IV, cf2IV, cg2IV, ch2IV));
-        ArrayList<ImageView> r1CIVs = new ArrayList<>(Arrays.asList(ca1IV, cb1IV, cc1IV, cd1IV, ce1IV, cf1IV, cg1IV, ch1IV));
-
-        ArrayList<ImageView> r8PIVs = new ArrayList<>(Arrays.asList(pa8IV, pb8IV, pc8IV, pd8IV, pe8IV, pf8IV, pg8IV, ph8IV));
-        ArrayList<ImageView> r7PIVs = new ArrayList<>(Arrays.asList(pa7IV, pb7IV, pc7IV, pd7IV, pe7IV, pf7IV, pg7IV, ph7IV));
-        ArrayList<ImageView> r6PIVs = new ArrayList<>(Arrays.asList(pa6IV, pb6IV, pc6IV, pd6IV, pe6IV, pf6IV, pg6IV, ph6IV));
-        ArrayList<ImageView> r5PIVs = new ArrayList<>(Arrays.asList(pa5IV, pb5IV, pc5IV, pd5IV, pe5IV, pf5IV, pg5IV, ph5IV));
-        ArrayList<ImageView> r4PIVs = new ArrayList<>(Arrays.asList(pa4IV, pb4IV, pc4IV, pd4IV, pe4IV, pf4IV, pg4IV, ph4IV));
-        ArrayList<ImageView> r3PIVs = new ArrayList<>(Arrays.asList(pa3IV, pb3IV, pc3IV, pd3IV, pe3IV, pf3IV, pg3IV, ph3IV));
-        ArrayList<ImageView> r2PIVs = new ArrayList<>(Arrays.asList(pa2IV, pb2IV, pc2IV, pd2IV, pe2IV, pf2IV, pg2IV, ph2IV));
-        ArrayList<ImageView> r1PIVs = new ArrayList<>(Arrays.asList(pa1IV, pb1IV, pc1IV, pd1IV, pe1IV, pf1IV, pg1IV, ph1IV));
-
-        ArrayList<ArrayList<ImageView>> rCIVs = new ArrayList<>(Arrays.asList(r8CIVs, r7CIVs, r6CIVs, r5CIVs, r4CIVs, r3CIVs, r2CIVs, r1CIVs));
-        ArrayList<ArrayList<ImageView>> rPIVs = new ArrayList<>(Arrays.asList(r8PIVs, r7PIVs, r6PIVs, r5PIVs, r4PIVs, r3PIVs, r2PIVs, r1PIVs));
-        cellIVs = new ImageView[8][8];
-        pieceIVs = new ImageView[8][8];
-
+    public void rotateBoardAndPieceImages(){
+        int angle = (int) boardGP.getRotate() == 0 ? 180 : 0;
+        boardGP.setRotate(angle);
         for (int i = 0; i <= 7; i++){
             for (int j = 0; j <= 7; j++){
-                cellIVs[i][j] = rCIVs.get(i).get(j);
-                pieceIVs[i][j] = rPIVs.get(i).get(j);
+                pieceIVs[i][j].setRotate(angle);
             }
         }
-
-        wCaptPieceIVs = new ArrayList<>(Arrays.asList(wCP1IV, wCP2IV, wCP3IV, wCP4IV, wCP5IV, wCP6IV, wCP7IV, wCP8IV));
-        wCaptPieceIVs.addAll(Arrays.asList(wCP9IV, wCP10IV, wCP11IV, wCP12IV, wCP13IV, wCP14IV, wCP15IV, wCP16IV));
-        bCaptPieceIVs = new ArrayList<>(Arrays.asList(bCP1IV, bCP2IV, bCP3IV, bCP4IV, bCP5IV, bCP6IV, bCP7IV, bCP8IV));
-        bCaptPieceIVs.addAll(Arrays.asList(bCP9IV, bCP10IV, bCP11IV, bCP12IV, bCP13IV, bCP14IV, bCP15IV, bCP16IV));
     }
 
     public void setCellClickableState(boolean inState){
@@ -304,12 +281,12 @@ public class GameBoardController {
             mainBoard.movePiece(true, true, false, piece.getCurrentCell(), cellCoord);
         }
 
-        switchPlayerIfAuto();
-
         if(mainBoard.getPromotionRequired()){
             promotionVB.setDisable(false);
             promotionVB.setVisible(true);
             setCellClickableState(false);
+        } else {
+            switchPlayerIfAuto();
         }
 
         refreshScene();
@@ -318,6 +295,7 @@ public class GameBoardController {
     private void switchPlayerIfAuto() {
         if(mainBoard.getAutoSwitchPlayer()){
             mainBoard.nextPlayer();
+            rotateBoardAndPieceImages();
         } else {
             nextPlayerBT.setDisable(false);
         }
@@ -331,6 +309,7 @@ public class GameBoardController {
         promotionVB.setDisable(true);
         promotionVB.setVisible(false);
         setCellClickableState(true);
+        switchPlayerIfAuto();
         refreshScene();
     }
 
@@ -354,12 +333,52 @@ public class GameBoardController {
         promotePawn('R');
     }
 
-    public void onNextPlayerClick(MouseEvent mouseEvent) {
+    public void onNextPlayerClick() {
         mainBoard.nextPlayer();
         nextPlayerBT.setDisable(true);
+        if(rotateBoard) {
+            rotateBoardAndPieceImages();
+        }
     }
 
     public boolean canMove(){
         return nextPlayerBT.isDisabled();
+    }
+
+    private void initIVs() {
+        ArrayList<ImageView> r8CIVs = new ArrayList<>(Arrays.asList(ca8IV, cb8IV, cc8IV, cd8IV, ce8IV, cf8IV, cg8IV, ch8IV));
+        ArrayList<ImageView> r7CIVs = new ArrayList<>(Arrays.asList(ca7IV, cb7IV, cc7IV, cd7IV, ce7IV, cf7IV, cg7IV, ch7IV));
+        ArrayList<ImageView> r6CIVs = new ArrayList<>(Arrays.asList(ca6IV, cb6IV, cc6IV, cd6IV, ce6IV, cf6IV, cg6IV, ch6IV));
+        ArrayList<ImageView> r5CIVs = new ArrayList<>(Arrays.asList(ca5IV, cb5IV, cc5IV, cd5IV, ce5IV, cf5IV, cg5IV, ch5IV));
+        ArrayList<ImageView> r4CIVs = new ArrayList<>(Arrays.asList(ca4IV, cb4IV, cc4IV, cd4IV, ce4IV, cf4IV, cg4IV, ch4IV));
+        ArrayList<ImageView> r3CIVs = new ArrayList<>(Arrays.asList(ca3IV, cb3IV, cc3IV, cd3IV, ce3IV, cf3IV, cg3IV, ch3IV));
+        ArrayList<ImageView> r2CIVs = new ArrayList<>(Arrays.asList(ca2IV, cb2IV, cc2IV, cd2IV, ce2IV, cf2IV, cg2IV, ch2IV));
+        ArrayList<ImageView> r1CIVs = new ArrayList<>(Arrays.asList(ca1IV, cb1IV, cc1IV, cd1IV, ce1IV, cf1IV, cg1IV, ch1IV));
+
+        ArrayList<ImageView> r8PIVs = new ArrayList<>(Arrays.asList(pa8IV, pb8IV, pc8IV, pd8IV, pe8IV, pf8IV, pg8IV, ph8IV));
+        ArrayList<ImageView> r7PIVs = new ArrayList<>(Arrays.asList(pa7IV, pb7IV, pc7IV, pd7IV, pe7IV, pf7IV, pg7IV, ph7IV));
+        ArrayList<ImageView> r6PIVs = new ArrayList<>(Arrays.asList(pa6IV, pb6IV, pc6IV, pd6IV, pe6IV, pf6IV, pg6IV, ph6IV));
+        ArrayList<ImageView> r5PIVs = new ArrayList<>(Arrays.asList(pa5IV, pb5IV, pc5IV, pd5IV, pe5IV, pf5IV, pg5IV, ph5IV));
+        ArrayList<ImageView> r4PIVs = new ArrayList<>(Arrays.asList(pa4IV, pb4IV, pc4IV, pd4IV, pe4IV, pf4IV, pg4IV, ph4IV));
+        ArrayList<ImageView> r3PIVs = new ArrayList<>(Arrays.asList(pa3IV, pb3IV, pc3IV, pd3IV, pe3IV, pf3IV, pg3IV, ph3IV));
+        ArrayList<ImageView> r2PIVs = new ArrayList<>(Arrays.asList(pa2IV, pb2IV, pc2IV, pd2IV, pe2IV, pf2IV, pg2IV, ph2IV));
+        ArrayList<ImageView> r1PIVs = new ArrayList<>(Arrays.asList(pa1IV, pb1IV, pc1IV, pd1IV, pe1IV, pf1IV, pg1IV, ph1IV));
+
+        ArrayList<ArrayList<ImageView>> rCIVs = new ArrayList<>(Arrays.asList(r8CIVs, r7CIVs, r6CIVs, r5CIVs, r4CIVs, r3CIVs, r2CIVs, r1CIVs));
+        ArrayList<ArrayList<ImageView>> rPIVs = new ArrayList<>(Arrays.asList(r8PIVs, r7PIVs, r6PIVs, r5PIVs, r4PIVs, r3PIVs, r2PIVs, r1PIVs));
+        cellIVs = new ImageView[8][8];
+        pieceIVs = new ImageView[8][8];
+
+        for (int i = 0; i <= 7; i++){
+            for (int j = 0; j <= 7; j++){
+                cellIVs[i][j] = rCIVs.get(i).get(j);
+                pieceIVs[i][j] = rPIVs.get(i).get(j);
+            }
+        }
+
+        wCaptPieceIVs = new ArrayList<>(Arrays.asList(wCP1IV, wCP2IV, wCP3IV, wCP4IV, wCP5IV, wCP6IV, wCP7IV, wCP8IV));
+        wCaptPieceIVs.addAll(Arrays.asList(wCP9IV, wCP10IV, wCP11IV, wCP12IV, wCP13IV, wCP14IV, wCP15IV, wCP16IV));
+        bCaptPieceIVs = new ArrayList<>(Arrays.asList(bCP1IV, bCP2IV, bCP3IV, bCP4IV, bCP5IV, bCP6IV, bCP7IV, bCP8IV));
+        bCaptPieceIVs.addAll(Arrays.asList(bCP9IV, bCP10IV, bCP11IV, bCP12IV, bCP13IV, bCP14IV, bCP15IV, bCP16IV));
     }
 }

@@ -14,7 +14,7 @@ public class Board {
     private Piece activePiece;
     private char gameType = 'p', currentPlayer;
     private boolean promotionRequired = false, canClaimFiftyMoveDraw = false, canClaimThreefoldDraw = false;
-    private boolean autoSwitchPlayer = false;
+    private boolean autoSwitchPlayer = true;
     private ArrayList<String> moves, positions;
 
     public Board(){
@@ -429,7 +429,7 @@ public class Board {
         calculateStalemate();
         calculateDraw();
         if(!(gameState == ONGOING)){
-            System.out.println("Game ended");
+            System.out.println("Game ended. Reason : " + gameState);
         }
     }
 
