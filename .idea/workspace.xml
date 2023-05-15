@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="Buil tests #3">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="Build test #6">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +71,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
@@ -94,7 +94,7 @@
       <recent name="com" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ChessBoard">
+  <component name="RunManager" selected="Maven.MvnBoard">
     <configuration name="ChessBoard" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.application.AppLaunch" />
       <module name="Chess" />
@@ -109,9 +109,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MvnBoard" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="install" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Application.ChessBoard" />
       <item itemvalue="Application.Full Chess" />
+      <item itemvalue="Maven.MvnBoard" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -179,28 +206,7 @@
       <workItem from="1683981202559" duration="2273000" />
       <workItem from="1684075328299" duration="345000" />
       <workItem from="1684181794002" duration="631000" />
-      <workItem from="1684182541340" duration="379000" />
-    </task>
-    <task id="LOCAL-00002" summary="Added first classes">
-      <created>1677412895075</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1677412895075</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Added more classes + cleanup">
-      <created>1677416114465</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1677416114465</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Tests for board visualization">
-      <created>1677417246384</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1677417246384</updated>
+      <workItem from="1684182541340" duration="835000" />
     </task>
     <task id="LOCAL-00005" summary="Added testBoard file + started working on it">
       <created>1677865739796</created>
@@ -524,7 +530,28 @@
       <option name="project" value="LOCAL" />
       <updated>1684182701138</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Build test #4">
+      <created>1684182944919</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1684182944919</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Build test #5">
+      <created>1684183069151</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1684183069151</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Build test #6">
+      <created>1684183214608</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1684183214608</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -542,9 +569,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed StackOverflow error (recursin) by adding getLineOfSight() method" />
-    <MESSAGE value="When loading a Board with a specific position, duplicate currentCell in King and Pawn cellHistory if not in original position" />
-    <MESSAGE value="Fixed error for Pawn LineOfSight in rows 0 and 7" />
     <MESSAGE value="Added mid-pink blur for Check visualization" />
     <MESSAGE value="Added Capacity to promote pawn" />
     <MESSAGE value="Fixed error where promotion occured after each move" />
@@ -567,7 +591,10 @@
     <MESSAGE value="Added support for view rotation" />
     <MESSAGE value="resign + work on draw" />
     <MESSAGE value="Buil tests #3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Buil tests #3" />
+    <MESSAGE value="Build test #4" />
+    <MESSAGE value="Build test #5" />
+    <MESSAGE value="Build test #6" />
+    <option name="LAST_COMMIT_MESSAGE" value="Build test #6" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
