@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="resign + work on draw">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ccbfa6a7-902c-4ad7-93da-9d344ab67f46" name="Changes" comment="Buil tests #3">
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -180,14 +179,7 @@
       <workItem from="1683981202559" duration="2273000" />
       <workItem from="1684075328299" duration="345000" />
       <workItem from="1684181794002" duration="631000" />
-      <workItem from="1684182541340" duration="64000" />
-    </task>
-    <task id="LOCAL-00001" summary="Init commit">
-      <created>1677412746648</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1677412746648</updated>
+      <workItem from="1684182541340" duration="379000" />
     </task>
     <task id="LOCAL-00002" summary="Added first classes">
       <created>1677412895075</created>
@@ -525,7 +517,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684182413382</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Buil tests #3">
+      <created>1684182701137</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1684182701138</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -543,7 +542,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Started removing of invalid moves (that would lead to check), but encountering StackOverflow" />
     <MESSAGE value="Fixed StackOverflow error (recursin) by adding getLineOfSight() method" />
     <MESSAGE value="When loading a Board with a specific position, duplicate currentCell in King and Pawn cellHistory if not in original position" />
     <MESSAGE value="Fixed error for Pawn LineOfSight in rows 0 and 7" />
@@ -568,7 +566,8 @@
     <MESSAGE value="Build test #2" />
     <MESSAGE value="Added support for view rotation" />
     <MESSAGE value="resign + work on draw" />
-    <option name="LAST_COMMIT_MESSAGE" value="resign + work on draw" />
+    <MESSAGE value="Buil tests #3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Buil tests #3" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
