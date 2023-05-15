@@ -14,7 +14,7 @@ public class Board {
     private Piece activePiece;
     private char gameType = 'p', currentPlayer;
     private boolean promotionRequired = false, canClaimFiftyMoveDraw = false, canClaimThreefoldDraw = false;
-    private boolean autoSwitchPlayer = true;
+    private boolean autoSwitchPlayer = false;
     private ArrayList<String> moves, positions;
 
     public Board(){
@@ -655,6 +655,14 @@ public class Board {
             blackCapturedPieces.add(capturedPiece);
         }
         captureCell.setPiece(null);
+    }
+
+    public void resign(char color){
+        if(color == 'w'){
+            gameState = RESIGN_WHITE;
+        } else {
+            gameState = RESIGN_BLACK;
+        }
     }
 
     public ArrayList<String> getMoves(){

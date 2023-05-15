@@ -415,9 +415,9 @@
     <Label fx:id="gamestateLabel" alignment="CENTER" layoutX="24.0" layoutY="40.0" prefHeight="18.0" prefWidth="226.0" text="gameState" textAlignment="CENTER" />
     <Button fx:id="claimFiftyMoveDrawBT" layoutX="651.0" layoutY="523.0" mnemonicParsing="false" onMouseClicked="#claimFiftyMoveDraw" text="Offer Fifty-Move Draw" />
     <Button fx:id="claimThreefoldDrawBT" layoutX="651.0" layoutY="553.0" mnemonicParsing="false" onMouseClicked="#claimThreefoldDraw" prefHeight="26.0" prefWidth="134.0" text="Offer Threefold Draw" />
-    <Button fx:id="acceptDrawBT" layoutX="45.0" layoutY="553.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="134.0" text="Accept Draw" />
-    <Button fx:id="offerStandardDrawBT" layoutX="651.0" layoutY="49.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="134.0" text="Offer Standard Draw" />
+    <Button fx:id="acceptDrawBT" layoutX="45.0" layoutY="553.0" mnemonicParsing="false" onMouseClicked="#onAcceptDrawClick" prefHeight="26.0" prefWidth="134.0" text="Accept Draw" />
+    <Button fx:id="offerStandardDrawBT" layoutX="651.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#onStandardDrawClick" prefHeight="26.0" prefWidth="134.0" text="Offer Standard Draw" />
     <Label fx:id="drawOfferLabel" alignment="CENTER" layoutX="18.0" layoutY="526.0" prefHeight="18.0" prefWidth="188.0" text="Draw Offer Label" textAlignment="CENTER" />
-    <Button fx:id="resignBT" layoutX="651.0" layoutY="18.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="134.0" text="Resign" />
+    <Button fx:id="resignBT" layoutX="651.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#onResignButtonClick" prefHeight="26.0" prefWidth="134.0" text="Resign" />
    <Button fx:id="nextPlayerBT" layoutX="361.0" layoutY="540.0" mnemonicParsing="false" onMouseClicked="#onNextPlayerClick" text="Next Player" />
 </AnchorPane>

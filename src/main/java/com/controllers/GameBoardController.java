@@ -202,7 +202,7 @@ public class GameBoardController {
         }
     }
 
-    public void rotateBoardAndPieceImages(){
+    public void rotateBoardAndPieceImages() throws InterruptedException {
         int angle = (int) boardGP.getRotate() == 0 ? 180 : 0;
         boardGP.setRotate(angle);
         for (int i = 0; i <= 7; i++){
@@ -229,7 +229,7 @@ public class GameBoardController {
     }
 
     @FXML
-    public void onCellCkicked(MouseEvent mouseEvent) throws IOException {
+    public void onCellCkicked(MouseEvent mouseEvent) throws IOException, InterruptedException {
         String cellCoord = ((Node) mouseEvent.getSource()).getId().substring(1,3);
         Cell clickedCell = mainBoard.getSpecificCell(cellCoord);
         if(canMove()) {
@@ -262,7 +262,7 @@ public class GameBoardController {
         }
     }
 
-    private void moveSequence(String cellCoord, Cell clickedCell) throws IOException {
+    private void moveSequence(String cellCoord, Cell clickedCell) throws IOException, InterruptedException {
         Piece piece = mainBoard.getActivePiece();
         boolean differentColumns = clickedCell.getColumnIndex() != piece.getColumnIndex();
         boolean emptyEndCell = !clickedCell.getOccupied();
@@ -292,7 +292,7 @@ public class GameBoardController {
         refreshScene();
     }
 
-    private void switchPlayerIfAuto() {
+    private void switchPlayerIfAuto() throws InterruptedException {
         if(mainBoard.getAutoSwitchPlayer()){
             mainBoard.nextPlayer();
             rotateBoardAndPieceImages();
@@ -302,7 +302,7 @@ public class GameBoardController {
     }
 
     @FXML
-    public void promotePawn(char desiredPiece) throws IOException {
+    public void promotePawn(char desiredPiece) throws IOException, InterruptedException {
         Piece activePiece = mainBoard.getActivePiece();
         char promotedPiece = activePiece.getColor() == 'w' ? desiredPiece : Character.toLowerCase(desiredPiece);
         mainBoard.promotePawn(activePiece.getCurrentCell(), promotedPiece);
@@ -314,26 +314,26 @@ public class GameBoardController {
     }
 
     @FXML
-    public void onQueenPromotionClick() throws IOException {
+    public void onQueenPromotionClick() throws IOException, InterruptedException {
         promotePawn('Q');
     }
 
     @FXML
-    public void onBishopPromotionClick() throws IOException {
+    public void onBishopPromotionClick() throws IOException, InterruptedException {
         promotePawn('B');
     }
 
     @FXML
-    public void onKnightPromotionClick() throws IOException {
+    public void onKnightPromotionClick() throws IOException, InterruptedException {
         promotePawn('N');
     }
 
     @FXML
-    public void onRookPromotionClick() throws IOException {
+    public void onRookPromotionClick() throws IOException, InterruptedException {
         promotePawn('R');
     }
 
-    public void onNextPlayerClick() {
+    public void onNextPlayerClick() throws InterruptedException {
         mainBoard.nextPlayer();
         nextPlayerBT.setDisable(true);
         if(rotateBoard) {
@@ -343,6 +343,17 @@ public class GameBoardController {
 
     public boolean canMove(){
         return nextPlayerBT.isDisabled();
+    }
+
+    public void onResignButtonClick() throws IOException {
+        mainBoard.resign(mainBoard.getCurrentPlayer());
+        refreshScene();
+    }
+
+    public void onAcceptDrawClick(MouseEvent mouseEvent) {
+    }
+
+    public void onStandardDrawClick(MouseEvent mouseEvent) {
     }
 
     private void initIVs() {
@@ -381,4 +392,5 @@ public class GameBoardController {
         bCaptPieceIVs = new ArrayList<>(Arrays.asList(bCP1IV, bCP2IV, bCP3IV, bCP4IV, bCP5IV, bCP6IV, bCP7IV, bCP8IV));
         bCaptPieceIVs.addAll(Arrays.asList(bCP9IV, bCP10IV, bCP11IV, bCP12IV, bCP13IV, bCP14IV, bCP15IV, bCP16IV));
     }
+
 }
